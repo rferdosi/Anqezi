@@ -15,6 +15,12 @@ public class Cell extends Button {
     private ImageView imageView;
     private Piece piece;
 
+    {
+//        super.setWidth(60);
+//        super.setHeight(60);
+        super.setPrefSize(60,60);
+    }
+
     public Piece getPiece() {
         return piece;
     }
@@ -22,6 +28,11 @@ public class Cell extends Button {
     public void setPiece(Piece piece) {
         this.piece = piece;
     }
+
+//    @Override
+//    protected void setWidth(double value) {
+//        super.setWidth(value);
+//    }
 
     public void setDownCell(Cell downCell) {
         this.downCell = downCell;

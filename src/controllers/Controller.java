@@ -3,6 +3,7 @@ package controllers;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import Board.*;
@@ -13,6 +14,7 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     public VBox myBoard;
+    public Button test;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -25,6 +27,7 @@ public class Controller implements Initializable {
                 //adding cells to board
             }
         }
+        test.fire();
 
     }
 }
