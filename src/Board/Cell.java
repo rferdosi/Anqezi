@@ -61,7 +61,7 @@ public class Cell extends Button {
         return column;
     }
 
-    public void setColumn(char j) {
+    public void setColumn(int j) {
         this.column = j;
     }
 
