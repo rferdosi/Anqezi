@@ -22,6 +22,8 @@ public class Board {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 cells[i][j] = new Cell();
+                cells[i][j].setColumn(j);
+                cells[i][j].setRow(i);
                 if ((i + j) % 2 == 0)
                     cells[i][j].setColour(Colour.White);
                 else
