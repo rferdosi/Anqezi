@@ -10,4 +10,7 @@ public class AboutController extends FatherController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
     }
+    public void backToMain(){
+        goTo("main_menu");
+    }
 }
