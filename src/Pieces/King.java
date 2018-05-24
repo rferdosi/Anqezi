@@ -1,14 +1,9 @@
 package Pieces;
 
-import Board.Cell;
 import Controllers.Main;
 
 public class King extends Piece {
 
-    @Override
-    public void move(Cell destination) {
-
-    }
 
     @Override
     public void selected() {
