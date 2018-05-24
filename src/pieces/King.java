@@ -1,9 +1,11 @@
 package pieces;
 
+import Board.Cell;
+
 public class King extends Piece {
 
     @Override
-    public void move() {
+    public void move(Cell destination) {
 
     }
 
