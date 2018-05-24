@@ -62,6 +62,19 @@ public class Pawn extends Piece {
     public void move(Cell destination) {
         super.move(destination);
         isFirstMove = false;
+        if (side == Side.White) {
+            if (cell.getRow() == 7)
+                queening();
+        } else {
+            if (cell.getRow() == 0)
+                queening();
+        }
+
+    }
+
+    private static void queening() {
+        //change the pawn to other pieces
+
     }
 
 }
