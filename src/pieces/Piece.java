@@ -8,7 +8,9 @@ abstract public class Piece {
     private Cell cell;
     private boolean isHited;
 
-    abstract public void move();
+    public void move(Cell destination){
+        this.cell = destination;
+    }
 
     abstract public void selected();
 
