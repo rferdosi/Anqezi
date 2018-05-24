@@ -9,7 +9,7 @@ import javafx.scene.layout.VBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GameController implements Initializable {
+public class GameController extends FatherController implements Initializable {
 
     public VBox myBoard;
 
