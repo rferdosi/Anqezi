@@ -1,7 +1,7 @@
 package Board;
 
 import Assets.Images.Other.Colour;
-import themes.BoardTheme;
+import Themes.BoardTheme;
 
 public class Board {
     private Cell[][] cells = new Cell[8][8];

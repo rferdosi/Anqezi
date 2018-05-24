@@ -1,4 +1,4 @@
-package themes;
+package Themes;
 
 import java.io.File;
 
