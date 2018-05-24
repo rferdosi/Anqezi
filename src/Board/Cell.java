@@ -15,6 +15,7 @@ public class Cell extends Button {
     private int column;
     private ImageView imageView;
     private Piece piece;
+    private boolean isPossible;
 
     public boolean isPossible() {
         return isPossible;
@@ -24,7 +25,7 @@ public class Cell extends Button {
         isPossible = possible;
     }
 
-    private boolean isPossible;
+
 
     {
 //        super.setWidth(60);
