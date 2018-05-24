@@ -1,6 +1,5 @@
 package Board;
 
-import Assets.Images.Other.Colour;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import Pieces.Piece;
@@ -10,12 +9,22 @@ public class Cell extends Button {
     private Cell downCell;
     private Cell rightCell;
     private Cell leftCell;
-    private Colour colour;
+    private BoardColour boardColour;
     private int row;
     private int column;
     private ImageView imageView;
     private Piece piece;
     private boolean isPossible;
+
+    public boolean isThreaten() {
+        return isThreaten;
+    }
+
+    public void setThreaten(boolean threaten) {
+        isThreaten = threaten;
+    }
+
+    private boolean isThreaten;
 
     public boolean isPossible() {
         return isPossible;
@@ -98,8 +107,8 @@ public class Cell extends Button {
         this.imageView = imageView;
     }
 
-    public void setColour(Colour colour) {
-        this.colour = colour;
+    public void setBoardColour(BoardColour boardColour) {
+        this.boardColour = boardColour;
     }
 }
 
