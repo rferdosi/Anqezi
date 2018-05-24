@@ -1,4 +1,4 @@
-package themes;
+package Themes;
 
 public interface Theme {
 

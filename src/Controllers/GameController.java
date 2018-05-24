@@ -1,17 +1,15 @@
-package controllers;
+package Controllers;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import Board.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class GameController extends FatherController implements Initializable {
 
     public VBox myBoard;
 

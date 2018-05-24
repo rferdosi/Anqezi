@@ -1,4 +1,4 @@
-package pieces;
+package Pieces;
 
 import Board.Side;
 import javafx.scene.image.ImageView;
