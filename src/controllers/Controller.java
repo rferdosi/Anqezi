@@ -22,6 +22,7 @@ public class Controller implements Initializable {
             HBox hBox = (HBox) node;
             for (int j = 0; j < 8; j++) {
                 hBox.getChildren().add(Main.board.getCells()[i][j]);
+                //adding cells to board
             }
         }
 
