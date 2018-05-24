@@ -1,5 +1,6 @@
 package Board;
 
+import Assets.Images.Other.Colour;
 import themes.BoardTheme;
 
 public class Board {

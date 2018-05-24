@@ -1,6 +1,6 @@
 package pieces;
 
-import Board.Colour;
+import Assets.Images.Other.Colour;
 import javafx.scene.image.ImageView;
 import Board.Cell;
 

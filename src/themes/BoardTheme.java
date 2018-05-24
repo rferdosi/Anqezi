@@ -1,4 +1,7 @@
 package themes;
 
-public class BoardTheme implements Theme {
+import java.io.File;
+
+public  class BoardTheme implements Theme {
+    protected File css;
 }
