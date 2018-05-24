@@ -1,9 +1,10 @@
 package Board;
 
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import pieces.Piece;
 
-public class Cell {
+public class Cell extends Button {
     private Cell upCell;
     private Cell downCell;
     private Cell rightCell;
