@@ -1,6 +1,7 @@
 package pieces;
 
 import Board.Cell;
+import controllers.Main;
 
 public class King extends Piece {
 
@@ -11,7 +12,12 @@ public class King extends Piece {
 
     @Override
     public void selected() {
-
+        for (int i = -1; i < 2; i++){
+            for (int j = -1; j < 2; j++){
+                if (Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).getPiece() != null)
+                    Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).setPossible(true);
+            }
+        }
     }
 
 }
