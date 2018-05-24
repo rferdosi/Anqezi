@@ -43,7 +43,6 @@ public class Cell extends Button {
     }
 
 
-
     {
 //        super.setWidth(60);
 //        super.setHeight(60);
@@ -117,6 +116,10 @@ public class Cell extends Button {
 
     public void setBoardColour(BoardColour boardColour) {
         this.boardColour = boardColour;
+    }
+
+    public boolean isEmpty() {
+        return piece == null;
     }
 }
 

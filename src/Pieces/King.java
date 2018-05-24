@@ -19,9 +19,9 @@ public class King extends Piece {
                     continue;
                 }
                 else {
-                    if (Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).getPiece() == null)
+                    if (Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).isEmpty())
                         Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).setPossible(true);
-                    else if (Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).getPiece() != null &&
+                    else if (!Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).isEmpty() &&
                             Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).getPiece().side != this.side) {
                         Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).setThreaten(true);
                     }
