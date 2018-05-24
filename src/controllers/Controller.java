@@ -14,7 +14,6 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     public VBox myBoard;
-    public Button test;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -27,7 +26,6 @@ public class Controller implements Initializable {
                 //adding cells to board
             }
         }
-        test.fire();
 
     }
 }
