@@ -1,7 +1,7 @@
 package pieces;
 
 import Board.Cell;
-import controllers.Main;
+import Main;
 
 public class Queen extends Piece {
 
