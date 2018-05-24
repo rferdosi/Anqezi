@@ -10,8 +10,8 @@ public class Cell extends Button {
     private Cell rightCell;
     private Cell leftCell;
     private Colour colour;
-//    private int row;
-//    private int column;
+    private int row;
+    private int column;
     private ImageView imageView;
     private Piece piece;
 
@@ -49,22 +49,22 @@ public class Cell extends Button {
         return leftCell;
     }
 
-    /*  public int getRow() {
-              return row;
-          }
+    public int getRow() {
+        return row;
+    }
 
-          public void setRow(int i) {
-              this.row = i;
-          }
+    public void setRow(int i) {
+        this.row = i;
+    }
 
-          public int getColumn() {
-              return column;
-          }
+    public int getColumn() {
+        return column;
+    }
 
-          public void setColumn(char j) {
-              this.column = j;
-          }
-      */
+    public void setColumn(char j) {
+        this.column = j;
+    }
+
     public ImageView getImageView() {
         return imageView;
     }

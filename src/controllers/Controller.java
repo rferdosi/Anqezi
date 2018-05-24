@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
@@ -15,10 +16,12 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        for (Node node : myBoard.getChildren()) {
+        ObservableList<Node> children = myBoard.getChildren();
+        for (int i = 0; i < children.size(); i++) {
+            Node node = children.get(i);
             HBox hBox = (HBox) node;
-            for (int i = 0; i < 8; i++) {
-                hBox.getChildren().add()
+            for (int j = 0; j < 8; j++) {
+                hBox.getChildren().add(Main.board.getCells()[i][j]);
             }
         }
 
