@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import Board.Board;
 
 public class Main extends Application {
-    static Board board;
+    public static Board board;
 
     @Override
     public void start(Stage primaryStage) throws Exception {

@@ -15,6 +15,16 @@ public class Cell extends Button {
     private ImageView imageView;
     private Piece piece;
 
+    public boolean isPossible() {
+        return isPossible;
+    }
+
+    public void setPossible(boolean possible) {
+        isPossible = possible;
+    }
+
+    private boolean isPossible;
+
     {
 //        super.setWidth(60);
 //        super.setHeight(60);

@@ -6,8 +6,8 @@ public class Board {
     private Cell[][] cells = new Cell[8][8];
     private BoardTheme theme;
 
-    public Cell[][] getCells() {
-        return cells;
+    public Cell getCells(int i, int j) {
+        return cells[i][j];
     }
 
     public BoardTheme getTheme() {
