@@ -9,7 +9,7 @@ public class Cell {
     private Cell rightCell;
     private Cell leftCell;
     private Side side;
-    //    private int row;
+//    private int row;
 //    private int column;
     private ImageView imageView;
     private Piece piece;
