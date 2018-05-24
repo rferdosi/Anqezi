@@ -1,12 +1,14 @@
 package pieces;
 
+import Board.Colour;
 import javafx.scene.image.ImageView;
 import Board.Cell;
 
 abstract public class Piece {
-    private ImageView imageView;
-    private Cell cell;
-    private boolean isHited;
+    protected ImageView imageView;
+    protected Cell cell;
+    protected boolean isHited;
+    protected Colour colour;
 
     public void move(Cell destination){
         this.cell = destination;
