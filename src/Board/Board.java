@@ -1,6 +1,6 @@
 package Board;
 
-import themes.BoardTheme;
+import Themes.BoardTheme;
 
 public class Board {
     private Cell[][] cells = new Cell[8][8];
@@ -25,9 +25,9 @@ public class Board {
                 cells[i][j].setColumn(j);
                 cells[i][j].setRow(i);
                 if ((i + j) % 2 == 0)
-                    cells[i][j].setBoardColour(Board.BoardColour.White);
+                    cells[i][j].setBoardColour(BoardColour.White);
                 else
-                    cells[i][j].setBoardColour(Board.BoardColour.Black);
+                    cells[i][j].setBoardColour(BoardColour.Black);
             }
         }
     }

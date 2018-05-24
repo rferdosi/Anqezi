@@ -107,7 +107,7 @@ public class Cell extends Button {
         this.imageView = imageView;
     }
 
-    public void setBoardColour(Board.BoardColour boardColour) {
+    public void setBoardColour(BoardColour boardColour) {
         this.boardColour = boardColour;
     }
 }
