@@ -14,7 +14,11 @@ abstract public class Piece {
         this.cell = destination;
     }
 
-    abstract public void selected();
+    public void selected(){
+        this.cell.setSelected(true);
+    }
 
+    public void cleanTextures(){
 
+    }
 }

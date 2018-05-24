@@ -15,6 +15,8 @@ public class Cell extends Button {
     private ImageView imageView;
     private Piece piece;
     private boolean isPossible;
+    private boolean isThreaten;
+    private boolean isSelected;
 
     public boolean isThreaten() {
         return isThreaten;
@@ -24,7 +26,13 @@ public class Cell extends Button {
         isThreaten = threaten;
     }
 
-    private boolean isThreaten;
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
 
     public boolean isPossible() {
         return isPossible;
