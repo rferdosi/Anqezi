@@ -1,4 +1,4 @@
-package others;
+package Board;
 
 import javafx.scene.image.ImageView;
 import pieces.Piece;
@@ -8,7 +8,7 @@ public class Cell {
     private Cell downCell;
     private Cell rightCell;
     private Cell leftCell;
-    private Side side;
+    private Colour colour;
 //    private int row;
 //    private int column;
     private ImageView imageView;
@@ -32,22 +32,38 @@ public class Cell {
         rightCell.leftCell = this;
     }
 
+    public Cell getUpCell() {
+        return upCell;
+    }
+
+    public Cell getDownCell() {
+        return downCell;
+    }
+
+    public Cell getRightCell() {
+        return rightCell;
+    }
+
+    public Cell getLeftCell() {
+        return leftCell;
+    }
+
     /*  public int getRow() {
-          return row;
-      }
+              return row;
+          }
 
-      public void setRow(int i) {
-          this.row = i;
-      }
+          public void setRow(int i) {
+              this.row = i;
+          }
 
-      public int getColumn() {
-          return column;
-      }
+          public int getColumn() {
+              return column;
+          }
 
-      public void setColumn(char j) {
-          this.column = j;
-      }
-  */
+          public void setColumn(char j) {
+              this.column = j;
+          }
+      */
     public ImageView getImageView() {
         return imageView;
     }
@@ -56,8 +72,8 @@ public class Cell {
         this.imageView = imageView;
     }
 
-    public void setSide(Side side) {
-        this.side = side;
+    public void setColour(Colour colour) {
+        this.colour = colour;
     }
 }
 

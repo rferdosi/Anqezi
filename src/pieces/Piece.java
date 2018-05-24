@@ -1,7 +1,7 @@
 package pieces;
 
 import javafx.scene.image.ImageView;
-import others.Cell;
+import Board.Cell;
 
 abstract public class Piece {
     private ImageView imageView;

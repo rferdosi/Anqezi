@@ -1,4 +1,4 @@
-package others;
+package Board;
 
 import themes.BoardTheme;
 
@@ -23,9 +23,9 @@ public class Board {
             for (int j = 0; j < 8; j++) {
                 cells[i][j] = new Cell();
                 if ((i + j) % 2 == 0)
-                    cells[i][j].setSide(Side.White);
+                    cells[i][j].setColour(Colour.White);
                 else
-                    cells[i][j].setSide(Side.Black);
+                    cells[i][j].setColour(Colour.Black);
             }
         }
     }
