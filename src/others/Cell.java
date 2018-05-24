@@ -1,25 +1,35 @@
 package others;
 
 import javafx.scene.image.ImageView;
+import pieces.Piece;
 
-public class Node {
-    private Node upNode;
-    private Node downNode;
-    private Node rightNode;
-    private Node leftNode;
+public class Cell {
+    private Cell upCell;
+    private Cell downCell;
+    private Cell rightCell;
+    private Cell leftCell;
     private Side side;
     //    private int row;
 //    private int column;
     private ImageView imageView;
+    private Piece piece;
 
-    public void setDownNode(Node downNode) {
-        this.downNode = downNode;
-        downNode.upNode = this;
+    public Piece getPiece() {
+        return piece;
     }
 
-    public void setRightNode(Node rightNode) {
-        this.rightNode = rightNode;
-        rightNode.leftNode = this;
+    public void setPiece(Piece piece) {
+        this.piece = piece;
+    }
+
+    public void setDownCell(Cell downCell) {
+        this.downCell = downCell;
+        downCell.upCell = this;
+    }
+
+    public void setRightCell(Cell rightCell) {
+        this.rightCell = rightCell;
+        rightCell.leftCell = this;
     }
 
     /*  public int getRow() {

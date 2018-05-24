@@ -8,7 +8,7 @@ public class King extends Piece {
     }
 
     @Override
-    public void clicked() {
+    public void selected() {
 
     }
 

@@ -1,16 +1,16 @@
 package pieces;
 
 import javafx.scene.image.ImageView;
-import others.Node;
+import others.Cell;
 
 abstract public class Piece {
     private ImageView imageView;
-    private Node node;
+    private Cell cell;
     private boolean isHited;
 
     abstract public void move();
 
-    abstract public void clicked();
+    abstract public void selected();
 
 
 }

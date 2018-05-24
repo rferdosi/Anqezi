@@ -3,11 +3,11 @@ package others;
 import themes.BoardTheme;
 
 public class Board {
-    private Node[][] nodes = new Node[8][8];
+    private Cell[][] cells = new Cell[8][8];
     private BoardTheme theme;
 
-    public Node[][] getNodes() {
-        return nodes;
+    public Cell[][] getCells() {
+        return cells;
     }
 
     public BoardTheme getTheme() {
@@ -21,11 +21,11 @@ public class Board {
     {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                nodes[i][j] = new Node();
+                cells[i][j] = new Cell();
                 if ((i + j) % 2 == 0)
-                    nodes[i][j].setSide(Side.White);
+                    cells[i][j].setSide(Side.White);
                 else
-                    nodes[i][j].setSide(Side.Black);
+                    cells[i][j].setSide(Side.Black);
             }
         }
     }
