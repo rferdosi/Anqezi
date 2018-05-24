@@ -1,6 +1,5 @@
 package Board;
 
-import Assets.Images.Other.Colour;
 import themes.BoardTheme;
 
 public class Board {
@@ -26,9 +25,9 @@ public class Board {
                 cells[i][j].setColumn(j);
                 cells[i][j].setRow(i);
                 if ((i + j) % 2 == 0)
-                    cells[i][j].setColour(Colour.White);
+                    cells[i][j].setBoardColour(Board.BoardColour.White);
                 else
-                    cells[i][j].setColour(Colour.Black);
+                    cells[i][j].setBoardColour(Board.BoardColour.Black);
             }
         }
     }

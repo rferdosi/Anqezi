@@ -14,8 +14,17 @@ public class King extends Piece {
     public void selected() {
         for (int i = -1; i < 2; i++){
             for (int j = -1; j < 2; j++){
-                if (Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).getPiece() != null)
-                    Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).setPossible(true);
+                if (i == 0 && j == 0){
+                    continue;
+                }
+                else {
+                    if (Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).getPiece() == null)
+                        Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).setPossible(true);
+                    else if (Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).getPiece() != null &&
+                            Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).getPiece().side != this.side) {
+                        Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).setThreaten(true);
+                    }
+                }
             }
         }
     }
