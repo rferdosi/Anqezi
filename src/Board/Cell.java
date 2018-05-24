@@ -3,7 +3,7 @@ package Board;
 import Assets.Images.Other.Colour;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import pieces.Piece;
+import Pieces.Piece;
 
 public class Cell extends Button {
     private Cell upCell;

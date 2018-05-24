@@ -1,4 +1,4 @@
-package pieces;
+package Pieces;
 
 import Assets.Images.Other.Colour;
 import javafx.scene.image.ImageView;
