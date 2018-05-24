@@ -11,6 +11,6 @@ public class AboutController extends FatherController implements Initializable {
 
     }
     public void backToMain(){
-        goTo("main_menu");
+        goTo("mainMenu");
     }
 }
