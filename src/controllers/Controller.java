@@ -27,7 +27,6 @@ public class Controller implements Initializable {
                 //adding cells to board
             }
         }
-        test.fire();
 
     }
 }
