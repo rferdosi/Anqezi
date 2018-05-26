@@ -14,4 +14,8 @@ public class MainMenuController extends FatherController implements Initializabl
     public void about() {
         goTo("about");
     }
+
+    public void newGame() {
+        goTo("game");
+    }
 }

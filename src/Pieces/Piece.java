@@ -24,6 +24,10 @@ abstract public class Piece {
         this.cell.setSelected(true);
     }
 
+    public Piece(Side side) {
+        this.side = side;
+    }
+
     private void cleanTextures() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {

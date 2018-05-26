@@ -1,5 +1,6 @@
 package Board;
 
+import Themes.Theme;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import Pieces.Piece;
@@ -17,6 +18,8 @@ public class Cell extends Button {
     private boolean isPossible;
     private boolean isThreaten;
     private boolean isSelected;
+    private Theme theme;
+
 
     public boolean isThreaten() {
         return isThreaten;
@@ -47,6 +50,7 @@ public class Cell extends Button {
 //        super.setWidth(60);
 //        super.setHeight(60);
         super.setPrefSize(75, 75);
+
 //        this.setStyle("-fx-background-image: url('../Assets/Images/Board/Blue Theme/BlackCell.png')");
 
     }

@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainMenuController">
    <children>
       <VBox prefHeight="400.0" prefWidth="143.0">
@@ -30,7 +29,7 @@
             <VBox prefHeight="119.0" prefWidth="144.0" />
          </children>
       </VBox>
-      <Button layoutX="194.0" layoutY="226.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="117.0" text="1V1" />
+      <Button layoutX="194.0" layoutY="226.0" mnemonicParsing="false" onAction="#newGame" prefHeight="71.0" prefWidth="117.0" text="1V1" />
       <Button layoutX="386.0" layoutY="226.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="117.0" text="Tournoment" />
       <Button layoutX="445.0" layoutY="135.0" mnemonicParsing="false" onMouseClicked="#about" text="about" />
    </children>

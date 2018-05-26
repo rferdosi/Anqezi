@@ -11,6 +11,6 @@ public class User {
     String password;
     int ID;
     int age;
-    int numberOfHalfStars; //rate*2
+    int rate; //integer between 0 and 5
     ArrayList<User> blockList;
 }
