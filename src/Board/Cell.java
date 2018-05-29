@@ -50,7 +50,7 @@ public class Cell extends Button {
 //        super.setWidth(60);
 //        super.setHeight(60);
         super.setPrefSize(75, 75);
-
+        st
 //        this.setStyle("-fx-background-image: url('../Assets/Images/Board/Blue Theme/BlackCell.png')");
 
     }

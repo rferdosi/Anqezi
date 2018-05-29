@@ -1,3 +1,5 @@
+package ServerSide;
+
 import User.Audience;
 import User.Player;
 
@@ -8,7 +10,7 @@ public class Game {
     Player player2;
     ArrayList<Audience>audiences;
     boolean isRated;
-    Time gameTime;
+//    Time gameTime;
 
 
 }

@@ -1,5 +1,6 @@
 package Board;
 
+import Pieces.Rock;
 import Themes.BoardTheme;
 
 public class Board {
