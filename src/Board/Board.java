@@ -30,7 +30,7 @@ public class Board {
                     cells[i][j].setBoardColour(BoardColour.Black);
             }
         }
-//        cells[0][0].setPiece(new Rock());
+//        cells[0][0].setPiece(new Rook());
     }
 
 }

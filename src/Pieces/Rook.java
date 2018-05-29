@@ -1,8 +1,13 @@
 package Pieces;
 
 import Board.Cell;
+import Board.Side;
 
-public class Rock extends Piece {
+public class Rook extends Piece {
+    public Rook(Side side) {
+        super(side);
+    }
+
     @Override
     public void selected() {
         super.selected();

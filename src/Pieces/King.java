@@ -1,9 +1,14 @@
 package Pieces;
 
+import Board.Side;
 import Controllers.Main;
 
 public class King extends Piece {
 
+
+    public King(Side side) {
+        super(side);
+    }
 
     @Override
     public void selected() {

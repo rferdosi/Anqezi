@@ -6,6 +6,10 @@ import Board.Side;
 public class Pawn extends Piece {
     private boolean isFirstMove = true;
 
+    public Pawn(Side side) {
+        super(side);
+    }
+
     @Override
     public void selected() {
         super.selected();

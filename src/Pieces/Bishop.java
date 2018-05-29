@@ -1,8 +1,13 @@
 package Pieces;
 
 import Board.Cell;
+import Board.Side;
 
 public class Bishop extends Piece {
+    public Bishop(Side side) {
+        super(side);
+    }
+
     @Override
     public void move(Cell destination) {
 
