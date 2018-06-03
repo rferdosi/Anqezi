@@ -1,18 +1,21 @@
 package ServerSide;
 
-import java.io.InputStream;
-import java.io.OutputStream;
+import User.User;
+
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class ClientHandler implements Runnable {
     Socket socket;
-    InputStream inputStream;
-    OutputStream outputStream;
+    ObjectInputStream ois;
+    ObjectOutputStream oos;
+    User user;
 
-    public ClientHandler(Socket socket, InputStream inputStream, OutputStream outputStream) {
+    public ClientHandler(Socket socket, ObjectInputStream ois, ObjectOutputStream oos) {
         this.socket = socket;
-        this.inputStream = inputStream;
-        this.outputStream = outputStream;
+        this.oos = oos;
+        this.ois = ois;
     }
 
     @Override

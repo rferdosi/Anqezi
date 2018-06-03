@@ -13,4 +13,8 @@ public class User {
     int age;
     int rate; //integer between 0 and 5
     ArrayList<User> blockList;
+
+    public static void main(String[] args) {
+
+    }
 }

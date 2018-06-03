@@ -1,27 +1,25 @@
 package ServerSide;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
 public class Server {
-    private static ArrayList<ClientHandler> clientHandlers;
+    private static ArrayList<Game> games;
+    private static ArrayList<ClientHandler>clientHandlers;
 
     public static void main(String[] args) throws IOException {
-        clientHandlers = new ArrayList<>();
+        games = new ArrayList<>();
         while (true) {
             ServerSocket serverSocket = new ServerSocket(1234);
             Socket socket = serverSocket.accept();
-            InputStream inputStream = socket.getInputStream();
-            OutputStream outputStream = socket.getOutputStream();
-            ClientHandler clientHandler = new ClientHandler(socket, inputStream, outputStream);
+            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+            ClientHandler clientHandler = new ClientHandler(socket, ois, oos);
             clientHandlers.add(clientHandler);
             Thread thread = new Thread(clientHandler);
             thread.run();
-
         }
     }
 }
