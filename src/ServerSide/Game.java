@@ -1,7 +1,7 @@
 package ServerSide;
 
-import User.Audience;
-import User.Player;
+import ClientSide.User.Audience;
+import ClientSide.User.Player;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,6 @@
 package Pieces;
 
 import Board.Side;
-import Controllers.Main;
 
 public class King extends Piece {
 

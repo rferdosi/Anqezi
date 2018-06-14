@@ -1,4 +1,4 @@
-package Controllers;
+package ClientSide.Controllers;
 
 import javafx.fxml.Initializable;
 

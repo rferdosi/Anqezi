@@ -1,7 +1,6 @@
 package Pieces;
 
 import Board.Side;
-import Controllers.Main;
 import javafx.scene.image.ImageView;
 import Board.Cell;
 
