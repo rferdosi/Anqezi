@@ -1,6 +1,6 @@
 package General.Board;
 
-import Themes.BoardTheme;
+import ClientSide.Themes.BoardTheme;
 
 public class Board {
     private Cell[][] cells = new Cell[8][8];
