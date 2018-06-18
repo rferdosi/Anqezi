@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -52,6 +53,8 @@ public class signUp {
             if (nameValidate(nameStr) && usernameValidate(usernameStr)
                     && passwordValidate(passwordStr) && emailValidate(emailStr)) {
                 User user = new User(nameStr, usernameStr, emailStr, passwordStr, ageInt);
+                Client.oos.writeObject(user);
+
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();

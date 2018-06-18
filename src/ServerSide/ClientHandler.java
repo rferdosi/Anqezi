@@ -3,6 +3,7 @@ package ServerSide;
 import General.User.User;
 import General.Request;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -32,6 +33,7 @@ public class ClientHandler implements Runnable {
     private void signUp() {
         try {
             user = (User) ois.readObject();
+            FileOutputStream fileOutputStream
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
