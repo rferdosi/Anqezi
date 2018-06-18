@@ -26,7 +26,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegistrationController extends MotherController implements Initializable{
-    File photo = new File("../Assets/Images/default.jpg");
+    File photo;
     public TextField name;
     public TextField username;
     public PasswordField password;
@@ -95,11 +95,12 @@ public class RegistrationController extends MotherController implements Initiali
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+            photo  = new File("../Assets/Images/default.jpg");
             BufferedImage bufferedImage = ImageIO.read(photo);
             Image image = SwingFXUtils.toFXImage(bufferedImage, null);
             ImageViewer.setImage(image);
         } catch (IOException ex) {
-
+            System.out.println("Default Image Not Loaded!");
         }
         ChoosePhotoButton.setOnAction(
                 new EventHandler<ActionEvent>() {
