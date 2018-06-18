@@ -21,13 +21,13 @@ public class Client extends Application {
     private static Stage stage;
     private static Socket socket;
 
-    /*public static Scene getScene() {
+    public static Scene getScene() {
         return scene;
     }
 
     public static void setScene(Scene scene) {
         Client.scene = scene;
-    }*/
+    }
 
     private static void serialize() {
         FileOutputStream fileOutputStream = null;
@@ -47,13 +47,13 @@ public class Client extends Application {
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             user = (User) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            Parent root = null;
+            /*Parent root = null;
             try {
                 root = FXMLLoader.load(Client.class.getResource("FXMLs/welcoming.fxml"));
                 scene = new Scene(root);
             } catch (IOException e1) {
                 e1.printStackTrace();
-            }
+            }*/
         }
     }
 
@@ -70,8 +70,10 @@ public class Client extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         pStage = primaryStage;
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLs/welcoming.fxml"));
         pStage.setTitle("Chess");
         pStage.setScene(scene);
+        pStage.setScene(new Scene(root, width, height));
         pStage.show();
     }
 

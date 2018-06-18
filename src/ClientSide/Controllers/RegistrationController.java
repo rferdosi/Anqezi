@@ -3,6 +3,8 @@ package ClientSide.Controllers;
 import ClientSide.Client;
 import General.User.User;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -17,6 +19,13 @@ public class RegistrationController extends MotherController{
     public PasswordField password;
     public TextField age;
     public TextField email;
+    public Button registerButton;
+    public Button backButton;
+
+    public void back() {
+        goTo("welcoming");
+    }
+
     private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
@@ -66,4 +75,6 @@ public class RegistrationController extends MotherController{
             e.printStackTrace();
         }
     }
+
+
 }

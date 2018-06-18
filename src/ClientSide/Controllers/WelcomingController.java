@@ -10,13 +10,13 @@ import java.util.ResourceBundle;
 
 public class WelcomingController extends MotherController {
 
-    public void singIn(ActionEvent actionEvent) {
+    public void login(ActionEvent actionEvent) {
         try {
             Client.oos.writeObject(Request.SIGN_IN);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        goTo("sign_in");
+        goTo("login");
     }
 
     public void singUp(ActionEvent actionEvent) {
@@ -25,7 +25,7 @@ public class WelcomingController extends MotherController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        goTo("sign_up");
+        goTo("registration");
 
     }
 }

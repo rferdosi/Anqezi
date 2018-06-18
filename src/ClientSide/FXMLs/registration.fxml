@@ -5,22 +5,30 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientSide.Controllers.RegistrationController">
+<AnchorPane prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientSide.Controllers.RegistrationController">
    <children>
+      <TextField fx:id="name" layoutX="323.0" layoutY="39.0" />
       <TextField fx:id="username" layoutX="323.0" layoutY="84.0" />
       <PasswordField fx:id="password" layoutX="323.0" layoutY="134.0" />
       <TextField fx:id="email" layoutX="323.0" layoutY="175.0" />
-      <TextField fx:id="name" layoutX="323.0" layoutY="39.0" />
       <TextField fx:id="age" layoutX="323.0" layoutY="225.0" />
       <Label layoutX="166.0" layoutY="43.0" text="name" />
       <Label layoutX="166.0" layoutY="88.0" text="username" />
       <Label layoutX="162.0" layoutY="138.0" text="password" />
       <Label layoutX="162.0" layoutY="179.0" text="email" />
       <Label layoutX="166.0" layoutY="229.0" text="age" />
-      <Button layoutX="297.0" layoutY="294.0" mnemonicParsing="false" onAction="#signUp" text="sign up" />
       <CheckBox fx:id="checkbox" layoutX="159.0" layoutY="276.0" mnemonicParsing="false" text="I read privacy policy" />
+      <Button fx:id="registerButton" layoutX="285.0" layoutY="313.0" mnemonicParsing="false" onAction="#signUp" text="Registration" />
+      <ImageView fx:id="ImageViewer" fitHeight="200.0" fitWidth="200.0" layoutX="147.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../HW9/src/Assets/default.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="backButton" layoutX="442.0" layoutY="313.0" mnemonicParsing="false" onAction="#back" text="Back" />
+      <Button fx:id="ChoosePhotoButton" layoutX="385.0" layoutY="442.0" mnemonicParsing="false" text="Choose Photo" />
    </children>
 </AnchorPane>
