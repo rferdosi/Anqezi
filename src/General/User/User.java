@@ -1,11 +1,13 @@
 package General.User;
 
 import javafx.scene.image.Image;
+import jdk.internal.org.objectweb.asm.commons.SerialVersionUIDAdder;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class User implements Serializable {
+    private static final long serialVersionUID = 858569L;
     Image profilePicture;
 
     String name;
