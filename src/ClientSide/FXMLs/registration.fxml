@@ -25,7 +25,7 @@
       <Button fx:id="registerButton" layoutX="285.0" layoutY="313.0" mnemonicParsing="false" onAction="#signUp" text="Registration" />
       <ImageView fx:id="ImageViewer" fitHeight="200.0" fitWidth="200.0" layoutX="147.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../HW9/src/Assets/default.jpg" />
+            <Image url="@../Assets/Images/default.jpg" />
          </image>
       </ImageView>
       <Button fx:id="backButton" layoutX="442.0" layoutY="313.0" mnemonicParsing="false" onAction="#back" text="Back" />
