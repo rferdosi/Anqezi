@@ -8,7 +8,7 @@ import javafx.scene.Parent;
 
 import java.io.IOException;
 
-public abstract class FatherController implements Initializable {
+public abstract class MotherController {
     public void goTo(String url) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../FXMLs/" + url + ".fxml"));
@@ -19,6 +19,6 @@ public abstract class FatherController implements Initializable {
         }
     }
 }
-//C:\Users\DearUser\IdeaProjects\Anqezi\src\ClientSide\Controllers\FatherController.java
+//C:\Users\DearUser\IdeaProjects\Anqezi\src\ClientSide\Controllers\MotherController.java
 //        C:\Users\DearUser\IdeaProjects\Anqezi\src\ClientSide\Client.java
 //        C:\Users\DearUser\IdeaProjects\Anqezi\src\ClientSide\FXMLs
