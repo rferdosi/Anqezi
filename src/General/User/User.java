@@ -11,9 +11,9 @@ public class User implements Serializable {
     Image profilePicture;
 
     String name;
+    String username;
     String email;
     String password;
-    String username;
     int ID;
     int age;
     int rate; //integer between 0 and 5
@@ -22,6 +22,14 @@ public class User implements Serializable {
     public User(String username, String password) {
         this.password = password;
         this.username = username;
+    }
+
+    public User(String name ,String username, String email, String password , int age) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.age = age;
     }
 
     @Override
