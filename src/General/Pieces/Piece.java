@@ -1,8 +1,8 @@
-package Pieces;
+package General.Pieces;
 
-import Board.Side;
+import General.Board.Side;
 import javafx.scene.image.ImageView;
-import Board.Cell;
+import General.Board.Cell;
 
 abstract public class Piece {
     protected ImageView imageView;

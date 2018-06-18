@@ -1,6 +1,7 @@
 package ServerSide;
 
-import ClientSide.User.User;
+import General.Game;
+import General.User.User;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -11,6 +12,7 @@ public class Server {
     private static ArrayList<Game> games;
     private static ArrayList<ClientHandler> activeClients;
     private static ArrayList<User> users;
+    public static boolean ExitRequested = false;
 
     public static ArrayList<User> getUsers() {
         return users;
@@ -22,11 +24,11 @@ public class Server {
         activeClients =new ArrayList<>();
         ServerSocket serverSocket = null;
         try {
-            serverSocket = new ServerSocket(85690);
+            serverSocket = new ServerSocket(8569);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        while (true) {
+        while (!ExitRequested) {
             try {
                 Socket socket = serverSocket.accept();
                 System.out.println("connected");

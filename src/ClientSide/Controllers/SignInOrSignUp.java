@@ -1,10 +1,8 @@
 package ClientSide.Controllers;
 
 import ClientSide.Client;
-import ServerSide.Request;
+import General.Request;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 
 import java.io.IOException;
 import java.net.URL;

@@ -1,9 +1,9 @@
-package Board;
+package General.Board;
 
 import Themes.Theme;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import Pieces.Piece;
+import General.Pieces.Piece;
 
 public class Cell extends Button {
     private Cell upCell;

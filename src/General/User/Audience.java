@@ -1,4 +1,4 @@
-package ClientSide.User;
+package General.User;
 
 public class Audience extends User {
 }

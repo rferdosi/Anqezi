@@ -1,4 +1,4 @@
-package Board;
+package General.Board;
 
 import Themes.BoardTheme;
 

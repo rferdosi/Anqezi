@@ -1,4 +1,4 @@
-package ClientSide.User;
+package General.User;
 
 import javafx.scene.image.Image;
 

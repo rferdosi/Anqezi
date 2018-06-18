@@ -1,7 +1,7 @@
-package Pieces;
+package General.Pieces;
 
-import Board.Cell;
-import Board.Side;
+import General.Board.Cell;
+import General.Board.Side;
 
 public class Queen extends Piece {
 

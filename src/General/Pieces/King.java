@@ -1,6 +1,6 @@
-package Pieces;
+package General.Pieces;
 
-import Board.Side;
+import General.Board.Side;
 
 public class King extends Piece {
 

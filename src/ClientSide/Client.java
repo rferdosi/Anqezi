@@ -1,6 +1,6 @@
 package ClientSide;
 
-import ClientSide.User.User;
+import General.User.User;
 import ServerSide.ClientHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -66,7 +66,7 @@ public class Client extends Application {
 
     private static void connectToServer() {
         try {
-            socket = new Socket("localhost", 85690);
+            socket = new Socket("localhost", 8569);
             oos = new ObjectOutputStream(socket.getOutputStream());
             ois = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {

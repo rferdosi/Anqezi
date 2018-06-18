@@ -1,6 +1,7 @@
 package ServerSide;
 
-import ClientSide.User.User;
+import General.User.User;
+import General.Request;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
