@@ -2,14 +2,24 @@ package ClientSide.Controllers;
 
 import ClientSide.Client;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 
 import java.io.IOException;
 
 public abstract class MotherController {
-    public void goTo(String url) {
+
+    @FXML
+    Button CloseButton;
+    public void CloseApp(){
+        Client.ExitRequested = true;
+    }
+
+    /*public void goTo(String url) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../FXMLs/" + url + ".fxml"));
             Client.getScene().setRoot(root);
@@ -17,6 +27,18 @@ public abstract class MotherController {
             e.printStackTrace();
             System.out.println("wtf");
         }
+    }*/
+    public void goTo(String name){
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("../FXMLs/" + name + ".fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene myScene = new Scene(root, Client.width, Client.height);
+        myScene.getStylesheets().add("../CSS/" + name + ".css");
+        Client.pStage.setScene(myScene);
+        Client.pStage.show();
     }
 }
 //C:\Users\DearUser\IdeaProjects\Anqezi\src\ClientSide\Controllers\MotherController.java

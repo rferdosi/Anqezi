@@ -1,7 +1,6 @@
 package ClientSide;
 
 import General.User.User;
-import ServerSide.ClientHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,28 +12,22 @@ import java.net.Socket;
 
 public class Client extends Application {
     public static User user;
-    private ClientHandler clientHandler;
+    public static boolean ExitRequested = false;
+    public static Stage pStage;
+    public static int width = 600, height = 860;
     public static ObjectInputStream ois;
     public static ObjectOutputStream oos;
     private static Scene scene;
     private static Stage stage;
     private static Socket socket;
 
-    public static Scene getScene() {
+    /*public static Scene getScene() {
         return scene;
     }
 
     public static void setScene(Scene scene) {
         Client.scene = scene;
-    }
-
-    public static Stage getStage() {
-        return stage;
-    }
-
-    public static void setStage(Stage stage) {
-        Client.stage = stage;
-    }
+    }*/
 
     private static void serialize() {
         FileOutputStream fileOutputStream = null;
@@ -76,8 +69,10 @@ public class Client extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        pStage = primaryStage;
+        pStage.setTitle("Chess");
+        pStage.setScene(scene);
+        pStage.show();
     }
 
     public static void main(String[] args) {
