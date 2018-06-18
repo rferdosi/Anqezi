@@ -41,6 +41,3 @@ public abstract class MotherController {
         Client.pStage.show();
     }
 }
-//C:\Users\DearUser\IdeaProjects\Anqezi\src\ClientSide\Controllers\MotherController.java
-//        C:\Users\DearUser\IdeaProjects\Anqezi\src\ClientSide\Client.java
-//        C:\Users\DearUser\IdeaProjects\Anqezi\src\ClientSide\FXMLs

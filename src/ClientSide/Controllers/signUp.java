@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class signUp {
+public class signUp extends MotherController{
     public TextField name;
     public TextField username;
     public PasswordField password;
@@ -26,7 +26,9 @@ public class signUp {
 
     private boolean usernameValidate(String username) throws IOException, ClassNotFoundException {
         Client.oos.writeObject(username);
-        return (boolean) Client.ois.readObject();
+        boolean isUsernameAccepted = (boolean) Client.ois.readObject();
+        System.out.println(isUsernameAccepted);
+        return isUsernameAccepted;
     }
 
     private boolean passwordValidate(String password) {
@@ -35,7 +37,9 @@ public class signUp {
 
     private boolean emailValidate(String email) throws IOException, ClassNotFoundException {
         Client.oos.writeObject(email);
-        if ((boolean) Client.ois.readObject()) {
+        boolean isEmailAccepted = (boolean) Client.ois.readObject();
+        System.out.println(isEmailAccepted);
+        if (isEmailAccepted) {
             Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
             return matcher.find();
         } else {
@@ -50,10 +54,13 @@ public class signUp {
         String passwordStr = password.getText();
         int ageInt = Integer.parseInt(age.getText());
         try {
-            if (nameValidate(nameStr) && usernameValidate(usernameStr)
-                    && passwordValidate(passwordStr) && emailValidate(emailStr)) {
+            if (nameValidate(nameStr)
+                    && usernameValidate(usernameStr)
+                    && passwordValidate(passwordStr)
+                    && emailValidate(emailStr)) {
                 User user = new User(nameStr, usernameStr, emailStr, passwordStr, ageInt);
                 Client.oos.writeObject(user);
+                goTo("mainMenu");
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
