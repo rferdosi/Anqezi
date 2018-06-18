@@ -2,18 +2,31 @@ package ClientSide.Controllers;
 
 import ClientSide.Client;
 import General.User.User;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegistrationController extends MotherController{
+public class RegistrationController extends MotherController implements Initializable{
+    File photo = new File("../Assets/Images/default.jpg");
     public TextField name;
     public TextField username;
     public PasswordField password;
@@ -21,6 +34,8 @@ public class RegistrationController extends MotherController{
     public TextField email;
     public Button registerButton;
     public Button backButton;
+    public Button ChoosePhotoButton;
+    public ImageView ImageViewer;
 
     public void back() {
         goTo("welcoming");
@@ -77,4 +92,41 @@ public class RegistrationController extends MotherController{
     }
 
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        try {
+            BufferedImage bufferedImage = ImageIO.read(photo);
+            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+            ImageViewer.setImage(image);
+        } catch (IOException ex) {
+
+        }
+        ChoosePhotoButton.setOnAction(
+                new EventHandler<ActionEvent>() {
+
+                    @Override
+                    public void handle(ActionEvent t) {
+                        FileChooser fileChooser = new FileChooser();
+
+                        //Set extension filter
+                        FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG", "*.JPEG", "*.jpeg");
+                        FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+                        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+
+                        //Show open file dialog
+                        fileChooser.setTitle("Open File");
+                        photo = fileChooser.showOpenDialog(new Stage());
+
+                        try {
+                            BufferedImage bufferedImage = ImageIO.read(photo);
+                            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                            ImageViewer.setImage(image);
+                        } catch (IOException ex) {
+
+                        }
+
+                    }
+                }
+        );
+    }
 }

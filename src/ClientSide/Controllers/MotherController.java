@@ -33,7 +33,7 @@ public abstract class MotherController {
         try {
             root = FXMLLoader.load(getClass().getResource("../FXMLs/" + name + ".fxml"));
         } catch (IOException e) {
-            System.out.println("FXML Bug");;
+            System.out.println("FXML Bug");
         }
         Scene myScene = new Scene(root, Client.width, Client.height);
         myScene.getStylesheets().add("../CSS/" + name + ".css");
