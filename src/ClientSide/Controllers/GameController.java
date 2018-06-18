@@ -19,7 +19,7 @@ public class GameController extends FatherController{
             Node node = children.get(i);
             HBox hBox = (HBox) node;
             for (int j = 0; j < 8; j++) {
-                hBox.getChildren().add(Main.board.getCells(i, j));
+//                hBox.getChildren().add(Main.board.getCells(i, j));
                 //adding cells to board
             }
         }

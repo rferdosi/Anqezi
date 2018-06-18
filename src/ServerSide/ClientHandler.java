@@ -13,7 +13,7 @@ public class ClientHandler implements Runnable {
     private ObjectOutputStream oos;
     private User user;
 
-    public ClientHandler(Socket socket, ObjectInputStream ois, ObjectOutputStream oos) {
+    ClientHandler(Socket socket, ObjectInputStream ois, ObjectOutputStream oos) {
         this.socket = socket;
         this.oos = oos;
         this.ois = ois;
@@ -21,14 +21,20 @@ public class ClientHandler implements Runnable {
 
     @Override
     public void run() {
-        while (user == null) {
-            setUser();
-       }
+        setUser();
 
 
     }
 
-    private void setUser() {
+    private void signUp() {
+        try {
+            user = (User) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void signIn() {
         try {
             user = (User) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
@@ -55,6 +61,26 @@ public class ClientHandler implements Runnable {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void setUser() {
+        while (user == null) {
+            try {
+                Request request = (Request) ois.readObject();
+                System.out.println(request);
+                System.out.println(true);
+                switch (request) {
+                    case SIGN_IN:
+                        signIn();
+                        break;
+                    case SIGN_UP:
+                        signUp();
+                        break;
+                }
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 

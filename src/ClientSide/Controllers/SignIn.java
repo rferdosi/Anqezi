@@ -6,7 +6,7 @@ import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SingIn extends FatherController {
+public class SignIn extends FatherController {
     public TextField userName;
     public TextField password;
     public Label message;

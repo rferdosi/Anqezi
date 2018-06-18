@@ -19,6 +19,7 @@ public class Server {
     public static void main(String[] args)  {
         games = new ArrayList<>();
         users = new ArrayList<>();
+        clientHandlers=new ArrayList<>();
         ServerSocket serverSocket = null;
         try {
             serverSocket = new ServerSocket(1234);

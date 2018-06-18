@@ -14,8 +14,8 @@ import java.net.Socket;
 public class Client extends Application {
     private static User user;
     private ClientHandler clientHandler;
-    private ObjectInputStream ois;
-    private ObjectOutputStream oos;
+    public static ObjectInputStream ois;
+    public static ObjectOutputStream oos;
     private static Scene scene;
     private static Stage stage;
     private static Socket socket;
@@ -67,6 +67,8 @@ public class Client extends Application {
     private static void connectToServer() {
         try {
             socket = new Socket("localhost", 1234);
+            oos = new ObjectOutputStream(socket.getOutputStream());
+            ois = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }

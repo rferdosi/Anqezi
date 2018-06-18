@@ -12,7 +12,7 @@ abstract public class Piece {
 
     public void move(Cell destination) {
         if (!cell.isEmpty()) {
-            Main.getPieces().remove(cell.getPiece());
+//            Main.getPieces().remove(cell.getPiece());
         }
         this.cell = destination;
         cleanTextures();
@@ -30,9 +30,9 @@ abstract public class Piece {
     private void cleanTextures() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).setPossible(false);
-                Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).setThreaten(false);
-                Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).setSelected(false);
+//                Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).setPossible(false);
+//                Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).setThreaten(false);
+//                Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).setSelected(false);
             }
         }
     }

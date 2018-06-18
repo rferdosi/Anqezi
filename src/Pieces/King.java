@@ -17,16 +17,16 @@ public class King extends Piece {
                 if (i == 0 && j == 0) {
                     continue;
                 }
-                else if (Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j) != null) {
-                    if (Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).isEmpty())
-                        Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).setPossible(true);
-                    else if (!Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).isEmpty() &&
-                            Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).getPiece().side != this.side) {
-                        Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).setThreaten(true);
+//                else if (Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j) != null) {
+//                    if (Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).isEmpty())
+//                        Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).setPossible(true);
+//                    else if (!Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).isEmpty() &&
+//                            Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).getPiece().side != this.side) {
+//                        Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).setThreaten(true);
                     }
                 }
             }
         }
-    }
-
-}
+//    }
+//
+//}
