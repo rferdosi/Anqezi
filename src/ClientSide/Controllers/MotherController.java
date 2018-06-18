@@ -19,6 +19,3 @@ public abstract class MotherController {
         }
     }
 }
-//C:\Users\DearUser\IdeaProjects\Anqezi\src\ClientSide\Controllers\MotherController.java
-//        C:\Users\DearUser\IdeaProjects\Anqezi\src\ClientSide\Client.java
-//        C:\Users\DearUser\IdeaProjects\Anqezi\src\ClientSide\FXMLs

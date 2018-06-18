@@ -26,10 +26,9 @@ public class SignIn extends MotherController {
             Client.oos.writeObject(user);
             boolean accepted = (boolean) Client.ois.readObject();
             if (accepted) {
-                Client.user= (User) Client.ois.readObject();
+                Client.user = (User) Client.ois.readObject();
                 goTo("mainMenu");
-            }
-            else {
+            } else {
                 message.setText("wrong username or password");
             }
         } catch (IOException | ClassNotFoundException e) {

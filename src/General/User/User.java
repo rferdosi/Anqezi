@@ -47,4 +47,12 @@ public class User implements Serializable {
         User user = (User) o;
         return this.username.equals(user.username) && this.password.equals(user.password);
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }

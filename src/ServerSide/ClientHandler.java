@@ -31,9 +31,29 @@ public class ClientHandler implements Runnable {
 
     private void signUp() {
         try {
-            user = (User) ois.readObject();
-            Server.getRegisteredUsers().add(user);
-            Server.saveData();
+            boolean isUsernameAccepted = true;
+            String username = (String) ois.readObject();
+            for (User user1 : Server.getRegisteredUsers()) {
+                if (user1.getUsername().equals(username)) {
+                    isUsernameAccepted = false;
+                    break;
+                }
+            }
+            oos.writeObject(isUsernameAccepted);
+            boolean isEmailAccepted = true;
+            String email = (String) ois.readObject();
+            for (User user1 : Server.getRegisteredUsers()) {
+                if (user1.getEmail().equals(email)) {
+                    isEmailAccepted = false;
+                    break;
+                }
+            }
+            oos.writeObject(isEmailAccepted);
+            if (isUsernameAccepted && isEmailAccepted) {
+                user = (User) ois.readObject();
+                Server.getRegisteredUsers().add(user);
+                Server.saveData();
+            }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
