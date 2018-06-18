@@ -54,7 +54,6 @@ public class signUp {
                     && passwordValidate(passwordStr) && emailValidate(emailStr)) {
                 User user = new User(nameStr, usernameStr, emailStr, passwordStr, ageInt);
                 Client.oos.writeObject(user);
-
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();

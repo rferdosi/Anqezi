@@ -33,7 +33,8 @@ public class ClientHandler implements Runnable {
     private void signUp() {
         try {
             user = (User) ois.readObject();
-            FileOutputStream fileOutputStream
+            Server.getRegisteredUsers().add(user);
+            Server.saveData();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
