@@ -13,11 +13,13 @@ public class ClientHandler implements Runnable {
     private ObjectInputStream ois;
     private ObjectOutputStream oos;
     private User user;
+    final private int ID;
 
-    ClientHandler(Socket socket, ObjectInputStream ois, ObjectOutputStream oos) {
+    ClientHandler(Socket socket, ObjectInputStream ois, ObjectOutputStream oos, int ID) {
         this.socket = socket;
         this.oos = oos;
         this.ois = ois;
+        this.ID = ID;
     }
 
     @Override
@@ -42,7 +44,7 @@ public class ClientHandler implements Runnable {
             e.printStackTrace();
         }
         boolean isLoggedIn = false;
-        for (User user1 : Server.getUsers()) {
+        for (User user1 : Server.getRegisteredUsers()) {
             if (user1.equals(user)) {
                 user = user1;
                 isLoggedIn = true;
