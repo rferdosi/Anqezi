@@ -66,7 +66,7 @@ public class Client extends Application {
 
     private static void connectToServer() {
         try {
-            socket = new Socket("localhost", 1234);
+            socket = new Socket("localhost", 85690);
             oos = new ObjectOutputStream(socket.getOutputStream());
             ois = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Server {
     private static ArrayList<Game> games;
-    private static ArrayList<ClientHandler> clientHandlers;
+    private static ArrayList<ClientHandler> activeClients;
     private static ArrayList<User> users;
 
     public static ArrayList<User> getUsers() {
@@ -19,10 +19,10 @@ public class Server {
     public static void main(String[] args)  {
         games = new ArrayList<>();
         users = new ArrayList<>();
-        clientHandlers=new ArrayList<>();
+        activeClients =new ArrayList<>();
         ServerSocket serverSocket = null;
         try {
-            serverSocket = new ServerSocket(1234);
+            serverSocket = new ServerSocket(85690);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -33,7 +33,7 @@ public class Server {
                 ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
                 ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
                 ClientHandler clientHandler = new ClientHandler(socket, ois, oos);
-                clientHandlers.add(clientHandler);
+                activeClients.add(clientHandler);
                 Thread thread = new Thread(clientHandler);
                 thread.run();
             } catch (IOException e) {
