@@ -54,8 +54,10 @@ public class signUp extends MotherController{
         String passwordStr = password.getText();
         int ageInt = Integer.parseInt(age.getText());
         try {
-            if (nameValidate(nameStr) && usernameValidate(usernameStr)
-                    && passwordValidate(passwordStr) && emailValidate(emailStr)) {
+            if (nameValidate(nameStr)
+                    && usernameValidate(usernameStr)
+                    && passwordValidate(passwordStr)
+                    && emailValidate(emailStr)) {
                 User user = new User(nameStr, usernameStr, emailStr, passwordStr, ageInt);
                 Client.oos.writeObject(user);
                 goTo("mainMenu");
