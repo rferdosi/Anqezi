@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class signUp extends MotherController{
+public class RegistrationController extends MotherController{
     public TextField name;
     public TextField username;
     public PasswordField password;

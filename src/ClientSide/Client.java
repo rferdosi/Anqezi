@@ -49,7 +49,7 @@ public class Client extends Application {
         } catch (IOException | ClassNotFoundException e) {
             Parent root = null;
             try {
-                root = FXMLLoader.load(Client.class.getResource("./FXMLs/signIn_signUp.fxml"));
+                root = FXMLLoader.load(Client.class.getResource("FXMLs/welcoming.fxml"));
                 scene = new Scene(root);
             } catch (IOException e1) {
                 e1.printStackTrace();

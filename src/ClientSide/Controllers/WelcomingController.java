@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SignInOrSignUp extends MotherController {
+public class WelcomingController extends MotherController {
 
     public void singIn(ActionEvent actionEvent) {
         try {
