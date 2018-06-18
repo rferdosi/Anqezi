@@ -1,7 +1,5 @@
 package General.User;
 
-import javafx.scene.image.Image;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -19,9 +17,12 @@ public class User implements Serializable {
     int rate; //integer between 0 and 5
     ArrayList<User> blockList;
 
-    public User(String username, String password) {
+    public User(String name ,String username, String email, String password , int age) {
+        this.name = name;
+        this.email = email;
         this.password = password;
         this.username = username;
+        this.age = age;
     }
 
     public User(String name ,String username, String email, String password , int age, int ID, String profilePictureAddress) {
