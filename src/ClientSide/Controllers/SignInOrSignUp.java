@@ -20,5 +20,12 @@ public class SignInOrSignUp extends MotherController {
     }
 
     public void singUp(ActionEvent actionEvent) {
+        try {
+            Client.oos.writeObject(Request.SIGN_UP);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        goTo("sign_up");
+
     }
 }

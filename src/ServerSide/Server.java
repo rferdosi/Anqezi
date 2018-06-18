@@ -21,16 +21,15 @@ public class Server {
         return registeredUsers;
     }
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         try {
             loadData();
         } catch (IOException e) {
-            e.printStackTrace();
         }
         Date date = new Date();
         games = new ArrayList<>();
         registeredUsers = new ArrayList<>();
-        activeClients =new ArrayList<>();
+        activeClients = new ArrayList<>();
         ServerSocket serverSocket = null;
         Socket clientSocket = null;
         try {
@@ -91,25 +90,22 @@ public class Server {
         }
     }
 
-    public static void saveData() throws IOException{
+    static void saveData() throws IOException {
         FileOutputStream fout = new FileOutputStream("userList.yolo");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fout);
         objectOutputStream.writeObject(registeredUsers);
         objectOutputStream.flush();
         objectOutputStream.close();
     }
-    public static void loadData() throws IOException {
-        File file = new File("userList.yolo");
-        file.createNewFile();
+
+    static void loadData() throws IOException {
+        FileInputStream fileInputStream = new FileInputStream("userList.yolo");
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
         try {
-            FileInputStream finp = new FileInputStream(file);
-            ObjectInputStream objectInputStream = new ObjectInputStream(finp);
             registeredUsers = (ArrayList<User>) objectInputStream.readObject();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
-
     }
 
 }
