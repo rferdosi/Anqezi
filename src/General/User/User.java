@@ -1,19 +1,19 @@
 package General.User;
 
 import javafx.scene.image.Image;
-import jdk.internal.org.objectweb.asm.commons.SerialVersionUIDAdder;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class User implements Serializable {
     private static final long serialVersionUID = 858569L;
-    Image profilePicture;
+
 
     String name;
     String username;
     String email;
     String password;
+    String profilePictureAddress;
     int ID;
     int age;
     int rate; //integer between 0 and 5
@@ -24,12 +24,14 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    public User(String name ,String username, String email, String password , int age) {
+    public User(String name ,String username, String email, String password , int age, int ID, String profilePictureAddress) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.username = username;
         this.age = age;
+        this.ID = ID;
+        this.profilePictureAddress = profilePictureAddress;
     }
 
     @Override
