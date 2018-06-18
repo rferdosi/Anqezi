@@ -12,18 +12,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SignIn extends FatherController {
+public class SignIn extends MotherController {
     @FXML
     public TextField userName;
     @FXML
     public PasswordField password;
     @FXML
     public Label message;
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
 
     public void signIn(ActionEvent actionEvent) {
         User user = new User(userName.getText(), password.getText());
