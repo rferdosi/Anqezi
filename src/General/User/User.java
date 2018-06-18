@@ -17,6 +17,11 @@ public class User implements Serializable {
     int rate; //integer between 0 and 5
     ArrayList<User> blockList;
 
+    public User(String username, String password) {
+        this.password = password;
+        this.username = username;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof User))

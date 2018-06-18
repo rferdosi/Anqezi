@@ -21,13 +21,6 @@ public class SignInOrSignUp extends FatherController {
             e.printStackTrace();
         }
         goTo("sign_in");
-//        Parent root = null;
-//        try {
-//            root = FXMLLoader.load(getClass().getResource("C:\\Users\\DearUser\\IdeaProjects\\Anqezi\\src\\ClientSide\\FXMLs\\sign_in.fxml"));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        Client.getScene().setRoot(root);
     }
 
     public void singUp(ActionEvent actionEvent) {

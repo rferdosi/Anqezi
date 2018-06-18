@@ -12,7 +12,7 @@ import java.io.*;
 import java.net.Socket;
 
 public class Client extends Application {
-    private static User user;
+    public static User user;
     private ClientHandler clientHandler;
     public static ObjectInputStream ois;
     public static ObjectOutputStream oos;

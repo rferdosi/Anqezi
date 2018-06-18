@@ -1,6 +1,6 @@
 package General.Board;
 
-import Themes.Theme;
+import ClientSide.Themes.Theme;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import General.Pieces.Piece;

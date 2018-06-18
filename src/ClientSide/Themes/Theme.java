@@ -1,4 +1,4 @@
-package Themes;
+package ClientSide.Themes;
 
 public interface Theme {
 
