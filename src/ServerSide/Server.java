@@ -25,7 +25,6 @@ public class Server {
         try {
             loadData();
         } catch (IOException e) {
-            e.printStackTrace();
         }
         Date date = new Date();
         games = new ArrayList<>();
@@ -49,12 +48,11 @@ public class Server {
             try {
                 clientSocket = serverSocket.accept();
                 log("A new Client has connected");
-                ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream());
-                ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream());
-                ClientHandler clientHandler = new ClientHandler(clientSocket, ois, oos, IDGenerator++);
-                activeClients.add(clientHandler);
+                ClientHandler clientHandler = new ClientHandler(clientSocket, clientSocket.getInputStream(), clientSocket.getOutputStream(), IDGenerator++);
+
                 Thread thread = new Thread(clientHandler);
-                thread.run();
+                activeClients.add(clientHandler);
+                thread.start();
             } catch (IOException e) {
                 e.printStackTrace();
             }

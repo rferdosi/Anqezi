@@ -3,10 +3,7 @@ package ServerSide;
 import General.User.User;
 import General.Request;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 
 public class ClientHandler implements Runnable {
@@ -15,19 +12,20 @@ public class ClientHandler implements Runnable {
     private ObjectOutputStream oos;
     private User user;
     final private int ID;
+    public boolean ExitRequested = false;
 
-    ClientHandler(Socket socket, ObjectInputStream ois, ObjectOutputStream oos, int ID) {
+    ClientHandler(Socket socket, InputStream ois, OutputStream oos, int ID) throws IOException {
         this.socket = socket;
-        this.oos = oos;
-        this.ois = ois;
+        this.oos = new ObjectOutputStream(oos);
+        this.ois = new ObjectInputStream(ois);
         this.ID = ID;
     }
 
     @Override
     public void run() {
-        setUser();
-
-
+        while (!ExitRequested) {
+            setUser();
+        }
     }
 
     private void signUp() {
