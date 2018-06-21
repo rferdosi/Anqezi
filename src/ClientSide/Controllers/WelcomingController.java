@@ -17,6 +17,7 @@ public class WelcomingController extends MotherController {
             e.printStackTrace();
         }
         goTo("login");
+        System.err.println("yesss");
     }
 
     public void singUp(ActionEvent actionEvent) {
