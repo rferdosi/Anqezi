@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegistrationController extends MotherController implements Initializable{
+public class RegistrationController extends MotherController implements Initializable {
     File photo;
     public TextField name;
     public TextField username;
@@ -51,7 +51,7 @@ public class RegistrationController extends MotherController implements Initiali
     private boolean usernameValidate(String username) throws IOException, ClassNotFoundException {
         Client.oos.writeObject(username);
         boolean isUsernameAccepted = (boolean) Client.ois.readObject();
-        System.out.println(isUsernameAccepted);
+        System.out.println("user: " + isUsernameAccepted);
         return isUsernameAccepted;
     }
 
@@ -62,7 +62,7 @@ public class RegistrationController extends MotherController implements Initiali
     private boolean emailValidate(String email) throws IOException, ClassNotFoundException {
         Client.oos.writeObject(email);
         boolean isEmailAccepted = (boolean) Client.ois.readObject();
-        System.out.println(isEmailAccepted);
+        System.out.println("email: " + isEmailAccepted);
         if (isEmailAccepted) {
             Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
             return matcher.find();
@@ -95,7 +95,7 @@ public class RegistrationController extends MotherController implements Initiali
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            photo  = new File("../Assets/Images/default.jpg");
+            photo = new File("../Assets/Images/default.jpg");
             BufferedImage bufferedImage = ImageIO.read(photo);
             Image image = SwingFXUtils.toFXImage(bufferedImage, null);
             ImageViewer.setImage(image);
@@ -103,30 +103,26 @@ public class RegistrationController extends MotherController implements Initiali
             System.out.println("Default Image Not Loaded!");
         }
         ChoosePhotoButton.setOnAction(
-                new EventHandler<ActionEvent>() {
+                t -> {
+                    FileChooser fileChooser = new FileChooser();
 
-                    @Override
-                    public void handle(ActionEvent t) {
-                        FileChooser fileChooser = new FileChooser();
+                    //Set extension filter
+                    FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG", "*.JPEG", "*.jpeg");
+                    FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+                    fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
 
-                        //Set extension filter
-                        FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG", "*.JPEG", "*.jpeg");
-                        FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
-                        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+                    //Show open file dialog
+                    fileChooser.setTitle("Open File");
+                    photo = fileChooser.showOpenDialog(new Stage());
 
-                        //Show open file dialog
-                        fileChooser.setTitle("Open File");
-                        photo = fileChooser.showOpenDialog(new Stage());
-
-                        try {
-                            BufferedImage bufferedImage = ImageIO.read(photo);
-                            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-                            ImageViewer.setImage(image);
-                        } catch (IOException ex) {
-
-                        }
+                    try {
+                        BufferedImage bufferedImage = ImageIO.read(photo);
+                        Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                        ImageViewer.setImage(image);
+                    } catch (IOException ex) {
 
                     }
+
                 }
         );
     }
