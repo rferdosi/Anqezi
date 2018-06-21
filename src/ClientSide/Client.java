@@ -5,10 +5,14 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.Optional;
 
 public class Client extends Application {
     public static User user;
@@ -40,7 +44,18 @@ public class Client extends Application {
             e.printStackTrace();
         }
     }
-
+    private static void Close_Alert(javafx.stage.WindowEvent e) {
+        Alert close = new Alert(Alert.AlertType.CONFIRMATION);
+        close.setTitle("Exit?!");
+        close.setHeaderText("Are You Sure You Want to Exit?");
+        close.initModality(Modality.APPLICATION_MODAL);
+        Optional<ButtonType> result = close.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            System.exit(0);
+        } else {
+            e.consume();
+        }
+    }
     private static void deserialize() {
         try {
             FileInputStream fileInputStream = new FileInputStream("user.ser");
@@ -74,6 +89,7 @@ public class Client extends Application {
         pStage.setTitle("Chess");
         pStage.setScene(scene);
         pStage.setScene(new Scene(root, width, height));
+        primaryStage.setOnCloseRequest(Client::Close_Alert);
         pStage.show();
     }
 

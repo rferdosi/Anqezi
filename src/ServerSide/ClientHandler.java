@@ -30,25 +30,33 @@ public class ClientHandler implements Runnable {
 
     private void signUp() {
         try {
-            boolean isUsernameAccepted = true;
-            String username = (String) ois.readObject();
-            for (User user1 : Server.getRegisteredUsers()) {
-                if (user1.getUsername().equals(username)) {
-                    isUsernameAccepted = false;
-                    break;
+            boolean isEmailAccepted;
+            boolean isUsernameAccepted;
+            boolean backRequested = false;
+            do {
+                isEmailAccepted = true;
+                isUsernameAccepted = true;
+                String username = (String) ois.readObject();
+                for (User user1 : Server.getRegisteredUsers()) {
+                    if (user1.getUsername().equals(username)) {
+                        isUsernameAccepted = false;
+                        break;
+                    }
                 }
-            }
-            oos.writeObject(isUsernameAccepted);
-            boolean isEmailAccepted = true;
-            String email = (String) ois.readObject();
-            for (User user1 : Server.getRegisteredUsers()) {
-                if (user1.getEmail().equals(email)) {
-                    isEmailAccepted = false;
-                    break;
+                oos.writeObject(isUsernameAccepted);
+                String email = (String) ois.readObject();
+                for (User user1 : Server.getRegisteredUsers()) {
+                    if (user1.getEmail().equals(email)) {
+                        isEmailAccepted = false;
+                        break;
+                    }
                 }
+                oos.writeObject(isEmailAccepted);
             }
-            oos.writeObject(isEmailAccepted);
-            if (isUsernameAccepted && isEmailAccepted) {
+            while (!isUsernameAccepted || !isEmailAccepted || !backRequested);
+            if (backRequested) {
+                setUser();
+            } else {
                 user = (User) ois.readObject();
                 Server.getRegisteredUsers().add(user);
                 Server.saveData();
@@ -105,6 +113,8 @@ public class ClientHandler implements Runnable {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
+//            Server.getActiveClients().remove(this);
+//            System.exit(0);
         }
     }
 

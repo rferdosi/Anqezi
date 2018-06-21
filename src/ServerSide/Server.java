@@ -21,11 +21,20 @@ public class Server {
         return registeredUsers;
     }
 
+    public static ArrayList<ClientHandler> getActiveClients() {
+        return activeClients;
+    }
+
     public static void main(String[] args) {
         try {
             loadData();
-        } catch (IOException e) {
+            for (User user : getRegisteredUsers()) {
+                System.out.println(user.getUsername());
+                System.out.println(user.getName());
+            }
+        } catch (IOException ignored) {
         }
+
         Date date = new Date();
         games = new ArrayList<>();
         registeredUsers = new ArrayList<>();
