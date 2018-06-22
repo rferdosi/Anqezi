@@ -2,25 +2,21 @@ package ClientSide.Controllers;
 
 import ClientSide.Client;
 import General.User.User;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class LoginController extends MotherController {
-    @FXML
-    public TextField userName;
-    @FXML
-    public PasswordField password;
-    @FXML
-    public Label message;
 
-    public void signIn(ActionEvent actionEvent) {
+    public TextField userName;
+    public PasswordField password;
+    public Label message;
+    public CheckBox rememberMeCheckBox;
+
+    public void signIn() {
         User user = new User(userName.getText(), password.getText());
         try {
             Client.oos.writeObject(user);
@@ -28,6 +24,9 @@ public class LoginController extends MotherController {
             if (accepted) {
                 Client.user = (User) Client.ois.readObject();
                 goTo("mainMenu");
+                if (rememberMeCheckBox.isSelected()) {
+                    Client.serialize();
+                }
             } else {
                 message.setText("wrong username or password");
             }

@@ -1,5 +1,6 @@
 package ClientSide;
 
+import General.Request;
 import General.User.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +23,6 @@ public class Client extends Application {
     public static ObjectInputStream ois;
     public static ObjectOutputStream oos;
     private static Scene scene;
-    private static Stage stage;
     private static Socket socket;
 
     public static Scene getScene() {
@@ -33,7 +33,7 @@ public class Client extends Application {
         Client.scene = scene;
     }
 
-    private static void serialize() {
+    public static void serialize() {
         FileOutputStream fileOutputStream = null;
         try {
             fileOutputStream = new FileOutputStream("user.ser");
@@ -44,6 +44,7 @@ public class Client extends Application {
             e.printStackTrace();
         }
     }
+
     private static void Close_Alert(javafx.stage.WindowEvent e) {
         Alert close = new Alert(Alert.AlertType.CONFIRMATION);
         close.setTitle("Exit?!");
@@ -51,24 +52,24 @@ public class Client extends Application {
         close.initModality(Modality.APPLICATION_MODAL);
         Optional<ButtonType> result = close.showAndWait();
         if (result.get() == ButtonType.OK) {
+            try {
+                oos.writeObject(Request.EXIT);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
             System.exit(0);
         } else {
             e.consume();
         }
     }
-    private static void deserialize() {
+
+    static void deserialize() {
         try {
             FileInputStream fileInputStream = new FileInputStream("user.ser");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             user = (User) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            /*Parent root = null;
-            try {
-                root = FXMLLoader.load(Client.class.getResource("FXMLs/welcoming.fxml"));
-                scene = new Scene(root);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }*/
+
         }
     }
 

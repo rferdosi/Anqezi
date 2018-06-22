@@ -1,7 +1,7 @@
 package ServerSide;
 
-import General.User.User;
 import General.Request;
+import General.User.User;
 
 import java.io.*;
 import java.net.Socket;
@@ -12,7 +12,8 @@ public class ClientHandler implements Runnable {
     private ObjectOutputStream oos;
     private User user;
     final private int ID;
-    public boolean ExitRequested = false;
+    private boolean exitRequested = false;
+
 
     ClientHandler(Socket socket, InputStream ois, OutputStream oos, int ID) throws IOException {
         this.socket = socket;
@@ -23,44 +24,59 @@ public class ClientHandler implements Runnable {
 
     @Override
     public void run() {
-        while (!ExitRequested) {
-            setUser();
+        while (!exitRequested) {
+            if (user == null) {
+                setUser();
+            } else {
+                Request request = null;
+                try {
+                    request = (Request) ois.readObject();
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+                assert request != null;
+                switch (request) {
+                    case EXIT:
+                        exitRequested = true;
+                        break;
+//                        TODO adding more parts of requests like NEW_GAME and NEW_TOURNAMENT
+                }
+            }
         }
     }
 
+
     private void signUp() {
         try {
-            boolean isEmailAccepted;
-            boolean isUsernameAccepted;
+            boolean isEmailAccepted = true;
+            boolean isUsernameAccepted = true;
             boolean backRequested = false;
             do {
-                isEmailAccepted = true;
-                isUsernameAccepted = true;
-                String username = (String) ois.readObject();
-                for (User user1 : Server.getRegisteredUsers()) {
-                    if (user1.getUsername().equals(username)) {
-                        isUsernameAccepted = false;
+                Request nextReq = (Request) ois.readObject();
+                switch (nextReq) {
+                    case SIGN_UP:
+                        String username = (String) ois.readObject();
+                        for (User user1 : Server.getRegisteredUsers()) {
+                            if (user1.getUsername().equals(username)) {
+                                isUsernameAccepted = false;
+                                break;
+                            }
+                        }
+                        oos.writeObject(isUsernameAccepted);
+                        String email = (String) ois.readObject();
+                        for (User user1 : Server.getRegisteredUsers()) {
+                            if (user1.getEmail().equals(email)) {
+                                isEmailAccepted = false;
+                                break;
+                            }
+                        }
+                        oos.writeObject(isEmailAccepted);
                         break;
-                    }
-                }
-                oos.writeObject(isUsernameAccepted);
-                String email = (String) ois.readObject();
-                for (User user1 : Server.getRegisteredUsers()) {
-                    if (user1.getEmail().equals(email)) {
-                        isEmailAccepted = false;
+                    case BACK:
+                        backRequested = true;
                         break;
-                    }
                 }
-                oos.writeObject(isEmailAccepted);
-            }
-            while (!isUsernameAccepted || !isEmailAccepted || !backRequested);
-            if (backRequested) {
-                setUser();
-            } else {
-                user = (User) ois.readObject();
-                Server.getRegisteredUsers().add(user);
-                Server.saveData();
-            }
+            } while (!isUsernameAccepted || !isEmailAccepted || !backRequested);
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -109,12 +125,14 @@ public class ClientHandler implements Runnable {
                     case SIGN_UP:
                         signUp();
                         break;
+                    case EXIT:
+                        exitRequested = true;
+                        break;
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-//            Server.getActiveClients().remove(this);
-//            System.exit(0);
+
         }
     }
 

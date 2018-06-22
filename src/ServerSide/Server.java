@@ -8,16 +8,19 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Formatter;
+
+import static ClientSide.Client.ExitRequested;
+
+// todo import org.slf4j.Logger and use slf4j api for log
 
 public class Server {
     private static ArrayList<Game> games;
     private static ArrayList<ClientHandler> activeClients;
     private static ArrayList<User> registeredUsers;
-    public static boolean ExitRequested = false;
-    public static File file;
-    private static int IDGenerator = 0;
+    private static int IDGenerator; //lastID
 
-    public static ArrayList<User> getRegisteredUsers() {
+    static ArrayList<User> getRegisteredUsers() {
         return registeredUsers;
     }
 
@@ -26,15 +29,7 @@ public class Server {
     }
 
     public static void main(String[] args) {
-        try {
-            loadData();
-            for (User user : getRegisteredUsers()) {
-                System.out.println(user.getUsername());
-                System.out.println(user.getName());
-            }
-        } catch (IOException ignored) {
-        }
-
+        loadData();
         Date date = new Date();
         games = new ArrayList<>();
         registeredUsers = new ArrayList<>();
@@ -46,74 +41,76 @@ public class Server {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        file = new File("log.txt");
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        log("New Session Started At:        " + date.toString());
+        log("New Session Started At:\t" + date.toString());
         while (!ExitRequested) {
             try {
                 clientSocket = serverSocket.accept();
                 log("A new Client has connected");
-                ClientHandler clientHandler = new ClientHandler(clientSocket, clientSocket.getInputStream(), clientSocket.getOutputStream(), IDGenerator++);
-
+                ClientHandler clientHandler = new ClientHandler
+                        (clientSocket, clientSocket.getInputStream(), clientSocket.getOutputStream(), IDGenerator++);
                 Thread thread = new Thread(clientHandler);
                 activeClients.add(clientHandler);
                 thread.start();
             } catch (IOException e) {
                 e.printStackTrace();
+                saveData();
+                log(e.getMessage() + "At\t" + date.toString());
             }
         }
-
-        try {
-            clientSocket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            serverSocket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            saveData();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        log("End of The Session At:         " + date.toString());
-
+        saveData();
+        log("End of The Session At:\t" + date.toString());
     }
 
-    public static void log(String message) {
-        try {
-            FileWriter wLog = new FileWriter(Server.file, true);
-            wLog.write(message + "\n");
+
+    private static void log(String message) {
+        try (Formatter wLog = new Formatter("log.txt")) {
+            wLog.format(message + "\n");
             wLog.flush();
-            wLog.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    static void saveData() throws IOException {
-        FileOutputStream fout = new FileOutputStream("userList.yolo");
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fout);
-        objectOutputStream.writeObject(registeredUsers);
-        objectOutputStream.flush();
-        objectOutputStream.close();
+    private static void saveData() {
+        try (FileOutputStream users = new FileOutputStream("userList")) {
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(users);
+            objectOutputStream.writeObject(registeredUsers);
+            objectOutputStream.flush();
+            objectOutputStream.close();
+        } catch (IOException e) {
+            log("Cant save user list");
+            e.printStackTrace();
+        }
+        try (FileOutputStream lastID = new FileOutputStream("lastID")) {
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(lastID);
+            objectOutputStream.writeObject(IDGenerator);
+            objectOutputStream.close();
+        } catch (IOException e) {
+            log("Cant save last ID");
+            e.printStackTrace();
+        }
     }
 
-    static void loadData() throws IOException {
-        FileInputStream fileInputStream = new FileInputStream("userList.yolo");
-        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+    private static void loadData() {
         try {
+            FileInputStream users = new FileInputStream("userList");
+            ObjectInputStream objectInputStream = new ObjectInputStream(users);
             registeredUsers = (ArrayList<User>) objectInputStream.readObject();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (IOException e1) {
+            log("User list file not found");
+        } catch (ClassNotFoundException e2) {
+            log("User list can't be load");
+            e2.printStackTrace();
+        }
+        try {
+            FileInputStream lastID = new FileInputStream("lastID");
+            ObjectInputStream objectInputStream = new ObjectInputStream(lastID);
+            IDGenerator = objectInputStream.readInt();
+        } catch (IOException IOExc) {
+            log("Last ID file not found");
+            IOExc.printStackTrace();
         }
     }
 
 }
+
