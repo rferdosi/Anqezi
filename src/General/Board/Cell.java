@@ -5,12 +5,14 @@ import General.Pieces.Piece;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 
+import java.util.ArrayList;
+
 public class Cell extends Button {
     private Cell upCell;
     private Cell downCell;
     private Cell rightCell;
     private Cell leftCell;
-
+    private Cell isPossibleToMoveTo;
     private BoardColour boardColour;
 
     private int row;
@@ -36,12 +38,17 @@ public class Cell extends Button {
 
     public Cell(BoardColour boardColour) {
         this.boardColour = boardColour;
+
         this.getStyleClass().add(boardColour.toString() + "Cell");
         super.setPrefSize(100, 100);
         this.setOnAction(event -> {
+//            ArrayList<Cell> choices = this.piece.getPossibleChoices();
+
             board.deselectAllCells();
             System.out.println(toString());
-            this.getStyleClass().add(boardColour.toString() + "CellSelected");
+            if (!this.isEmpty()) {
+                this.getStyleClass().add(boardColour.toString() + "CellSelected");
+            }
         });
     }
 
@@ -136,7 +143,7 @@ public class Cell extends Button {
     public String toString() {
         String s = boardColour.toString() + " at " + row + " " + column;
         if (piece != null)
-            s += "Piece detected!";
+            s += " with " + piece.toString();
         return s;
     }
 }

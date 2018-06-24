@@ -11,4 +11,9 @@ public class Knight extends Piece {
     @Override
     public void getPossibleChoices() {
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Knight";
+    }
 }

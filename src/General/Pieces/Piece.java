@@ -39,6 +39,8 @@ abstract public class Piece {
 
     public abstract void getPossibleChoices();
 
-
-
+    @Override
+    public String toString() {
+        return side.toString()+" ";
+    }
 }

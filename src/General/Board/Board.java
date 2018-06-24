@@ -31,10 +31,11 @@ public class Board {
     }
 
     public void deselectAllCells() {
-        for (Cell[] cell : cells) {
-            for (Cell cell1 : cell) {
-                String last = cell1.getBoardColour().toString() + "CellSelected";
-                cell1.getStyleClass().remove(last);
+        for (Cell[] cells : cells) {
+            for (Cell cell : cells) {
+                String last = cell.getBoardColour().toString() + "CellSelected";
+                cell.getStyleClass().remove(last);
+                cell.setPossible(false);
             }
         }
     }
@@ -65,10 +66,9 @@ public class Board {
         for (int i = 0; i < 8; i++) {
             if (i < 2 || i > 5) {
                 Side side;
-                if (i < 2){
+                if (i < 2) {
                     side = Side.White;
-                }
-                else {
+                } else {
                     side = Side.Black;
                 }
                 for (int j = 0; j < 8; j++) {
@@ -83,22 +83,19 @@ public class Board {
                         if (j == 2 || j == 5) {
                             piece = new Bishop(side);
                         }
-                        if (j == 3) {
+                        if (j == 4) {
                             piece = new King(side);
                         }
-                        if (j == 4) {
+                        if (j == 3) {
                             piece = new Queen(side);
                         }
-                    }
-                    else if (i == 1 || i == 6) {
+                    } else {
                         piece = new Pawn(side);
                     }
-                    if (piece != null) {
-                        piece.setCell(cells[i][j]);
-                        piece.setRowAndColumn();
-                        pieces.add(piece);
-                        cells[i][j].setPiece(piece);
-                    }
+                    piece.setCell(cells[i][j]);
+                    piece.setRowAndColumn();
+                    pieces.add(piece);
+                    cells[i][j].setPiece(piece);
                 }
             }
         }

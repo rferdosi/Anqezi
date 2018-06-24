@@ -18,4 +18,9 @@ public class Queen extends Piece {
     public void getPossibleChoices() {
 
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Queen";
+    }
 }
