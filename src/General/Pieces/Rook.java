@@ -18,10 +18,9 @@ public class Rook extends Piece {
             current = current.getUpCell();
             if (current.isEmpty()) {
                 choices.add(current);
-//                current.setPossible(true);
             } else {
                 if (current.getPiece().side != side) {
-                    current.setThreaten(true);
+                    choices.add(current);
                 }
                 break;
             }
@@ -33,7 +32,7 @@ public class Rook extends Piece {
                 choices.add(current);
             } else {
                 if (current.getPiece().side != side) {
-                    current.setThreaten(true);
+                    choices.add(current);
                 }
                 break;
             }
@@ -45,7 +44,7 @@ public class Rook extends Piece {
                 choices.add(current);
             } else {
                 if (current.getPiece().side != side) {
-                    current.setThreaten(true);
+                    choices.add(current);
                 }
                 break;
             }
@@ -57,7 +56,7 @@ public class Rook extends Piece {
                 choices.add(current);
             } else {
                 if (current.getPiece().side != side) {
-                    current.setThreaten(true);
+                    choices.add(current);
                 }
                 break;
             }
