@@ -14,56 +14,58 @@ public class Pawn extends Piece {
 
     @Override
     public ArrayList<Cell> getPossibleChoices() {
-        ArrayList<Cell> chioces;
+        ArrayList<Cell> choices = new ArrayList<>();
         super.getPossibleChoices();
+        Cell current = cell;
         if (side == Side.White) {
             if (cell.getUpCell() != null) {
-                if (cell.getUpCell().isEmpty()) {
-                    chioces.add()
+                current = cell.getUpCell();
+                if (current.isEmpty()) {
                     if (isFirstMove) {
-                        if (cell.getUpCell().getUpCell().isEmpty()) {
-                            cell.getUpCell().getUpCell().setPossible(true);
+                        if (current.getUpCell().isEmpty()) {
+                            choices.add(current.getUpCell());
                         }
                     }
                 }
                 if (cell.getUpCell().getRightCell() != null && !cell.getUpCell().getRightCell().isEmpty()) {
                     if (cell.getUpCell().getRightCell().getPiece().side != side) {
-                        cell.getUpCell().getRightCell().setThreaten(true);
+                        choices.add(cell.getUpCell().getRightCell());
                     }
                 }
                 if (cell.getUpCell() != null) {
                     if (cell.getUpCell().getLeftCell() != null && !cell.getUpCell().getLeftCell().isEmpty()) {
                         if (cell.getUpCell().getLeftCell().getPiece().side != side) {
-                            cell.getUpCell().getLeftCell().setThreaten(true);
+                            choices.add(cell.getUpCell().getLeftCell());
                         }
                     }
                 }
             }
         } else {
             if (cell.getDownCell() != null) {
-                if (cell.getDownCell().isEmpty()) {
-                    cell.getDownCell().setPossible(true);
+                current = cell.getDownCell();
+                if (current.isEmpty()) {
+                    choices.add(current.getDownCell());
                     if (isFirstMove) {
-                        if (cell.getDownCell().getDownCell().isEmpty()) {
-                            cell.getDownCell().getDownCell().setPossible(true);
+                        if (current.getDownCell().isEmpty()) {
+                            choices.add(current.getDownCell());
                         }
                     }
                 }
                 if (cell.getDownCell().getRightCell() != null && !cell.getDownCell().getRightCell().isEmpty()) {
                     if (cell.getDownCell().getRightCell().getPiece().side != side) {
-                        cell.getDownCell().getRightCell().setThreaten(true);
+                        choices.add(cell.getDownCell().getRightCell());
                     }
                 }
 
                 if (cell.getDownCell().getLeftCell() != null && !cell.getDownCell().getLeftCell().isEmpty()) {
                     if (cell.getDownCell().getLeftCell().getPiece().side != side) {
-                        cell.getDownCell().getLeftCell().setThreaten(true);
+                        choices.add(cell.getDownCell().getLeftCell());
                     }
                 }
             }
         }
 
-        return chioces;
+        return choices;
     }
 
     @Override
@@ -81,7 +83,7 @@ public class Pawn extends Piece {
     }
 
     private static void queening() {
-        //change the pawn to other pieces
+        //todo change the pawn to other pieces
 
     }
 
