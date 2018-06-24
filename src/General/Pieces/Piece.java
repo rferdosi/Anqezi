@@ -11,15 +11,17 @@ abstract public class Piece {
     protected Cell cell;
     protected Side side;
     protected int row;
-    protected int column;
-
-    public Piece(Side side) {
-        this.side = side;
-    }
+    public static Piece lastSelectedPiece;
 
     public void setRowAndColumn() {
         row = this.cell.getRow();
         column = this.cell.getColumn();
+    }
+
+    protected int column;
+
+    public Piece(Side side) {
+        this.side = side;
     }
 
     public void move(Cell destination) {
@@ -41,6 +43,6 @@ abstract public class Piece {
 
     @Override
     public String toString() {
-        return side.toString()+" ";
+        return side.toString() + " ";
     }
 }

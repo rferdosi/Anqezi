@@ -1,6 +1,8 @@
 package ClientSide.Controllers;
 
 import General.Board.Board;
+import General.Game;
+import General.User.Player;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -11,13 +13,17 @@ import java.util.ResourceBundle;
 public class GameController extends MotherController implements Initializable {
 
     public VBox myBoard;
+    public Game game;
     public Board board;
+    Player player;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (board == null)
-            board = new Board();
+        if (game == null) {
+            game = new Game();
+        }
+        board = game.getBoard();
         readFromBoard();
     }
 

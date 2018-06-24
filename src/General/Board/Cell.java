@@ -1,18 +1,19 @@
 package General.Board;
 
 import ClientSide.Themes.Theme;
+import General.Pieces.Pawn;
 import General.Pieces.Piece;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-
-import java.util.ArrayList;
 
 public class Cell extends Button {
     private Cell upCell;
     private Cell downCell;
     private Cell rightCell;
     private Cell leftCell;
-    private Cell isPossibleToMoveTo;
+    private boolean isPossible;
+
+
     private BoardColour boardColour;
 
     private int row;
@@ -21,7 +22,7 @@ public class Cell extends Button {
     private Piece piece;
     private Theme theme;
     private Board board;
-    private boolean isPossible;
+
 
     public BoardColour getBoardColour() {
         return boardColour;
@@ -42,14 +43,26 @@ public class Cell extends Button {
         this.getStyleClass().add(boardColour.toString() + "Cell");
         super.setPrefSize(100, 100);
         this.setOnAction(event -> {
-//            ArrayList<Cell> choices = this.piece.getPossibleChoices();
 
+            if (this.isEmpty()) {
+                if (Piece.lastSelectedPiece != null) {
+
+                }
+            } else {
+                Piece.lastSelectedPiece = piece;
+            }
             board.deselectAllCells();
             System.out.println(toString());
             if (!this.isEmpty()) {
                 this.getStyleClass().add(boardColour.toString() + "CellSelected");
             }
         });
+        if (piece instanceof Pawn) {
+//            imageView = new ImageView(getClass().getResourceAsStream("../Assets/Images/Pieces/Carbon/Pawn.png");
+        }
+//        this.setGraphic(imageView);
+//        ().add(imageView);
+//        Button button=new Button(" ",imageView)
     }
 
     public Piece getPiece() {
@@ -60,10 +73,6 @@ public class Cell extends Button {
         this.piece = piece;
     }
 
-//    @Override
-//    protected void setWidth(double value) {
-//        super.setWidth(value);
-//    }
 
     public void setDownCell(Cell downCell) {
         this.downCell = downCell;
