@@ -18,12 +18,13 @@ public class GameController extends MotherController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        myBoard.setSpacing(0);
         ObservableList<Node> children = myBoard.getChildren();
         for (int i = 0; i < children.size(); i++) {
             Node node = children.get(i);
             HBox hBox = (HBox) node;
             for (int j = 0; j < 8; j++) {
-                if (i + j % 2 == 0) {
+                if ((i + j) % 2 == 0) {
                     hBox.getChildren().add(new Cell(BoardColour.Black));
                 } else {
                     hBox.getChildren().add(new Cell(BoardColour.White));

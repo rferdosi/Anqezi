@@ -1,9 +1,30 @@
 .blackCell {
-    -fx-background-image: "..\Assets\Images\Board\Blue Theme\BlackCell.png";
-    -fx-background-color: Black;
+    -fx-background-image: url("../Assets/Images/Board/BlueTheme/BlackCell.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 75 75;
+    -fx-background-position: center center;
+
+    /*-fx-background-color: Black;*/
+}
+
+.blackCell:selected {
+    -fx-background-image: url("../Assets/Images/Board/BlueTheme/BlackCellSelected.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 75 75;
+    -fx-background-position: center center;
 }
 
 .whiteCell {
-    -fx-background-image: "..\Assets\Images\Board\Blue Theme\WhiteCell.png";
-    -fx-background-color: White;
+    -fx-background-image: url("../Assets/Images/Board/BlueTheme/WhiteCell.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 75 75;
+    -fx-background-position: center center;
+    /*-fx-background-color: White;*/
+}
+
+.whiteCell:selected {
+    -fx-background-image: url("../Assets/Images/Board/BlueTheme/WhiteCellSelected.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 75 75;
+    -fx-background-position: center center;
 }
