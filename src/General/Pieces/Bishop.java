@@ -23,6 +23,7 @@ public class Bishop extends Piece {
             current = current.getUpCell().getRightCell();
             if (current.isEmpty()) {
                 choices.add(current);
+                //todo wtf
             } else {
                 if (current.getPiece().side != side) {
                     choices.add(current);
