@@ -63,7 +63,8 @@ public class Server {
 
 
     private static void log(String message) {
-        try (Formatter wLog = new Formatter("log.txt")) {
+        try (FileOutputStream fos = new FileOutputStream("log.txt", true);
+             Formatter wLog = new Formatter(fos)) {
             wLog.format(message + "\n");
             wLog.flush();
         } catch (IOException e) {

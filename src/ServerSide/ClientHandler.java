@@ -26,7 +26,7 @@ public class ClientHandler implements Runnable {
     public void run() {
         while (!exitRequested) {
             if (user == null) {
-                setUser();
+                userSetter();
             } else {
                 Request request = null;
                 try {
@@ -43,6 +43,7 @@ public class ClientHandler implements Runnable {
                 }
             }
         }
+        System.err.println("exit");
     }
 
 
@@ -71,6 +72,7 @@ public class ClientHandler implements Runnable {
                             }
                         }
                         oos.writeObject(isEmailAccepted);
+                        user = (User) ois.readObject();
                         break;
                     case BACK:
                         backRequested = true;
@@ -112,7 +114,7 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    private void setUser() {
+    private void userSetter() {
         while (user == null) {
             try {
                 Request request = (Request) ois.readObject();
@@ -124,6 +126,9 @@ public class ClientHandler implements Runnable {
                         break;
                     case SIGN_UP:
                         signUp();
+                        break;
+                    case SEND_USER:
+                        user = (User) ois.readObject();
                         break;
                     case EXIT:
                         exitRequested = true;

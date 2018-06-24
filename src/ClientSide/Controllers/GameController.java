@@ -1,8 +1,11 @@
 package ClientSide.Controllers;
 
+import General.Board.BoardColour;
+import General.Board.Cell;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -20,8 +23,11 @@ public class GameController extends MotherController implements Initializable {
             Node node = children.get(i);
             HBox hBox = (HBox) node;
             for (int j = 0; j < 8; j++) {
-//                hBox.getChildren().add(Main.board.getCells(i, j));
-                //adding cells to board
+                if (i + j % 2 == 0) {
+                    hBox.getChildren().add(new Cell(BoardColour.Black));
+                } else {
+                    hBox.getChildren().add(new Cell(BoardColour.White));
+                }
             }
         }
 

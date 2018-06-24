@@ -63,12 +63,14 @@ public class Client extends Application {
         }
     }
 
-    static void deserialize() {
+    private static void deserialize() {
         try {
             FileInputStream fileInputStream = new FileInputStream("user.ser");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             user = (User) objectInputStream.readObject();
-        } catch (IOException | ClassNotFoundException e) {
+            oos.writeObject(Request.SEND_USER);
+            oos.writeObject(user);
+        } catch (IOException | ClassNotFoundException ignored) {
 
         }
     }
