@@ -17,27 +17,8 @@ public class Cell extends Button {
     private int column;
     private ImageView imageView;
     private Piece piece;
-    private boolean isPossible;
-    private boolean isThreaten;
-    private boolean isSelected;
     private Theme theme;
     private Board board;
-
-    public boolean isThreaten() {
-        return isThreaten;
-    }
-
-    public void setThreaten(boolean threaten) {
-        isThreaten = threaten;
-    }
-
-    public boolean isSelected() {
-        return isSelected;
-    }
-
-    public void setSelected(boolean selected) {
-        isSelected = selected;
-    }
 
     public BoardColour getBoardColour() {
         return boardColour;
@@ -49,14 +30,6 @@ public class Cell extends Button {
 
     public void setBoard(Board board) {
         this.board = board;
-    }
-
-    public boolean isPossible() {
-        return isPossible;
-    }
-
-    public void setPossible(boolean possible) {
-        isPossible = possible;
     }
 
 
@@ -159,7 +132,7 @@ public class Cell extends Button {
     public String toString() {
         String s = boardColour.toString() + " at " + row + " " + column;
         if (piece != null)
-            s += piece.toString();
+            s += "Piece detected!";
         return s;
     }
 }

@@ -15,7 +15,6 @@ public class Pawn extends Piece {
     @Override
     public ArrayList<Cell> getPossibleChoices() {
         ArrayList<Cell> choices = new ArrayList<>();
-        super.getPossibleChoices();
         Cell current = cell;
         if (side == Side.White) {
             if (cell.getUpCell() != null) {

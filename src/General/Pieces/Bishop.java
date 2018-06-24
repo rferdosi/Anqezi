@@ -3,6 +3,8 @@ package General.Pieces;
 import General.Board.Cell;
 import General.Board.Side;
 
+import java.util.ArrayList;
+
 public class Bishop extends Piece {
     public Bishop(Side side) {
         super(side);
@@ -14,8 +16,7 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public void getPossibleChoices() {
-        super.getPossibleChoices();
+    public ArrayList<Cell> getPossibleChoices() {
         Cell current = cell;
         while (current.getUpCell() != null && current.getRightCell() != null) {
             current = current.getUpCell().getRightCell();
@@ -67,6 +68,7 @@ public class Bishop extends Piece {
             }
 
         }
+        return null;
     }
 
 }

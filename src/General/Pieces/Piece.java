@@ -26,4 +26,6 @@ abstract public class Piece {
 
     public abstract ArrayList<Cell> getPossibleChoices();
 
+
+
 }

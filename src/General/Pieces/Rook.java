@@ -12,7 +12,6 @@ public class Rook extends Piece {
 
     @Override
     public ArrayList<Cell> getPossibleChoices() {
-        super.getPossibleChoices();
         ArrayList<Cell> choices = new ArrayList<>();
         Cell current = cell;
         while (current.getUpCell() != null) {
