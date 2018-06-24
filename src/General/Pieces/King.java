@@ -42,4 +42,9 @@ public class King extends Piece {
     public void setChecked(boolean checked) {
         this.checked = checked;
     }
+
+    public String toString() {
+        return super.toString() + "King";
+    }
+
 }
