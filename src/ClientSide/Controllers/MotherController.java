@@ -16,16 +16,6 @@ public abstract class MotherController {
     public void CloseApp(){
         Client.ExitRequested = true;
     }
-
-    /*public void goTo(String url) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("../FXMLs/" + url + ".fxml"));
-            Client.getScene().setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("wtf");
-        }
-    }*/
     public void goTo(String name){
         Parent root = null;
         try {

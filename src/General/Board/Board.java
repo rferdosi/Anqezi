@@ -19,6 +19,10 @@ public class Board {
         return cells[i][j];
     }
 
+    public ArrayList<Piece> getPieces() {
+        return pieces;
+    }
+
     public BoardTheme getTheme() {
         return theme;
     }

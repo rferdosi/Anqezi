@@ -147,7 +147,7 @@ public class Cell extends Button {
     }
 
     public boolean isEmpty() {
-        return piece == null;
+        return (piece == null);
     }
 
 //    public void initialize(URL location, ResourceBundle resources) {
