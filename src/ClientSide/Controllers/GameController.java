@@ -5,7 +5,6 @@ import General.Board.Cell;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -18,7 +17,7 @@ public class GameController extends MotherController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        myBoard.setSpacing(0);
+        myBoard.setSpacing(-15);
         ObservableList<Node> children = myBoard.getChildren();
         for (int i = 0; i < children.size(); i++) {
             Node node = children.get(i);
