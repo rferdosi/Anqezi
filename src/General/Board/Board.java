@@ -38,6 +38,7 @@ public class Board {
                 String last = cell.getBoardColour().toString() + "CellSelected";
                 cell.getStyleClass().remove(last);
                 cell.setPossible(false);
+                cell.getStyleClass().add(cell.getBoardColour().toString() + "Cell");
             }
         }
         lastSelectedPiece = null;
@@ -70,9 +71,9 @@ public class Board {
             if (i < 2 || i > 5) {
                 Side side;
                 if (i < 2) {
-                    side = Side.White;
-                } else {
                     side = Side.Black;
+                } else {
+                    side = Side.White;
                 }
                 for (int j = 0; j < 8; j++) {
                     Piece piece = null;

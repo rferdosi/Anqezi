@@ -7,9 +7,9 @@ public enum Side {
     public String toString() {
         switch (this) {
             case White:
-                return "black";
-            case Black:
                 return "white";
+            case Black:
+                return "black";
         }
         return null;
     }

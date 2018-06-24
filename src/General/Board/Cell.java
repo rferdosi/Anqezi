@@ -44,7 +44,7 @@ public class Cell extends Button {
         super.setPrefSize(100, 100);
         this.setOnAction(event -> {
 
-
+//      ®Powered By XxNE0XX!
             if (Board.lastSelectedPiece != null) {
                 if (isPossible) {
                     Board.lastSelectedPiece.move(this);

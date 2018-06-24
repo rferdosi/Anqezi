@@ -28,7 +28,9 @@ abstract public class Piece {
         if (!destination.isEmpty() && destination.getPiece().side != this.side) {
             this.cell.getBoard().getPieces().remove(destination.getPiece());
         }
+        this.cell.setPiece(null);
         this.cell = destination;
+        destination.setPiece(this);
     }
 
     public Cell getCell() {
