@@ -56,8 +56,9 @@ public class Client extends Application {
                 oos.writeObject(Request.EXIT);
             } catch (IOException e1) {
                 e1.printStackTrace();
+            } finally {
+                System.exit(0);
             }
-            System.exit(0);
         } else {
             e.consume();
         }
