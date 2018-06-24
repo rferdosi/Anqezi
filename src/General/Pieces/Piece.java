@@ -25,7 +25,7 @@ abstract public class Piece {
     }
 
     public void move(Cell destination) {
-        if (!destination.isEmpty()) {
+        if (!destination.isEmpty() && destination.getPiece().side != this.side) {
             this.cell.getBoard().getPieces().remove(destination.getPiece());
         }
         this.cell = destination;
