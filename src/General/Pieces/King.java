@@ -17,6 +17,7 @@ public class King extends Piece {
                 if (i == 0 && j == 0) {
                     continue;
                 }
+//                TODO kian change your method
 //                else if (Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j) != null) {
 //                    if (Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).isEmpty())
 //                        Main.board.getCells(this.cell.getRow() + i, this.cell.getColumn() + j).setPossible(true);
