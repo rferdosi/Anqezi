@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 public class GameController extends MotherController implements Initializable {
 
     public VBox myBoard;
-    public ArrayList<ArrayList<Cell>> board;
+    public Cell[][] board;
     public ArrayList<Piece> pieces;
 
 
@@ -32,7 +32,7 @@ public class GameController extends MotherController implements Initializable {
     }
 
     private void newBoard() {
-        board = new ArrayList<>();
+        board = new Cell[8][8];
         ObservableList<Node> children = myBoard.getChildren();
         for (int i = 0; i < children.size(); i++) {
             Node node = children.get(i);
@@ -44,13 +44,13 @@ public class GameController extends MotherController implements Initializable {
                 } else {
                     hBox.getChildren().add(cell = new Cell(BoardColour.White));
                 }
-                board.get(i).add(cell);
+                board[i][j] = (cell);
                 cell.setColumn(j);
                 cell.setRow(i);
                 if (j != 0)
-                    cell.setRightCell(board.get(i).get(j - 1));
+                    cell.setRightCell(board[i][j - 1]);
                 if (i != 0)
-                    cell.setUpCell(board.get(i - 1).get(j));
+                    cell.setUpCell(board[i - 1][j]);
             }
         }
         addPieces();
@@ -58,10 +58,8 @@ public class GameController extends MotherController implements Initializable {
     }
 
     private void addPieces() {
-        for (int i = 0; i < board.size(); i++) {
-            ArrayList<Cell> cells = board.get(i);
-            for (int j = 0; j < cells.size(); j++) {
-                Cell cell = cells.get(i);
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
                 Piece piece = null;
                 pieces.add(piece);
                 switch (i) {
@@ -72,7 +70,7 @@ public class GameController extends MotherController implements Initializable {
                         piece = new Pawn(Side.Black);
                         break;
                 }
-                cell.setPiece(piece);
+                board[i][j].setPiece(piece);
             }
         }
 
