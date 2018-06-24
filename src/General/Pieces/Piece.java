@@ -39,6 +39,10 @@ abstract public class Piece {
         this.cell = cell;
     }
 
+    public Side getSide() {
+        return side;
+    }
+
     public abstract void getPossibleChoices();
 
     @Override

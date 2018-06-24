@@ -45,22 +45,43 @@ public class Cell extends Button {
         this.setOnAction(event -> {
 
 
-//            if (isEmpty()) {
-//                if (isPossible) {
-//                    Board.lastSelectedPiece.move(this);
-//                }
-//            }
-//            board.deselectAllCells();
-//            System.out.println(toString());
+            if (Board.lastSelectedPiece != null) {
+                if (isPossible) {
+                    Board.lastSelectedPiece.move(this);
+                    board.deselectAllCells();
+                    Board.lastSelectedPiece = null;
+                }
+                else if (!isPossible() && !isEmpty()){
+                    board.deselectAllCells();
+                    Board.lastSelectedPiece = this.getPiece();
+                    this.getPiece().getPossibleChoices();
+                }
+            }
+            else if (Board.lastSelectedPiece == null && !isEmpty()) {
+                board.deselectAllCells();
+                Board.lastSelectedPiece = this.getPiece();
+                this.getPiece().getPossibleChoices();
+            }
+            else {
+                board.deselectAllCells();
+            }
+
+            System.out.println(toString());
             if (!this.isEmpty()) {
                 this.getStyleClass().add(boardColour.toString() + "CellSelected");
             }
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
                     Cell cell = board.getCell(i, j);
-                    if (cell.isPossible()) {
+                    if (cell.isPossible() && cell.isEmpty()) {
                         cell.getStyleClass().remove(boardColour.toString() + "Cell");
                         cell.getStyleClass().add(boardColour.toString() + "CellPossible");
+                        System.out.println(cell.toString());
+                    }
+                    else if (cell.isPossible() && !cell.isEmpty()){
+                        cell.getStyleClass().remove(boardColour.toString() + "Cell");
+                        // TODO: 06/24/18 Reza add threaten here!
+                        //cell.getStyleClass().add(boardColour.toString() + "CellPossible");
                     }
                 }
             }

@@ -24,12 +24,14 @@ public class King extends Piece {
                 }
 //                TODO Kian change your method
 //                Done Dude :)
-                Cell inProgressCell = this.cell.getBoard().getCell(row + i, column + j);
-                if (inProgressCell != null) {
+                try {
+                    Cell inProgressCell = this.cell.getBoard().getCell(row + i, column + j);
                     if (inProgressCell.isEmpty() &&
-                        (!inProgressCell.isEmpty() && inProgressCell.getPiece().side != this.side)) {
+                            (!inProgressCell.isEmpty() && inProgressCell.getPiece().side != this.side)) {
                         inProgressCell.setPossible(true);
                     }
+                } catch (ArrayIndexOutOfBoundsException e){
+                    continue;
                 }
             }
         }
