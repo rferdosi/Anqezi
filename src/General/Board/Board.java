@@ -58,22 +58,22 @@ public class Board {
                     cell.setUpCell(cells[i - 1][j]);
             }
         }
-//        addPieces();
+        addPieces();
     }
 
     private void addPieces() {
         for (int i = 0; i < 8; i++) {
             if (i < 2 || i > 5) {
-                Side side = null;
+                Side side;
                 if (i < 2){
                     side = Side.White;
                 }
-                else if (i > 5){
+                else {
                     side = Side.Black;
                 }
                 for (int j = 0; j < 8; j++) {
                     Piece piece = null;
-                    if (i == 0) {
+                    if (i == 0 || i == 7) {
                         if (j == 0 || j == 7) {
                             piece = new Rook(side);
                         }
@@ -90,10 +90,12 @@ public class Board {
                             piece = new Queen(side);
                         }
                     }
-                    else if (i == 1) {
+                    else if (i == 1 || i == 6) {
                         piece = new Pawn(side);
                     }
                     if (piece != null) {
+                        piece.setCell(cells[i][j]);
+                        piece.setRowAndColumn();
                         pieces.add(piece);
                         cells[i][j].setPiece(piece);
                     }

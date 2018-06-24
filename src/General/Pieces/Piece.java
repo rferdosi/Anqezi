@@ -10,11 +10,16 @@ abstract public class Piece {
     protected ImageView imageView;
     protected Cell cell;
     protected Side side;
-    protected int row = this.cell.getRow();
-    protected int column = this.cell.getColumn();
+    protected int row;
+    protected int column;
 
     public Piece(Side side) {
         this.side = side;
+    }
+
+    public void setRowAndColumn() {
+        row = this.cell.getRow();
+        column = this.cell.getColumn();
     }
 
     public void move(Cell destination) {
@@ -22,6 +27,14 @@ abstract public class Piece {
             this.cell.getBoard().getPieces().remove(destination.getPiece());
         }
         this.cell = destination;
+    }
+
+    public Cell getCell() {
+        return cell;
+    }
+
+    public void setCell(Cell cell) {
+        this.cell = cell;
     }
 
     public abstract ArrayList<Cell> getPossibleChoices();

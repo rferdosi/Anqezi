@@ -19,8 +19,6 @@ public class GameController extends MotherController implements Initializable {
         if (board == null)
             board = new Board();
         readFromBoard();
-
-
     }
 
     private void readFromBoard() {
