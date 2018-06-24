@@ -15,7 +15,7 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <Pane prefHeight="800.0" prefWidth="600.0">
+      <Pane prefHeight="800.0" prefWidth="600.0" styleClass="background" stylesheets="@../CSS/game.css">
          <children>
             <VBox fx:id="myBoard" layoutY="81.0" prefHeight="600.0" prefWidth="600.0">
                <children>
