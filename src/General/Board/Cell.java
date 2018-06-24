@@ -19,6 +19,7 @@ public class Cell extends Button {
     private Piece piece;
     private Theme theme;
     private Board board;
+    private boolean isPossible;
 
     public BoardColour getBoardColour() {
         return boardColour;
@@ -123,10 +124,13 @@ public class Cell extends Button {
         return (piece == null);
     }
 
-//    public void initialize(URL location, ResourceBundle resources) {
+    public boolean isPossible() {
+        return isPossible;
+    }
 
-
-//    }
+    public void setPossible(boolean possible) {
+        isPossible = possible;
+    }
 
     @Override
     public String toString() {

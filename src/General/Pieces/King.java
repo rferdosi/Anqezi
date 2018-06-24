@@ -16,10 +16,7 @@ public class King extends Piece {
     }
 
     @Override
-    public ArrayList<Cell> getPossibleChoices() {
-
-        ArrayList<Cell> ret = new ArrayList<>();
-
+    public void getPossibleChoices() {
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
                 if (i == 0 && j == 0) {
@@ -31,12 +28,11 @@ public class King extends Piece {
                 if (inProgressCell != null) {
                     if (inProgressCell.isEmpty() &&
                         (!inProgressCell.isEmpty() && inProgressCell.getPiece().side != this.side)) {
-                        ret.add(inProgressCell);
+                        inProgressCell.setPossible(true);
                     }
                 }
             }
         }
-        return ret;
     }
 
     public boolean isChecked() {

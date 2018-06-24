@@ -13,9 +13,7 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public ArrayList<Cell> getPossibleChoices() {
-        ArrayList<Cell> choices = new ArrayList<>();
-//        super.getPossibleChoices();
+    public void getPossibleChoices() {
         Cell current;
         if (side == Side.White) {
             if (cell.getUpCell() != null) {
@@ -23,19 +21,19 @@ public class Pawn extends Piece {
                 if (current.isEmpty()) {
                     if (isFirstMove) {
                         if (current.getUpCell().isEmpty()) {
-                            choices.add(current.getUpCell());
+                            current.getUpCell().setPossible(true);
                         }
                     }
                 }
                 if (cell.getUpCell().getRightCell() != null && !cell.getUpCell().getRightCell().isEmpty()) {
                     if (cell.getUpCell().getRightCell().getPiece().side != side) {
-                        choices.add(cell.getUpCell().getRightCell());
+                        cell.getUpCell().getRightCell().setPossible(true);
                     }
                 }
                 if (cell.getUpCell() != null) {
                     if (cell.getUpCell().getLeftCell() != null && !cell.getUpCell().getLeftCell().isEmpty()) {
                         if (cell.getUpCell().getLeftCell().getPiece().side != side) {
-                            choices.add(cell.getUpCell().getLeftCell());
+                            cell.getUpCell().getLeftCell().setPossible(true);
                         }
                     }
                 }
@@ -44,28 +42,26 @@ public class Pawn extends Piece {
             if (cell.getDownCell() != null) {
                 current = cell.getDownCell();
                 if (current.isEmpty()) {
-                    choices.add(current.getDownCell());
+                    current.getDownCell().setPossible(true);
                     if (isFirstMove) {
                         if (current.getDownCell().isEmpty()) {
-                            choices.add(current.getDownCell());
+                            current.getDownCell().setPossible(true);
                         }
                     }
                 }
                 if (cell.getDownCell().getRightCell() != null && !cell.getDownCell().getRightCell().isEmpty()) {
                     if (cell.getDownCell().getRightCell().getPiece().side != side) {
-                        choices.add(cell.getDownCell().getRightCell());
+                        cell.getDownCell().getRightCell().setPossible(true);
                     }
                 }
 
                 if (cell.getDownCell().getLeftCell() != null && !cell.getDownCell().getLeftCell().isEmpty()) {
                     if (cell.getDownCell().getLeftCell().getPiece().side != side) {
-                        choices.add(cell.getDownCell().getLeftCell());
+                        cell.getDownCell().getLeftCell().setPossible(true);
                     }
                 }
             }
         }
-
-        return choices;
     }
 
     @Override

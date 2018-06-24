@@ -37,7 +37,7 @@ abstract public class Piece {
         this.cell = cell;
     }
 
-    public abstract ArrayList<Cell> getPossibleChoices();
+    public abstract void getPossibleChoices();
 
 
 
