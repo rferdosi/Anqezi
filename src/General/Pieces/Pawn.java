@@ -15,8 +15,8 @@ public class Pawn extends Piece {
     @Override
     public ArrayList<Cell> getPossibleChoices() {
         ArrayList<Cell> choices = new ArrayList<>();
-        super.getPossibleChoices();
-        Cell current = cell;
+//        super.getPossibleChoices();
+        Cell current;
         if (side == Side.White) {
             if (cell.getUpCell() != null) {
                 current = cell.getUpCell();
@@ -87,4 +87,8 @@ public class Pawn extends Piece {
 
     }
 
+    @Override
+    public String toString() {
+        return "Pawn";
+    }
 }

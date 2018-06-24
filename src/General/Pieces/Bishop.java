@@ -3,6 +3,8 @@ package General.Pieces;
 import General.Board.Cell;
 import General.Board.Side;
 
+import java.util.ArrayList;
+
 public class Bishop extends Piece {
     public Bishop(Side side) {
         super(side);
@@ -14,16 +16,16 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public void getPossibleChoices() {
-        super.getPossibleChoices();
+    public ArrayList<Cell> getPossibleChoices() {
+        ArrayList<Cell> choices = new ArrayList<>();
         Cell current = cell;
         while (current.getUpCell() != null && current.getRightCell() != null) {
             current = current.getUpCell().getRightCell();
             if (current.isEmpty()) {
-                current.setPossible(true);
+                choices.add(current);
             } else {
                 if (current.getPiece().side != side) {
-                    current.setThreaten(true);
+                    choices.add(current);
                 }
                 break;
             }
@@ -32,10 +34,10 @@ public class Bishop extends Piece {
         while (current.getUpCell() != null && current.getLeftCell() != null) {
             current = current.getUpCell().getLeftCell();
             if (current.isEmpty()) {
-                current.setPossible(true);
+                choices.add(current);
             } else {
                 if (current.getPiece().side != side) {
-                    current.setThreaten(true);
+                    choices.add(current);
                 }
                 break;
             }
@@ -45,10 +47,10 @@ public class Bishop extends Piece {
         while (current.getDownCell() != null && current.getLeftCell() != null) {
             current = current.getDownCell().getLeftCell();
             if (current.isEmpty()) {
-                current.setPossible(true);
+                choices.add(current);
             } else {
                 if (current.getPiece().side != side) {
-                    current.setThreaten(true);
+                    choices.add(current);
                 }
                 break;
             }
@@ -58,15 +60,16 @@ public class Bishop extends Piece {
         while (current.getDownCell() != null && current.getRightCell() != null) {
             current = current.getDownCell().getRightCell();
             if (current.isEmpty()) {
-                current.setPossible(true);
+                choices.add(current);
             } else {
                 if (current.getPiece().side != side) {
-                    current.setThreaten(true);
+                    choices.add(current);
                 }
                 break;
             }
 
         }
+        return choices;
     }
 
 }
