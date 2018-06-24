@@ -8,13 +8,11 @@ import General.Pieces.Piece;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.ResourceBundle;
 
 public class GameController extends MotherController implements Initializable {
@@ -26,6 +24,7 @@ public class GameController extends MotherController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        myBoard.setSpacing(-15);
         if (board == null)
             newBoard();
 
@@ -78,12 +77,4 @@ public class GameController extends MotherController implements Initializable {
         }
 
     }
-
-//    private void setMyBoard() {
-//        ObservableList<Node> children = myBoard.getChildren();
-//        for (int i = 0; i < children.size(); i++) {
-//
-//        }
-//
-//    }
 }
