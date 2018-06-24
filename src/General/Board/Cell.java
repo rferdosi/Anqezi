@@ -75,6 +75,14 @@ public class Cell extends Button {
         downCell.upCell = this;
     }
 
+    public void setUpCell(Cell upCell) {
+        this.upCell = upCell;
+    }
+
+    public void setLeftCell(Cell leftCell) {
+        this.leftCell = leftCell;
+    }
+
     public void setRightCell(Cell rightCell) {
         this.rightCell = rightCell;
         rightCell.leftCell = this;

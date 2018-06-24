@@ -1,8 +1,12 @@
 package General.Board;
 
 import ClientSide.Themes.BoardTheme;
+import javafx.fxml.Initializable;
 
-public class Board {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class Board  implements Initializable {
     private Cell[][] cells = new Cell[8][8];
     private BoardTheme theme;
 
@@ -18,19 +22,9 @@ public class Board {
         this.theme = theme;
     }
 
-    {
-//        for (int i = 0; i < 8; i++) {
-//            for (int j = 0; j < 8; j++) {
-//                cells[i][j] = new Cell();
-//                cells[i][j].setColumn(j);
-//                cells[i][j].setRow(i);
-//                if ((i + j) % 2 == 0)
-//                    cells[i][j].setBoardColour(BoardColour.White);
-//                else
-//                    cells[i][j].setBoardColour(BoardColour.Black);
-//            }
-//        }
-//        cells[0][0].setPiece(new Rook());
-    }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 }

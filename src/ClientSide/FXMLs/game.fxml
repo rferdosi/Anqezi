@@ -7,29 +7,38 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientSide.Controllers.GameController">
-   <columnConstraints>
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-   </rowConstraints>
-   <children>
-      <Pane prefHeight="800.0" prefWidth="600.0" stylesheets="@../CSS/game.css">
-         <children>
-            <VBox fx:id="myBoard" layoutY="81.0" prefHeight="600.0" prefWidth="600.0">
-               <children>
-                  <HBox maxHeight="75.0" maxWidth="600.0" minHeight="75.0" minWidth="600.0" prefHeight="75.0" prefWidth="600.0" />
-                  <HBox maxHeight="75.0" maxWidth="600.0" minHeight="75.0" minWidth="600.0" prefHeight="75.0" prefWidth="600.0" />
-                  <HBox maxHeight="75.0" maxWidth="600.0" minHeight="75.0" minWidth="600.0" prefHeight="75.0" prefWidth="600.0" />
-                  <HBox maxHeight="75.0" maxWidth="600.0" minHeight="75.0" minWidth="600.0" prefHeight="75.0" prefWidth="600.0" />
-                  <HBox maxHeight="75.0" maxWidth="600.0" minHeight="75.0" minWidth="600.0" prefHeight="75.0" prefWidth="600.0" />
-                  <HBox maxHeight="75.0" maxWidth="600.0" minHeight="75.0" minWidth="600.0" prefHeight="75.0" prefWidth="600.0" />
-                  <HBox maxHeight="75.0" maxWidth="600.0" minHeight="75.0" minWidth="600.0" prefHeight="75.0" prefWidth="600.0" />
-                  <HBox maxHeight="75.0" maxWidth="600.0" minHeight="75.0" minWidth="600.0" prefHeight="75.0" prefWidth="600.0" />
-               </children>
-            </VBox>
-         </children>
-      </Pane>
-   </children>
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/9.0.1"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientSide.Controllers.GameController">
+    <columnConstraints>
+        <ColumnConstraints/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints/>
+    </rowConstraints>
+    <children>
+        <Pane prefHeight="800.0" prefWidth="600.0" stylesheets="@../CSS/game.css">
+            <children>
+                <VBox fx:id="myBoard" layoutY="81.0" prefHeight="600.0" prefWidth="600.0" spacing="0">
+                    <children>
+                        <HBox maxHeight="75.0" maxWidth="600.0" minHeight="75.0" minWidth="600.0" prefHeight="75.0"
+                              prefWidth="600.0"/>
+                        <HBox maxHeight="75.0" maxWidth="600.0" minHeight="75.0" minWidth="600.0" prefHeight="75.0"
+                              prefWidth="600.0"/>
+                        <HBox maxHeight="75.0" maxWidth="600.0" minHeight="75.0" minWidth="600.0" prefHeight="75.0"
+                              prefWidth="600.0"/>
+                        <HBox maxHeight="75.0" maxWidth="600.0" minHeight="75.0" minWidth="600.0" prefHeight="75.0"
+                              prefWidth="600.0"/>
+                        <HBox maxHeight="75.0" maxWidth="600.0" minHeight="75.0" minWidth="600.0" prefHeight="75.0"
+                              prefWidth="600.0"/>
+                        <HBox maxHeight="75.0" maxWidth="600.0" minHeight="75.0" minWidth="600.0" prefHeight="75.0"
+                              prefWidth="600.0"/>
+                        <HBox maxHeight="75.0" maxWidth="600.0" minHeight="75.0" minWidth="600.0" prefHeight="75.0"
+                              prefWidth="600.0"/>
+                        <HBox maxHeight="75.0" maxWidth="600.0" minHeight="75.0" minWidth="600.0" prefHeight="75.0"
+                              prefWidth="600.0"/>
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
+    </children>
 </GridPane>
