@@ -47,18 +47,14 @@ public class Cell extends Button {
     }
 
 
-    {
 
+    public Cell(BoardColour boardColour) {
+        this.boardColour = boardColour;
         if (boardColour.equals(BoardColour.Black))
             this.getStyleClass().add("blackCell");
         else
             this.getStyleClass().add("whiteCell");
         super.setPrefSize(60, 60);
-
-    }
-
-    public Cell(BoardColour boardColour) {
-        this.boardColour = boardColour;
     }
 
     public Piece getPiece() {
