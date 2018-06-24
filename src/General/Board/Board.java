@@ -1,8 +1,7 @@
 package General.Board;
 
 import ClientSide.Themes.BoardTheme;
-import General.Pieces.Pawn;
-import General.Pieces.Piece;
+import General.Pieces.*;
 
 import java.util.ArrayList;
 
@@ -34,13 +33,8 @@ public class Board {
     public void deselectAllCells() {
         for (Cell[] cell : cells) {
             for (Cell cell1 : cell) {
-                cell1.setSelected(false);
                 String last = cell1.getBoardColour().toString() + "CellSelected";
-//                String next = cell1.getBoardColour().toString() + "Cell";
                 cell1.getStyleClass().remove(last);
-//                cell1.getStyleClass().add(next);
-//                System.out.println(last);
-//                System.out.println(next);
             }
         }
     }
@@ -49,7 +43,7 @@ public class Board {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 Cell cell;
-                if ((i + j) % 2 == 0) {
+                if ((i + j) % 2 == 1) {
                     cell = new Cell(BoardColour.Black);
                 } else {
                     cell = new Cell(BoardColour.White);
@@ -69,19 +63,40 @@ public class Board {
 
     private void addPieces() {
         for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                Piece piece = null;
-                switch (i) {
-                    case 6:
-                        piece = new Pawn(Side.White);
-                        break;
-                    case 2:
-                        piece = new Pawn(Side.Black);
-                        break;
+            if (i < 2 || i > 5) {
+                Side side = null;
+                if (i < 2){
+                    side = Side.White;
                 }
-                if (piece != null) {
-                    pieces.add(piece);
-                    cells[i][j].setPiece(piece);
+                else if (i > 5){
+                    side = Side.Black;
+                }
+                for (int j = 0; j < 8; j++) {
+                    Piece piece = null;
+                    if (i == 0) {
+                        if (j == 0 || j == 7) {
+                            piece = new Rook(side);
+                        }
+                        if (j == 1 || j == 6) {
+                            piece = new Knight(side);
+                        }
+                        if (j == 2 || j == 5) {
+                            piece = new Bishop(side);
+                        }
+                        if (j == 3) {
+                            piece = new King(side);
+                        }
+                        if (j == 4) {
+                            piece = new Queen(side);
+                        }
+                    }
+                    else if (i == 1) {
+                        piece = new Pawn(side);
+                    }
+                    if (piece != null) {
+                        pieces.add(piece);
+                        cells[i][j].setPiece(piece);
+                    }
                 }
             }
         }

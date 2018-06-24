@@ -3,12 +3,24 @@
     -fx-background-repeat: stretch;
     -fx-background-size: 100 100;
     -fx-background-position: center center;
+}
 
-    /*-fx-background-color: Black;*/
+.blackCell:hover {
+    -fx-background-image: url("../Assets/Images/Board/BlueTheme/BlackCellHover.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 100 100;
+    -fx-background-position: center center;
 }
 
 .blackCellSelected {
     -fx-background-image: url("../Assets/Images/Board/BlueTheme/BlackCellSelected.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 100 100;
+    -fx-background-position: center center;
+}
+
+.blackCellSelected:hover {
+    -fx-background-image: url("../Assets/Images/Board/BlueTheme/BlackCellSelectedHover.png");
     -fx-background-repeat: stretch;
     -fx-background-size: 100 100;
     -fx-background-position: center center;
@@ -19,11 +31,25 @@
     -fx-background-repeat: stretch;
     -fx-background-size: 100 100;
     -fx-background-position: center center;
-    /*-fx-background-color: White;*/
+}
+
+.whiteCell:hover {
+    -fx-background-image: url("../Assets/Images/Board/BlueTheme/WhiteCellHover.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 100 100;
+    -fx-background-position: center center;
+
 }
 
 .whiteCellSelected {
     -fx-background-image: url("../Assets/Images/Board/BlueTheme/WhiteCellSelected.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 100 100;
+    -fx-background-position: center center;
+}
+
+.whiteCellSelected:hover {
+    -fx-background-image: url("../Assets/Images/Board/BlueTheme/WhiteCellSelectedHover.png");
     -fx-background-repeat: stretch;
     -fx-background-size: 100 100;
     -fx-background-position: center center;
