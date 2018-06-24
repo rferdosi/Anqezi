@@ -1,7 +1,9 @@
 .blackCell {
     -fx-background-image: "..\Assets\Images\Board\Blue Theme\BlackCell.png";
+    -fx-background-color: Black;
 }
 
 .whiteCell {
     -fx-background-image: "..\Assets\Images\Board\Blue Theme\WhiteCell.png";
+    -fx-background-color: White;
 }

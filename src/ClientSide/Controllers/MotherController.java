@@ -34,7 +34,7 @@ public abstract class MotherController {
             System.out.println("FXML Bug");
         }
         Scene myScene = new Scene(root, Client.width, Client.height);
-        myScene.getStylesheets().add("../CSS/" + name + ".css");
+//        myScene.getStylesheets().add((getClass().getResource("../CSS/" + name + ".css")).toExternalForm());
         Client.pStage.setScene(myScene);
         Client.pStage.show();
     }
