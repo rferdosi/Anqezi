@@ -19,6 +19,7 @@ public class Pawn extends Piece {
             if (cell.getUpCell() != null) {
                 current = cell.getUpCell();
                 if (current.isEmpty()) {
+                    current.setPossible(true);
                     if (isFirstMove) {
                         if (current.getUpCell().isEmpty()) {
                             current.getUpCell().setPossible(true);
@@ -42,6 +43,7 @@ public class Pawn extends Piece {
             if (cell.getDownCell() != null) {
                 current = cell.getDownCell();
                 if (current.isEmpty()) {
+                    current.setPossible(true);
                     current.getDownCell().setPossible(true);
                     if (isFirstMove) {
                         if (current.getDownCell().isEmpty()) {
