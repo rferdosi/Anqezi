@@ -44,25 +44,28 @@ public class Cell extends Button {
         super.setPrefSize(100, 100);
         this.setOnAction(event -> {
 
-            if (this.isEmpty()) {
-                if (Piece.lastSelectedPiece != null) {
 
-                }
-            } else {
-                Piece.lastSelectedPiece = piece;
-            }
-            board.deselectAllCells();
-            System.out.println(toString());
+//            if (isEmpty()) {
+//                if (isPossible) {
+//                    Board.lastSelectedPiece.move(this);
+//                }
+//            }
+//            board.deselectAllCells();
+//            System.out.println(toString());
             if (!this.isEmpty()) {
                 this.getStyleClass().add(boardColour.toString() + "CellSelected");
             }
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    Cell cell = board.getCell(i, j);
+                    if (cell.isPossible()) {
+                        cell.getStyleClass().remove(boardColour.toString() + "Cell");
+                        cell.getStyleClass().add(boardColour.toString() + "CellPossible");
+                    }
+                }
+            }
         });
-        if (piece instanceof Pawn) {
-//            imageView = new ImageView(getClass().getResourceAsStream("../Assets/Images/Pieces/Carbon/Pawn.png");
-        }
-//        this.setGraphic(imageView);
-//        ().add(imageView);
-//        Button button=new Button(" ",imageView)
+
     }
 
     public Piece getPiece() {

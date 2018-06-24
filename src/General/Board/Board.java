@@ -9,10 +9,12 @@ public class Board {
     private Cell[][] cells = new Cell[8][8];
     private ArrayList<Piece> pieces = new ArrayList<>();
     private BoardTheme theme;
+    public static Piece lastSelectedPiece;
 
     public Board() {
 
     }
+
 
     public Cell getCell(int i, int j) {
         return cells[i][j];
@@ -38,6 +40,7 @@ public class Board {
                 cell.setPossible(false);
             }
         }
+        lastSelectedPiece = null;
     }
 
     {
