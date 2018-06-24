@@ -3,6 +3,8 @@ package General.Pieces;
 import General.Board.Cell;
 import General.Board.Side;
 
+import java.util.ArrayList;
+
 public class Pawn extends Piece {
     private boolean isFirstMove = true;
 
@@ -11,12 +13,13 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public void selected() {
-        super.selected();
+    public ArrayList<Cell> getPossibleChoices() {
+        ArrayList<Cell> chioces;
+        super.getPossibleChoices();
         if (side == Side.White) {
             if (cell.getUpCell() != null) {
                 if (cell.getUpCell().isEmpty()) {
-                    cell.getUpCell().setPossible(true);
+                    chioces.add()
                     if (isFirstMove) {
                         if (cell.getUpCell().getUpCell().isEmpty()) {
                             cell.getUpCell().getUpCell().setPossible(true);
@@ -60,6 +63,7 @@ public class Pawn extends Piece {
             }
         }
 
+        return chioces;
     }
 
     @Override

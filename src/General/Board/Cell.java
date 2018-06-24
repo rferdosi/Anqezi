@@ -1,17 +1,18 @@
 package General.Board;
 
 import ClientSide.Themes.Theme;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBase;
-import javafx.scene.image.ImageView;
 import General.Pieces.Piece;
+import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 
 public class Cell extends Button {
     private Cell upCell;
     private Cell downCell;
     private Cell rightCell;
     private Cell leftCell;
+
     private BoardColour boardColour;
+
     private int row;
     private int column;
     private ImageView imageView;
@@ -20,7 +21,7 @@ public class Cell extends Button {
     private boolean isThreaten;
     private boolean isSelected;
     private Theme theme;
-
+    private Board board;
 
     public boolean isThreaten() {
         return isThreaten;
@@ -38,6 +39,18 @@ public class Cell extends Button {
         isSelected = selected;
     }
 
+    public BoardColour getBoardColour() {
+        return boardColour;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
     public boolean isPossible() {
         return isPossible;
     }
@@ -47,14 +60,15 @@ public class Cell extends Button {
     }
 
 
-
     public Cell(BoardColour boardColour) {
         this.boardColour = boardColour;
-        if (boardColour.equals(BoardColour.Black))
-            this.getStyleClass().add("blackCell");
-        else
-            this.getStyleClass().add("whiteCell");
-        super.setPrefSize(60, 60);
+        this.getStyleClass().add(boardColour.toString() + "Cell");
+        super.setPrefSize(100, 100);
+        this.setOnAction(event -> {
+            board.deselectAllCells();
+            System.out.println(toString());
+            this.getStyleClass().add(boardColour.toString() + "CellSelected");
+        });
     }
 
     public Piece getPiece() {
@@ -134,6 +148,19 @@ public class Cell extends Button {
 
     public boolean isEmpty() {
         return piece == null;
+    }
+
+//    public void initialize(URL location, ResourceBundle resources) {
+
+
+//    }
+
+    @Override
+    public String toString() {
+        String s = boardColour.toString() + " at " + row + " " + column;
+        if (piece != null)
+            s += piece.toString();
+        return s;
     }
 }
 

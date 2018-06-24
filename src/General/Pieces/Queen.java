@@ -3,6 +3,8 @@ package General.Pieces;
 import General.Board.Cell;
 import General.Board.Side;
 
+import java.util.ArrayList;
+
 public class Queen extends Piece {
 
     public Queen(Side side) {
@@ -15,7 +17,8 @@ public class Queen extends Piece {
     }
 
     @Override
-    public void selected() {
+    public ArrayList<Cell> getPossibleChoices() {
 
+        return null;
     }
 }

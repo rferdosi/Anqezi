@@ -4,6 +4,8 @@ import General.Board.Side;
 import javafx.scene.image.ImageView;
 import General.Board.Cell;
 
+import java.util.ArrayList;
+
 abstract public class Piece {
     protected ImageView imageView;
     protected Cell cell;
@@ -18,9 +20,10 @@ abstract public class Piece {
         cleanTextures();
     }
 
-    public void selected() {
+    public ArrayList<Cell> getPossibleChoices() {
         cleanTextures();
         this.cell.setSelected(true);
+        return null;
     }
 
     public Piece(Side side) {
@@ -36,4 +39,6 @@ abstract public class Piece {
             }
         }
     }
+
+
 }

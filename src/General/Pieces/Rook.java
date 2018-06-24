@@ -3,19 +3,23 @@ package General.Pieces;
 import General.Board.Cell;
 import General.Board.Side;
 
+import java.util.ArrayList;
+
 public class Rook extends Piece {
     public Rook(Side side) {
         super(side);
     }
 
     @Override
-    public void selected() {
-        super.selected();
+    public ArrayList<Cell> getPossibleChoices() {
+        super.getPossibleChoices();
+        ArrayList<Cell> choices = new ArrayList<>();
         Cell current = cell;
         while (current.getUpCell() != null) {
             current = current.getUpCell();
             if (current.isEmpty()) {
-                current.setPossible(true);
+                choices.add(current);
+//                current.setPossible(true);
             } else {
                 if (current.getPiece().side != side) {
                     current.setThreaten(true);
@@ -27,7 +31,7 @@ public class Rook extends Piece {
         while (current.getDownCell() != null) {
             current = current.getDownCell();
             if (current.isEmpty()) {
-                current.setPossible(true);
+                choices.add(current);
             } else {
                 if (current.getPiece().side != side) {
                     current.setThreaten(true);
@@ -39,7 +43,7 @@ public class Rook extends Piece {
         while (current.getRightCell() != null) {
             current = current.getRightCell();
             if (current.isEmpty()) {
-                current.setPossible(true);
+                choices.add(current);
             } else {
                 if (current.getPiece().side != side) {
                     current.setThreaten(true);
@@ -51,7 +55,7 @@ public class Rook extends Piece {
         while (current.getLeftCell() != null) {
             current = current.getLeftCell();
             if (current.isEmpty()) {
-                current.setPossible(true);
+                choices.add(current);
             } else {
                 if (current.getPiece().side != side) {
                     current.setThreaten(true);
@@ -60,6 +64,7 @@ public class Rook extends Piece {
             }
         }
 
+        return choices;
     }
 
 }

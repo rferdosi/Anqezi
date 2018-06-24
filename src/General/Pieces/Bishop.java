@@ -14,8 +14,8 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public void selected() {
-        super.selected();
+    public void getPossibleChoices() {
+        super.getPossibleChoices();
         Cell current = cell;
         while (current.getUpCell() != null && current.getRightCell() != null) {
             current = current.getUpCell().getRightCell();
