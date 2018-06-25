@@ -47,7 +47,7 @@ public class ClientHandler implements Runnable {
     }
 
 
-    private void signUp() {
+    private void register() {
         try {
             boolean isEmailAccepted = true;
             boolean isUsernameAccepted = true;
@@ -73,6 +73,7 @@ public class ClientHandler implements Runnable {
                         }
                         oos.writeObject(isEmailAccepted);
                         user = (User) ois.readObject();
+                        Server.getRegisteredUsers().add(user);
                         break;
                     case BACK:
                         backRequested = true;
@@ -84,7 +85,7 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    private void signIn() {
+    private void login() {
         try {
             user = (User) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
@@ -122,10 +123,10 @@ public class ClientHandler implements Runnable {
                 System.out.println(true);
                 switch (request) {
                     case SIGN_IN:
-                        signIn();
+                        login();
                         break;
                     case SIGN_UP:
-                        signUp();
+                        register();
                         break;
                     case SEND_USER:
                         user = (User) ois.readObject();

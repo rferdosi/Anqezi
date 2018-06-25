@@ -3,6 +3,7 @@ package ClientSide.Controllers;
 import General.Board.Board;
 import General.Board.Side;
 import General.Game;
+import General.User.Player;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
