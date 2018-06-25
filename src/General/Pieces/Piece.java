@@ -22,6 +22,7 @@ abstract public class Piece {
 
     public Piece(Side side) {
         this.side = side;
+//        imageView = new ImageView();
     }
 
     public void move(Cell destination) {
@@ -39,6 +40,15 @@ abstract public class Piece {
 
     public void setCell(Cell cell) {
         this.cell = cell;
+    }
+
+
+    public ImageView getImageView() {
+        return imageView;
+    }
+
+    public void setImageView(ImageView imageView) {
+        this.imageView = imageView;
     }
 
     public Side getSide() {

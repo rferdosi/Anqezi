@@ -1,11 +1,8 @@
 package General.Board;
 
 import ClientSide.Themes.Theme;
-import General.Pieces.Pawn;
 import General.Pieces.Piece;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class Cell extends Button {
     private Cell upCell;
@@ -19,8 +16,6 @@ public class Cell extends Button {
 
     private int row;
     private int column;
-    private ImageView imageView;
-    private Image image;
     private Piece piece;
     private Theme theme;
     private Board board;
@@ -53,6 +48,7 @@ public class Cell extends Button {
                     Board.lastSelectedPiece.move(this);
                     board.deselectAllCells();
                     Board.lastSelectedPiece = null;
+                    board.updateTextures();
                 } else if (!isPossible() && !isEmpty()) {
                     board.deselectAllCells();
                     Board.lastSelectedPiece = this.getPiece();
@@ -84,6 +80,7 @@ public class Cell extends Button {
                     }
                 }
             }
+//            board.updateTextures();
         });
 
     }
@@ -104,10 +101,12 @@ public class Cell extends Button {
 
     public void setUpCell(Cell upCell) {
         this.upCell = upCell;
+        upCell.downCell = this;
     }
 
     public void setLeftCell(Cell leftCell) {
         this.leftCell = leftCell;
+        leftCell.rightCell = this;
     }
 
     public void setRightCell(Cell rightCell) {
@@ -147,13 +146,6 @@ public class Cell extends Button {
         this.column = j;
     }
 
-    public ImageView getImageView() {
-        return imageView;
-    }
-
-    public void setImageView(ImageView imageView) {
-        this.imageView = imageView;
-    }
 
     public void setBoardColour(BoardColour boardColour) {
         this.boardColour = boardColour;

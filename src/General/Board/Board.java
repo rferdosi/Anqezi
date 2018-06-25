@@ -114,7 +114,8 @@ public class Board {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 Cell cell = cells[i][j];
-                cell.setGraphic(cell.getImageView());
+                if (!cell.isEmpty())
+                    cell.setGraphic(cell.getPiece().getImageView());
             }
         }
     }
@@ -124,17 +125,17 @@ public class Board {
         switch (piece.getSide()) {
             case Black:
                 image = new Image(getClass().getResource(
-                        "../../ClientSide/Assets/Images/Pieces/Carbon/" + piece.toString() + ".png").toExternalForm());
+                        "../../ClientSide/Assets/Images/Pieces/Copper/" + piece.toString() + ".png").toExternalForm());
                 break;
             case White:
                 image = new Image(getClass().getResource
-                        ("../../ClientSide/Assets/Images/Pieces/Silver/" + piece.toString() + ".png").toExternalForm());
+                        ("../../ClientSide/Assets/Images/Pieces/Golden/" + piece.toString() + ".png").toExternalForm());
                 break;
         }
-        piece.getCell().setImageView(new ImageView());
-        piece.getCell().getImageView().setImage(image);
-        piece.getCell().getImageView().setFitHeight(80);
-        piece.getCell().getImageView().setFitWidth(80);
+        piece.setImageView(new ImageView(image));
+//        piece.getImageView().setImage(image);
+        piece.getImageView().setFitHeight(80);
+        piece.getImageView().setFitWidth(80);
     }
 }
 
