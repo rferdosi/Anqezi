@@ -1,7 +1,7 @@
 package General.Board;
 
 public enum Side {
-    Black, White;
+    Black, White, Random;
 
     @Override
     public String toString() {
@@ -10,6 +10,8 @@ public enum Side {
                 return "white";
             case Black:
                 return "black";
+            case Random:
+                return "random";
         }
         return null;
     }
