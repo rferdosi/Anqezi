@@ -24,7 +24,7 @@
                <children>
                   <ImageView fitHeight="900.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Assets/Images/wood1.jpg" />
+                        <Image url="@../Assets/Images/Board/Backgrounds/wood2.jpg" />
                      </image>
                   </ImageView>
                   <VBox fx:id="myBoard" maxHeight="800.0" maxWidth="800.0" prefHeight="800.0" prefWidth="800.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
