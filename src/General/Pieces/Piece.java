@@ -32,6 +32,8 @@ abstract public class Piece {
         this.cell.setPiece(null);
         this.cell = destination;
         destination.setPiece(this);
+        row = destination.getRow();
+        column = destination.getColumn();
     }
 
     public Cell getCell() {
