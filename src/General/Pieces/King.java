@@ -29,8 +29,10 @@ public class King extends Piece {
                     if (inProgressCell.isEmpty() ||
                             (!inProgressCell.isEmpty() && inProgressCell.getPiece().side != this.side)) {
                         inProgressCell.setPossible(true);
+                        System.out.println("I SEE forward " + inProgressCell.toString());
                     }
-                } catch (ArrayIndexOutOfBoundsException e) {
+                } catch (ArrayIndexOutOfBoundsException e){
+                    System.out.println("AM I DEAD?! " + (row + i) + " " + (column + j));
                     continue;
                 }
             }
