@@ -1,10 +1,12 @@
 package General.Board;
 
+import ClientSide.Client;
 import ClientSide.Themes.BoardTheme;
 import General.Pieces.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Board {
@@ -13,6 +15,7 @@ public class Board {
     private BoardTheme theme;
     public static Piece lastSelectedPiece;
     public static boolean needToMove;
+    public static boolean isTurn;
 
     public Board() {
 
@@ -149,6 +152,30 @@ public class Board {
             }
         }
         lastSelectedPiece = null;
+    }
+
+    public void changeTurn() {
+        isTurn = false;
+        try {
+            Client.oos.writeBoolean(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void waitForTurn() {
+        while (!isTurn) {
+            try {
+                isTurn = Client.ois.readBoolean();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            cells = (Cell[][]) Client.ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
 

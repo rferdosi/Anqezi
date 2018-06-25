@@ -38,30 +38,32 @@ public class Cell extends Button {
 
     public Cell(BoardColour boardColour) {
         this.boardColour = boardColour;
-
         this.getStyleClass().add(boardColour.toString() + "Cell");
         super.setPrefSize(100, 100);
         this.setOnAction(event -> {
             //     ®Powered By rferdosi
-            if (Board.needToMove) {
-                if (isPossible) {
-                    Board.lastSelectedPiece.move(this);
-                }
-                board.cleanTextures();
-                Board.needToMove = false;
-            } else {
-                if (piece != null) {
-                    if (piece.getSide() == GameController.playerSide) {
-                        piece.getPossibleChoices();
-                        getStyleClass().add(boardColour + "CellSelected");
-                        Board.lastSelectedPiece = piece;
-                        Board.needToMove = true;
-                        setSelected(true);
+            if (Board.isTurn) {
+                if (Board.needToMove) {
+                    Board.needToMove = false;
+                    board.cleanTextures();
+                    if (isPossible) {
+                        Board.lastSelectedPiece.move(this);
+                        board.changeTurn();
+                        board.waitForTurn();
+                    }
+                } else {
+                    if (piece != null) {
+                        if (piece.getSide() == GameController.playerSide) {
+                            piece.getPossibleChoices();
+                            getStyleClass().add(boardColour + "CellSelected");
+                            Board.lastSelectedPiece = piece;
+                            Board.needToMove = true;
+                            setSelected(true);
+                        }
                     }
                 }
+                board.updateTextures();
             }
-            board.updateTextures();
-
         });
 
     }

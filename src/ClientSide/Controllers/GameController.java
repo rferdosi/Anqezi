@@ -3,7 +3,6 @@ package ClientSide.Controllers;
 import General.Board.Board;
 import General.Board.Side;
 import General.Game;
-import General.User.Player;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -23,9 +22,11 @@ public class GameController extends MotherController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         playerSide = Side.White;
         if (game == null) {
-//            game = new Game();
+            game = new Game();
         }
         board = game.getBoard();
+        if (playerSide == Side.White)
+            Board.isTurn = true;
         readFromBoard();
 
     }
@@ -33,10 +34,15 @@ public class GameController extends MotherController implements Initializable {
     private void readFromBoard() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                HBox row = (HBox) myBoard.getChildren().get(i);
+                HBox row;
+                if (playerSide == Side.White)
+                    row = (HBox) myBoard.getChildren().get(i);
+                else
+                    row = (HBox) myBoard.getChildren().get(7 - i);
                 row.getChildren().add(board.getCell(i, j));
             }
         }
     }
-
 }
+
+

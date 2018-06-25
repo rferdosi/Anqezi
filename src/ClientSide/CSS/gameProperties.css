@@ -1,0 +1,16 @@
+.background {
+    -fx-background-color: #4b1c19;
+}
+
+.list-view {
+    -fx-background-color: #fffede;
+    -fx-border-color: #a16149;
+    -fx-border-style: solid;
+    -fx-border-width: 3px;
+}
+
+.text-field {
+    -fx-background-color: #854933;
+    -fx-text-fill: #fffede;
+    -fx-prompt-text-fill: #fffede;
+}

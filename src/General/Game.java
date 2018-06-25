@@ -36,4 +36,8 @@ public class Game {
         this.player2 = player2;
         this.isRated = isRated;
     }
+
+    public Game() {
+
+    }
 }
