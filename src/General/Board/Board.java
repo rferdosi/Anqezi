@@ -35,22 +35,6 @@ public class Board {
         this.theme = theme;
     }
 
-    public void cleanTextures() {
-        for (Cell[] cells : cells) {
-            for (Cell cell : cells) {
-                String pos = cell.getBoardColour().toString() + "CellPossible";
-                String sel = cell.getBoardColour().toString() + "CellSelected";
-                cell.getStyleClass().remove(pos);
-                cell.getStyleClass().remove(sel);
-                cell.getStyleClass().remove(cell.getBoardColour().toString() + "CellThreaten");
-
-                cell.setPossible(false);
-                cell.getStyleClass().add(cell.getBoardColour() + "Cell");
-            }
-        }
-        lastSelectedPiece = null;
-    }
-
     {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -150,6 +134,22 @@ public class Board {
 //        piece.getImageView().setImage(image);
         piece.getImageView().setFitHeight(80);
         piece.getImageView().setFitWidth(80);
+    }
+
+    public void cleanTextures() {
+        for (Cell[] cells : cells) {
+            for (Cell cell : cells) {
+                String pos = cell.getBoardColour().toString() + "CellPossible";
+                String sel = cell.getBoardColour().toString() + "CellSelected";
+                cell.getStyleClass().remove(pos);
+                cell.getStyleClass().remove(sel);
+                cell.getStyleClass().remove(cell.getBoardColour().toString() + "CellThreaten");
+
+                cell.setPossible(false);
+                cell.getStyleClass().add(cell.getBoardColour() + "Cell");
+            }
+        }
+        lastSelectedPiece = null;
     }
 }
 
