@@ -108,12 +108,10 @@ public class Board {
                     pieces.add(piece);
                     cells[i][j].setPiece(piece);
                     setTextures(piece);
-                    updateTextures();
-
                 }
             }
         }
-
+        updateTextures();
     }
 
     public void updateTextures() {
@@ -136,7 +134,7 @@ public class Board {
 
     }
 
-    private void setTextures(Piece piece) {
+    public void setTextures(Piece piece) {
         Image image = null;
         switch (piece.getSide()) {
             case Black:
