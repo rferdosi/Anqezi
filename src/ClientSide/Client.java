@@ -90,7 +90,7 @@ public class Client extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         pStage = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLs/mainMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLs/welcoming.fxml"));
         pStage.setTitle("Chess");
         pStage.setScene(scene);
         pStage.setScene(new Scene(root, 900, 900));
@@ -99,8 +99,8 @@ public class Client extends Application {
     }
 
     public static void main(String[] args) {
-//        connectToServer();
-//        deserialize();
+        connectToServer();
+        deserialize();
         launch(args);
     }
 
