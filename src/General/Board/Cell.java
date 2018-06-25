@@ -46,20 +46,21 @@ public class Cell extends Button {
             if (Board.lastSelectedPiece != null) {
                 if (isPossible) {
                     Board.lastSelectedPiece.move(this);
-                    board.deselectAllCells();
                     Board.lastSelectedPiece = null;
                     board.updateTextures();
+                    board.deselectAllCells();
                 } else if (!isPossible() && !isEmpty()) {
                     board.deselectAllCells();
                     Board.lastSelectedPiece = this.getPiece();
                     this.getPiece().getPossibleChoices();
                 }
             } else if (Board.lastSelectedPiece == null && !isEmpty()) {
-                board.deselectAllCells();
+                //board.deselectAllCells();
                 Board.lastSelectedPiece = this.getPiece();
                 this.getPiece().getPossibleChoices();
             } else {
                 board.deselectAllCells();
+                Board.lastSelectedPiece = null;
             }
 
             System.out.println(toString());

@@ -37,8 +37,8 @@ public class Board {
     public void deselectAllCells() {
         for (Cell[] cells : cells) {
             for (Cell cell : cells) {
-                String last = cell.getBoardColour().toString() + "CellSelected";
-                cell.getStyleClass().remove(last);
+                /*String last = cell.getBoardColour().toString() + "CellSelected";*/
+                cell.getStyleClass().clear();
                 cell.setPossible(false);
                 cell.getStyleClass().add(cell.getBoardColour().toString() + "Cell");
             }
