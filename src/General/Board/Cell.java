@@ -10,6 +10,7 @@ public class Cell extends Button {
     private Cell rightCell;
     private Cell leftCell;
     private boolean isPossible;
+    private boolean isSelected;
 
 
     private BoardColour boardColour;
@@ -40,48 +41,23 @@ public class Cell extends Button {
         this.getStyleClass().add(boardColour.toString() + "Cell");
         super.setPrefSize(100, 100);
         this.setOnAction(event -> {
-//      ®Powered By XxNE0XX!
-            board.updateTextures();
-            System.out.println(getText());
-            if (Board.lastSelectedPiece != null) {
+            //     ®Powered By rferdosi
+            if (Board.needToMove) {
                 if (isPossible) {
                     Board.lastSelectedPiece.move(this);
-                    Board.lastSelectedPiece = null;
-                    board.updateTextures();
-                    board.deselectAllCells();
-                } else if (!isPossible() && !isEmpty()) {
-                    board.deselectAllCells();
-                    Board.lastSelectedPiece = this.getPiece();
-                    this.getPiece().getPossibleChoices();
                 }
-            } else if (Board.lastSelectedPiece == null && !isEmpty()) {
-                //board.deselectAllCells();
-                Board.lastSelectedPiece = this.getPiece();
-                this.getPiece().getPossibleChoices();
+                board.cleanTextures();
+                Board.needToMove = false;
             } else {
-                board.deselectAllCells();
-                Board.lastSelectedPiece = null;
-            }
-
-            System.out.println(toString());
-            if (!this.isEmpty()) {
-                this.getStyleClass().add(boardColour.toString() + "CellSelected");
-            }
-            for (int i = 0; i < 8; i++) {
-                for (int j = 0; j < 8; j++) {
-                    Cell cell = board.getCell(i, j);
-                    if (cell.isPossible() && cell.isEmpty()) {
-                        cell.getStyleClass().remove(boardColour.toString() + "Cell");
-                        cell.getStyleClass().add(boardColour.toString() + "CellPossible");
-                        System.out.println(cell.toString());
-                    } else if (cell.isPossible() && !cell.isEmpty()) {
-                        cell.getStyleClass().remove(boardColour.toString() + "Cell");
-                        // TODO: 06/24/18 Reza add threaten here!
-                        //cell.getStyleClass().add(boardColour.toString() + "CellPossible");
-                    }
+                if (piece != null) {
+                    piece.getPossibleChoices();
+                    getStyleClass().add(boardColour + "CellSelected");
+                    Board.lastSelectedPiece = piece;
+                    Board.needToMove = true;
+                    setSelected(true);
                 }
             }
-//            board.updateTextures();
+            board.updateTextures();
         });
 
     }
@@ -158,6 +134,14 @@ public class Cell extends Button {
 
     public boolean isPossible() {
         return isPossible;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 
     public void setPossible(boolean possible) {

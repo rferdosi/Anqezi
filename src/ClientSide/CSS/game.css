@@ -26,6 +26,13 @@
     -fx-background-position: center center;
 }
 
+.blackCellThreaten {
+    -fx-background-image: url("../Assets/Images/Board/BlueTheme/BlackCellThreaten.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 100 100;
+    -fx-background-position: center center;
+}
+
 .blackCellSelected:hover {
     -fx-background-image: url("../Assets/Images/Board/BlueTheme/BlackCellSelectedHover.png");
     -fx-background-repeat: stretch;
@@ -50,6 +57,13 @@
 
 .whiteCellSelected {
     -fx-background-image: url("../Assets/Images/Board/BlueTheme/WhiteCellSelected.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 100 100;
+    -fx-background-position: center center;
+}
+
+.whiteCellThreaten {
+    -fx-background-image: url("../Assets/Images/Board/BlueTheme/WhiteCellThreaten.png");
     -fx-background-repeat: stretch;
     -fx-background-size: 100 100;
     -fx-background-position: center center;

@@ -12,6 +12,7 @@ public class Board {
     private ArrayList<Piece> pieces = new ArrayList<>();
     private BoardTheme theme;
     public static Piece lastSelectedPiece;
+    public static boolean needToMove;
 
     public Board() {
 
@@ -34,13 +35,17 @@ public class Board {
         this.theme = theme;
     }
 
-    public void deselectAllCells() {
+    public void cleanTextures() {
         for (Cell[] cells : cells) {
             for (Cell cell : cells) {
-                /*String last = cell.getBoardColour().toString() + "CellSelected";*/
-                cell.getStyleClass().clear();
+                String pos = cell.getBoardColour().toString() + "CellPossible";
+                String sel = cell.getBoardColour().toString() + "CellSelected";
+                cell.getStyleClass().remove(pos);
+                cell.getStyleClass().remove(sel);
+                cell.getStyleClass().remove(cell.getBoardColour().toString() + "CellThreaten");
+
                 cell.setPossible(false);
-                cell.getStyleClass().add(cell.getBoardColour().toString() + "Cell");
+                cell.getStyleClass().add(cell.getBoardColour() + "Cell");
             }
         }
         lastSelectedPiece = null;
@@ -103,6 +108,7 @@ public class Board {
                     pieces.add(piece);
                     cells[i][j].setPiece(piece);
                     setTextures(piece);
+                    updateTextures();
 
                 }
             }
@@ -116,8 +122,18 @@ public class Board {
                 Cell cell = cells[i][j];
                 if (!cell.isEmpty())
                     cell.setGraphic(cell.getPiece().getImageView());
+
+                if (cell.isPossible()) {
+                    if (cell.isEmpty()) {
+                        cell.getStyleClass().add(cell.getBoardColour().toString() + "CellPossible");
+                    } else {
+                        cell.getStyleClass().add(cell.getBoardColour().toString() + "CellThreaten");
+
+                    }
+                }
             }
         }
+
     }
 
     private void setTextures(Piece piece) {

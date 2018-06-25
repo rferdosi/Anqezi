@@ -26,11 +26,11 @@ public class King extends Piece {
 //                Done Dude :)
                 try {
                     Cell inProgressCell = this.cell.getBoard().getCell(row + i, column + j);
-                    if (inProgressCell.isEmpty() &&
+                    if (inProgressCell.isEmpty() ||
                             (!inProgressCell.isEmpty() && inProgressCell.getPiece().side != this.side)) {
                         inProgressCell.setPossible(true);
                     }
-                } catch (ArrayIndexOutOfBoundsException e){
+                } catch (ArrayIndexOutOfBoundsException e) {
                     continue;
                 }
             }
