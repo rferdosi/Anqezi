@@ -8,15 +8,15 @@ public class Queen extends Piece {
     public Queen(Side side) {
         super(side);
     }
-
-    @Override
-    public void move(Cell destination) {
-
-    }
-
+    //     ®Powered By XxNE0xX 8)
     @Override
     public void getPossibleChoices() {
-
+        Bishop bishop = new Bishop(side);
+        Rook rook = new Rook(side);
+        bishop.cell = this.cell;
+        rook.cell = this.cell;
+        bishop.getPossibleChoices();
+        rook.getPossibleChoices();
     }
 
     @Override

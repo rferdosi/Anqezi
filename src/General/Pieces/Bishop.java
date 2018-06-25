@@ -11,11 +11,6 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public void move(Cell destination) {
-
-    }
-
-    @Override
     public void getPossibleChoices() {
         Cell current = cell;
         while (current.getUpCell() != null && current.getRightCell() != null) {
