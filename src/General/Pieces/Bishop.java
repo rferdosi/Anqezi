@@ -72,6 +72,6 @@ public class Bishop extends Piece {
 
     @Override
     public String toString() {
-        return super.toString() + "Bishop";
+        return"Bishop";
     }
 }

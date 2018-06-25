@@ -4,6 +4,7 @@ import ClientSide.Themes.Theme;
 import General.Pieces.Pawn;
 import General.Pieces.Piece;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Cell extends Button {
@@ -19,6 +20,7 @@ public class Cell extends Button {
     private int row;
     private int column;
     private ImageView imageView;
+    private Image image;
     private Piece piece;
     private Theme theme;
     private Board board;
@@ -43,26 +45,24 @@ public class Cell extends Button {
         this.getStyleClass().add(boardColour.toString() + "Cell");
         super.setPrefSize(100, 100);
         this.setOnAction(event -> {
-
 //      ®Powered By XxNE0XX!
+            board.updateTextures();
+            System.out.println(getText());
             if (Board.lastSelectedPiece != null) {
                 if (isPossible) {
                     Board.lastSelectedPiece.move(this);
                     board.deselectAllCells();
                     Board.lastSelectedPiece = null;
-                }
-                else if (!isPossible() && !isEmpty()){
+                } else if (!isPossible() && !isEmpty()) {
                     board.deselectAllCells();
                     Board.lastSelectedPiece = this.getPiece();
                     this.getPiece().getPossibleChoices();
                 }
-            }
-            else if (Board.lastSelectedPiece == null && !isEmpty()) {
+            } else if (Board.lastSelectedPiece == null && !isEmpty()) {
                 board.deselectAllCells();
                 Board.lastSelectedPiece = this.getPiece();
                 this.getPiece().getPossibleChoices();
-            }
-            else {
+            } else {
                 board.deselectAllCells();
             }
 
@@ -77,8 +77,7 @@ public class Cell extends Button {
                         cell.getStyleClass().remove(boardColour.toString() + "Cell");
                         cell.getStyleClass().add(boardColour.toString() + "CellPossible");
                         System.out.println(cell.toString());
-                    }
-                    else if (cell.isPossible() && !cell.isEmpty()){
+                    } else if (cell.isPossible() && !cell.isEmpty()) {
                         cell.getStyleClass().remove(boardColour.toString() + "Cell");
                         // TODO: 06/24/18 Reza add threaten here!
                         //cell.getStyleClass().add(boardColour.toString() + "CellPossible");

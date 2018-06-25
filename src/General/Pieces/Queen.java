@@ -21,6 +21,6 @@ public class Queen extends Piece {
 
     @Override
     public String toString() {
-        return super.toString() + "Queen";
+        return "Queen";
     }
 }

@@ -2,6 +2,8 @@ package General.Board;
 
 import ClientSide.Themes.BoardTheme;
 import General.Pieces.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 
@@ -100,8 +102,40 @@ public class Board {
                     piece.setRowAndColumn();
                     pieces.add(piece);
                     cells[i][j].setPiece(piece);
+                    setTextures(piece);
+
                 }
             }
         }
+
+    }
+
+    public void updateTextures() {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Cell cell = cells[i][j];
+                cell.setGraphic(cell.getImageView());
+            }
+        }
+    }
+
+    private void setTextures(Piece piece) {
+        Image image = null;
+        switch (piece.getSide()) {
+            case Black:
+                image = new Image(getClass().getResource(
+                        "../../ClientSide/Assets/Images/Pieces/Carbon/" + piece.toString() + ".png").toExternalForm());
+                break;
+            case White:
+                image = new Image(getClass().getResource
+                        ("../../ClientSide/Assets/Images/Pieces/Silver/" + piece.toString() + ".png").toExternalForm());
+                break;
+        }
+        piece.getCell().setImageView(new ImageView());
+        piece.getCell().getImageView().setImage(image);
+        piece.getCell().getImageView().setFitHeight(80);
+        piece.getCell().getImageView().setFitWidth(80);
     }
 }
+
+

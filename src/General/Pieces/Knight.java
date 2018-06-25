@@ -14,6 +14,6 @@ public class Knight extends Piece {
 
     @Override
     public String toString() {
-        return super.toString() + "Knight";
+        return "Knight";
     }
 }
