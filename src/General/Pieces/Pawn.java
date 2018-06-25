@@ -105,7 +105,7 @@ public class Pawn extends Piece {
         String askedPiece = queeningAlert();
 
         this.cell.getBoard().getPieces().remove(this);
-
+        cell.getBoard().cleanTextures();
 
         Piece piece;
 
@@ -123,12 +123,11 @@ public class Pawn extends Piece {
         this.cell.setPiece(piece);
         piece.setRowAndColumn();
         this.cell.getBoard().getPieces().add(piece);
+        nextToLast.setGraphic(null);
         this.cell.getBoard().setTextures(piece);
-        this.cell.getBoard().updateTextures();
-
     }
 
-    private String queeningAlert() {
+    private static String queeningAlert() {
         Alert dialog = new Alert(Alert.AlertType.CONFIRMATION);
         dialog.initStyle(StageStyle.UNDECORATED);
         dialog.getDialogPane().setPrefSize(480, 320);
