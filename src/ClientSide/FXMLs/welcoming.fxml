@@ -6,13 +6,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="800.0" prefWidth="600.0" stylesheets="@../CSS/welcoming.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientSide.Controllers.WelcomingController">
+<AnchorPane prefHeight="563.0" prefWidth="368.0" styleClass="background" stylesheets="@../CSS/welcoming.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientSide.Controllers.WelcomingController">
    <children>
-      <Button fx:id="signIn" layoutX="208.0" layoutY="200.0" mnemonicParsing="false" onAction="#login" text="sign in" />
-      <Button fx:id="signUp" layoutX="203.0" layoutY="582.0" mnemonicParsing="false" onAction="#singUp" text="sign up" />
-      <TextField fx:id="username" layoutX="166.0" layoutY="109.0" />
-      <PasswordField fx:id="password" layoutX="166.0" layoutY="154.0" />
-      <Label layoutX="68.0" layoutY="122.0" text="username" />
-      <Label layoutX="68.0" layoutY="158.0" text="password" />
+      <TextField fx:id="username" layoutX="132.0" layoutY="110.0" promptText="username" styleClass="field" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" />
+      <PasswordField fx:id="password" layoutX="132.0" layoutY="154.0" promptText="password" styleClass="field" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" />
+      <Button fx:id="signIn" layoutX="180.0" layoutY="206.0" mnemonicParsing="false" onAction="#login" text="sign in" textFill="#752626" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
+      <Label layoutX="164.0" layoutY="316.0" onMouseClicked="#signUp" prefHeight="17.0" prefWidth="40.0" styleClass="textButton" text="sign up" textFill="#fffede" underline="true" AnchorPane.leftAnchor="164.0" AnchorPane.rightAnchor="164.0" />
    </children>
 </AnchorPane>

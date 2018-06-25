@@ -6,6 +6,7 @@ import General.User.User;
 import javafx.event.ActionEvent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
@@ -38,14 +39,12 @@ public class WelcomingController extends MotherController {
     }
 
 
-
-    public void singUp(ActionEvent actionEvent) {
+    public void signUp(MouseEvent mouseEvent) {
         try {
             Client.oos.writeObject(Request.SIGN_UP);
         } catch (IOException e) {
             e.printStackTrace();
         }
         goTo("registration");
-
     }
 }

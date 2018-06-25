@@ -1,3 +1,34 @@
 .background {
+    -fx-background-color: #4b1c19;
+    /*-fx-background-color: #4b2b25;*/
+    /*-fx-background-image: url("../Assets/Images/Board/Backgrounds/wood1.jpg");*/
+    /*-fx-background-repeat: stretch;*/
+    /*-fx-background-size: 100 100;*/
+    /*-fx-background-position: center center;*/
+}
 
+.text-field {
+    -fx-background-color: #fffede;
+    -fx-text-fill: #752626;
+}
+
+.text-field:hover {
+    -fx-background-color: #ffeabb;
+    -fx-text-fill: #752626;
+}
+
+.button {
+    -fx-background-color: #fffede;
+
+}
+
+.button:hover {
+    -fx-background-color: #ffeabb;
+}
+
+.textButton:hover {
+    -fx-text-fill: #ffeabb;
+}
+.check-box{
+    -fx-text-fill: #ffeabb;
 }
