@@ -70,14 +70,18 @@ public class Cell extends Button {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
                     Cell cell = board.getCell(i, j);
+                    cell.getStyleClass().clear();
                     if (cell.isPossible() && cell.isEmpty()) {
-                        cell.getStyleClass().remove(boardColour.toString() + "Cell");
+                        //cell.getStyleClass().remove(boardColour.toString() + "Cell");
                         cell.getStyleClass().add(boardColour.toString() + "CellPossible");
                         System.out.println(cell.toString());
                     } else if (cell.isPossible() && !cell.isEmpty()) {
-                        cell.getStyleClass().remove(boardColour.toString() + "Cell");
+                        //cell.getStyleClass().remove(boardColour.toString() + "Cell");
                         // TODO: 06/24/18 Reza add threaten here!
-                        //cell.getStyleClass().add(boardColour.toString() + "CellPossible");
+                        cell.getStyleClass().add(boardColour.toString() + "CellThreaten");
+                    }
+                    else {
+                        cell.getStyleClass().add(cell.getBoardColour().toString() + "Cell");
                     }
                 }
             }

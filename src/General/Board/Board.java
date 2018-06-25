@@ -37,8 +37,12 @@ public class Board {
     public void deselectAllCells() {
         for (Cell[] cells : cells) {
             for (Cell cell : cells) {
-                /*String last = cell.getBoardColour().toString() + "CellSelected";*/
+                /*String last = cell.getBoardColour().toString() + "CellSelected";
+                cell.getStyleClass().remove(last);
+                last = cell.getBoardColour().toString() + "CellPossible";
+                cell.getStyleClass().remove(last);*/
                 cell.getStyleClass().clear();
+
                 cell.setPossible(false);
                 cell.getStyleClass().add(cell.getBoardColour().toString() + "Cell");
             }
@@ -66,6 +70,7 @@ public class Board {
             }
         }
         addPieces();
+        updateTextures();
     }
 
     private void addPieces() {
