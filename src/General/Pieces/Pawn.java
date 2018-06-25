@@ -44,7 +44,6 @@ public class Pawn extends Piece {
                 current = cell.getDownCell();
                 if (current.isEmpty()) {
                     current.setPossible(true);
-                    current.getDownCell().setPossible(true);
                     if (isFirstMove) {
                         if (current.getDownCell().isEmpty()) {
                             current.getDownCell().setPossible(true);
