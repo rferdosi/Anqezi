@@ -18,6 +18,6 @@ public class MainMenuController extends MotherController implements Initializabl
     }
 
     public void newGame() {
-        goTo("game");
+        goTo("gameProperties");
     }
 }

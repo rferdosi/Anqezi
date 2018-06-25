@@ -1,6 +1,5 @@
 package General.Pieces;
 
-import General.Board.Cell;
 import General.Board.Side;
 
 public class Queen extends Piece {

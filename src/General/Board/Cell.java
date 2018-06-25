@@ -1,5 +1,6 @@
 package General.Board;
 
+import ClientSide.Controllers.GameController;
 import ClientSide.Themes.Theme;
 import General.Pieces.Piece;
 import javafx.scene.control.Button;
@@ -50,14 +51,17 @@ public class Cell extends Button {
                 Board.needToMove = false;
             } else {
                 if (piece != null) {
-                    piece.getPossibleChoices();
-                    getStyleClass().add(boardColour + "CellSelected");
-                    Board.lastSelectedPiece = piece;
-                    Board.needToMove = true;
-                    setSelected(true);
+                    if (piece.getSide() == GameController.playerSide) {
+                        piece.getPossibleChoices();
+                        getStyleClass().add(boardColour + "CellSelected");
+                        Board.lastSelectedPiece = piece;
+                        Board.needToMove = true;
+                        setSelected(true);
+                    }
                 }
             }
             board.updateTextures();
+
         });
 
     }

@@ -90,7 +90,7 @@ public class Client extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         pStage = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLs/game.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLs/mainMenu.fxml"));
         pStage.setTitle("Chess");
         pStage.setScene(scene);
         pStage.setScene(new Scene(root, 900, 900));

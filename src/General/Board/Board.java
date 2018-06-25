@@ -102,9 +102,9 @@ public class Board {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 Cell cell = cells[i][j];
-                if (!cell.isEmpty())
+                if (!cell.isEmpty()) {
                     cell.setGraphic(cell.getPiece().getImageView());
-
+                }
                 if (cell.isPossible()) {
                     if (cell.isEmpty()) {
                         cell.getStyleClass().add(cell.getBoardColour().toString() + "CellPossible");
@@ -131,7 +131,6 @@ public class Board {
                 break;
         }
         piece.setImageView(new ImageView(image));
-//        piece.getImageView().setImage(image);
         piece.getImageView().setFitHeight(80);
         piece.getImageView().setFitWidth(80);
     }
