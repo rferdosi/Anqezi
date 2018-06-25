@@ -2,11 +2,16 @@ package General.Pieces;
 
 import General.Board.Cell;
 import General.Board.Side;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.stage.StageStyle;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class Pawn extends Piece {
     private boolean isFirstMove = true;
+    Cell nextToLast;
 
     public Pawn(Side side) {
         super(side);
@@ -67,21 +72,86 @@ public class Pawn extends Piece {
 
     @Override
     public void move(Cell destination) {
+
         super.move(destination);
+
         isFirstMove = false;
         if (side == Side.White) {
-            if (cell.getRow() == 7)
+            if (cell.getRow() == 0) {
+                nextToLast.setPiece(null);
+                cell.getBoard().cleanTextures();
                 queening();
+            }
         } else {
-            if (cell.getRow() == 0)
+            if (cell.getRow() == 7) {
+                nextToLast.setPiece(null);
+                cell.getBoard().cleanTextures();
                 queening();
+            }
         }
+
+        try {
+            System.out.println(nextToLast.toString());
+        } catch (NullPointerException e){
+            System.out.println("Not Initialized yet!");
+        }
+
+        nextToLast = this.cell;
 
     }
 
-    private static void queening() {
-        //todo change the pawn to other pieces
+    private void queening() {
 
+        String askedPiece = queeningAlert();
+
+        this.cell.getBoard().getPieces().remove(this);
+
+
+        Piece piece;
+
+        if (askedPiece.equals("Bishop")){
+            piece = new Bishop(side);
+        } else if (askedPiece.equals("Queen")) {
+            piece = new Queen(side);
+        } else if (askedPiece.equals("Rook")) {
+            piece = new Rook(side);
+        } else {
+            piece = new Knight(side);
+        }
+
+        piece.cell = this.cell;
+        this.cell.setPiece(piece);
+        piece.setRowAndColumn();
+        this.cell.getBoard().getPieces().add(piece);
+        this.cell.getBoard().setTextures(piece);
+        this.cell.getBoard().updateTextures();
+
+    }
+
+    private String queeningAlert() {
+        Alert dialog = new Alert(Alert.AlertType.CONFIRMATION);
+        dialog.initStyle(StageStyle.UNDECORATED);
+        dialog.getDialogPane().setPrefSize(480, 320);
+        dialog.setHeaderText("Choose Your Piece!");
+
+        ButtonType buttonTypeBishop = new ButtonType("Bishop");
+        ButtonType buttonTypeQueen = new ButtonType("Queen");
+        ButtonType buttonTypeRook = new ButtonType("Rook");
+        ButtonType buttonTypeKnight = new ButtonType("Knight");
+
+        dialog.getButtonTypes().setAll(buttonTypeBishop, buttonTypeQueen, buttonTypeRook, buttonTypeKnight);
+
+        Optional<ButtonType> result = dialog.showAndWait();
+
+        if (result.get() == buttonTypeBishop){
+            return "Bishop";
+        } else if (result.get() == buttonTypeQueen) {
+            return "Queen";
+        } else if (result.get() == buttonTypeRook) {
+            return "Rook";
+        } else {
+           return "Knight";
+        }
     }
 
     @Override
