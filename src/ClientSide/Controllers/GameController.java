@@ -23,7 +23,7 @@ public class GameController extends MotherController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         playerSide = Side.White;
         if (game == null) {
-//            game = new Game();
+        //    game = new Game();
         }
         board = game.getBoard();
         readFromBoard();

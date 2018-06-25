@@ -4,6 +4,7 @@ import General.Board.Cell;
 import General.Board.Side;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.stage.StageStyle;
 
 import java.util.ArrayList;
@@ -127,16 +128,22 @@ public class Pawn extends Piece {
         this.cell.getBoard().setTextures(piece);
     }
 
-    private static String queeningAlert() {
+    private String queeningAlert() {
         Alert dialog = new Alert(Alert.AlertType.CONFIRMATION);
         dialog.initStyle(StageStyle.UNDECORATED);
         dialog.getDialogPane().setPrefSize(480, 320);
         dialog.setHeaderText("Choose Your Piece!");
 
+        DialogPane dialogPane = dialog.getDialogPane();
+        dialogPane.getStylesheets().add(getClass().getResource("../../ClientSide/CSS/game.css").toExternalForm());
+        dialogPane.getStyleClass().add("queeningDialog");
+
         ButtonType buttonTypeBishop = new ButtonType("Bishop");
         ButtonType buttonTypeQueen = new ButtonType("Queen");
         ButtonType buttonTypeRook = new ButtonType("Rook");
         ButtonType buttonTypeKnight = new ButtonType("Knight");
+
+
 
         dialog.getButtonTypes().setAll(buttonTypeBishop, buttonTypeQueen, buttonTypeRook, buttonTypeKnight);
 
