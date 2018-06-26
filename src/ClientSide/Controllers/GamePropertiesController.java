@@ -4,6 +4,7 @@ import ClientSide.Client;
 import General.Board.Side;
 import General.Game;
 import General.Request;
+import General.User.SimpleUser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -17,7 +18,7 @@ import java.util.ResourceBundle;
 public class GamePropertiesController extends MotherController implements Initializable {
     public ComboBox<Side> comboBox;
     public TextField searchTextField;
-    public ListView<String> searchedList;
+    public ListView<SimpleUser> searchedList;
     public CheckBox isRatedCheckBox;
     public String selectedUserString;
 
@@ -31,12 +32,12 @@ public class GamePropertiesController extends MotherController implements Initia
         ObservableList<Side> sides = FXCollections.observableList(arrayList);
         comboBox.setItems(sides);
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            ArrayList<String> users;
+            ArrayList<SimpleUser> users;
             try {
                 Client.oos.writeObject(Request.GET_USERS_TO_STRING);
                 Client.oos.writeUTF(searchTextField.getText());
                 Client.oos.flush();
-                users = (ArrayList<String>) Client.ois.readObject();
+                users = (ArrayList<SimpleUser>) Client.ois.readObject();
                 searchedList.setItems(FXCollections.observableArrayList(users));
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
@@ -47,10 +48,10 @@ public class GamePropertiesController extends MotherController implements Initia
 
 
     public void gameRequest() {
-        String requestedUserName = searchedList.getSelectionModel().getSelectedItem();
+        SimpleUser requestedUser = searchedList.getSelectionModel().getSelectedItem();
         try {
             Client.oos.writeObject(Request.NEW_GAME_REQUEST);
-            Client.oos.writeUTF(requestedUserName);
+            Client.oos.writeObject(requestedUser);
             Client.oos.flush();
             Client.oos.writeBoolean(isRatedCheckBox.isSelected());
             Client.oos.writeObject(Client.user);

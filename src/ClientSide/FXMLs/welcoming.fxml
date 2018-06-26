@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -7,10 +8,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="560.0" prefWidth="360.0" styleClass="background" stylesheets="@../CSS/welcoming.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientSide.Controllers.WelcomingController">
-   <children>
-      <TextField fx:id="username" layoutX="132.0" layoutY="110.0" promptText="username" styleClass="field" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" />
-      <PasswordField fx:id="password" layoutX="132.0" layoutY="154.0" promptText="password" styleClass="field" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" />
-      <Button fx:id="signIn" layoutX="180.0" layoutY="206.0" mnemonicParsing="false" onAction="#login" text="sign in" textFill="#752626" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
-      <Label layoutX="164.0" layoutY="316.0" onMouseClicked="#signUp" prefHeight="17.0" prefWidth="40.0" styleClass="textButton" text="sign up" textFill="#fffede" underline="true" AnchorPane.leftAnchor="164.0" AnchorPane.rightAnchor="164.0" />
-   </children>
+    <TextField fx:id="username" layoutX="132.0" layoutY="110.0" promptText="username" styleClass="field" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" />
+    <PasswordField fx:id="password" layoutX="132.0" layoutY="154.0" promptText="password" styleClass="field" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" />
+    <Button fx:id="signIn" layoutX="180.0" layoutY="206.0" mnemonicParsing="false" onAction="#login" text="sign in" textFill="#752626" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
+    <Label layoutX="164.0" layoutY="316.0" onMouseClicked="#signUp" prefHeight="17.0" prefWidth="42.0" styleClass="textButton" text="sign up" textFill="#fffede" underline="true" AnchorPane.leftAnchor="164.0" AnchorPane.rightAnchor="154.0">
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+    </Label>
 </AnchorPane>

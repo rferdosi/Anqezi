@@ -40,7 +40,5 @@ public class Game {
         this.isRated = isRated;
     }
 
-    public Game() {
 
-    }
 }

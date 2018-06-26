@@ -10,11 +10,11 @@
 
 <AnchorPane maxHeight="560.0" maxWidth="360.0" prefHeight="560.0" prefWidth="360.0" styleClass="background" stylesheets="@../CSS/registration.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientSide.Controllers.RegistrationController">
    <children>
-      <TextField fx:id="name" layoutX="93.0" layoutY="157.0" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="87.0" />
-      <TextField fx:id="username" layoutX="93.0" layoutY="202.0" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="87.0" />
-      <PasswordField fx:id="password" layoutX="93.0" layoutY="252.0" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="87.0" />
-      <TextField fx:id="email" layoutX="93.0" layoutY="293.0" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="87.0" />
-      <TextField fx:id="age" layoutX="93.0" layoutY="343.0" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="87.0" />
+      <TextField fx:id="name" layoutX="93.0" layoutY="157.0" promptText="Name" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="87.0" />
+      <TextField fx:id="username" layoutX="93.0" layoutY="202.0" promptText="Username" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="87.0" />
+      <PasswordField fx:id="password" layoutX="93.0" layoutY="252.0" promptText="Password" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="87.0" />
+      <TextField fx:id="email" layoutX="93.0" layoutY="293.0" promptText="Email Address" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="87.0" />
+      <TextField fx:id="age" layoutX="93.0" layoutY="343.0" promptText="Age" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="87.0" />
       <CheckBox fx:id="checkbox" layoutX="93.0" layoutY="396.0" mnemonicParsing="false" text="I read privacy policy" AnchorPane.leftAnchor="93.0" />
       <Button fx:id="registerButton" layoutX="153.0" layoutY="431.0" mnemonicParsing="false" onAction="#signUp" text="sign up" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
       <Button fx:id="backButton" layoutX="21.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" text="Back" />

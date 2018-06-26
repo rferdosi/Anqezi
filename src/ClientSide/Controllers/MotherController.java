@@ -13,17 +13,19 @@ public abstract class MotherController {
 
     @FXML
     Button CloseButton;
-    public void CloseApp(){
+
+    public void CloseApp() {
         Client.ExitRequested = true;
     }
-    public void goTo(String name){
+
+    public void goTo(String name) {
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("../FXMLs/" + name + ".fxml"));
         } catch (IOException e) {
             System.out.println("FXML Bug");
         }
-        Scene myScene = new Scene(root, Client.width, Client.height);
+        Scene myScene = new Scene(root);
         //myScene.getStylesheets().add("../CSS/" + name + ".css");
         Client.pStage.setScene(myScene);
         Client.pStage.show();
