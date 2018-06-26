@@ -38,6 +38,7 @@ public class GamePropertiesController extends MotherController implements Initia
                 Client.oos.writeUTF(searchTextField.getText());
                 Client.oos.flush();
                 users = (ArrayList<SimpleUser>) Client.ois.readObject();
+                searchedList.getItems().clear();
                 searchedList.setItems(FXCollections.observableArrayList(users));
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
@@ -52,11 +53,9 @@ public class GamePropertiesController extends MotherController implements Initia
         try {
             Client.oos.writeObject(Request.NEW_GAME_REQUEST);
             Client.oos.writeObject(requestedUser);
-            Client.oos.flush();
             Client.oos.writeBoolean(isRatedCheckBox.isSelected());
-            Client.oos.writeObject(Client.user);
-            Game requestedGame = (Game) Client.ois.readObject();
-            GameController.game = requestedGame;
+//            Client.oos.writeObject(Client.user);
+            GameController.game = (Game) Client.ois.readObject();
             goTo("game");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();

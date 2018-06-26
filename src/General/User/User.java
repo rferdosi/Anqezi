@@ -43,6 +43,10 @@ public class User implements Serializable {
         return this.simpleUser.username.equals(user.simpleUser.username) && this.password.equals(user.password);
     }
 
+    public SimpleUser getSimpleUser() {
+        return simpleUser;
+    }
+
     public String getUsername() {
         return simpleUser.username;
     }

@@ -21,4 +21,9 @@ public class SimpleUser implements Serializable {
         this.name = name;
         this.username = username;
     }
+
+    @Override
+    public String toString() {
+        return username;
+    }
 }

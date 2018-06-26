@@ -1,10 +1,13 @@
 package ServerSide;
 
+import General.Game;
 import General.Request;
+import General.User.SimpleUser;
 import General.User.User;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ClientHandler implements Runnable {
     private Socket socket;
@@ -31,14 +34,40 @@ public class ClientHandler implements Runnable {
                 Request request = null;
                 try {
                     request = (Request) ois.readObject();
+                    System.out.println(request);
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
-                assert request != null;
+//                assert request != null;
                 switch (request) {
                     case EXIT:
                         exitRequested = true;
                         break;
+                    case GET_USERS_TO_STRING:
+                        try {
+                            System.out.println(request);
+                            String username = ois.readUTF();
+                            ArrayList<SimpleUser> users = new ArrayList<>();
+                            for (User user1 : Server.getRegisteredUsers()) {
+                                if (user1.getUsername().contains(username)) {
+                                    users.add(user1.getSimpleUser());
+                                }
+                            }
+                            oos.writeObject(users);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case NEW_GAME_REQUEST:
+                        try {
+                            SimpleUser requestedUser = (SimpleUser) ois.readObject();
+                            boolean isRated = ois.readBoolean();
+                            Game game = new Game(user.getSimpleUser(), requestedUser, isRated);
+                            oos.writeObject(game);
+                            break;
+                        } catch (IOException | ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
 //                        TODO adding more parts of requests like NEW_GAME and NEW_TOURNAMENT
                 }
             }
@@ -74,12 +103,15 @@ public class ClientHandler implements Runnable {
                         oos.writeObject(isEmailAccepted);
                         user = (User) ois.readObject();
                         Server.getRegisteredUsers().add(user);
+                        System.out.println("REG DN!");
                         break;
                     case BACK:
                         backRequested = true;
                         break;
+                    default:
+                        System.out.println("Reg" + nextReq);
                 }
-            } while (!isUsernameAccepted || !isEmailAccepted || !backRequested);
+            } while ((!isUsernameAccepted || !isEmailAccepted) && !backRequested);
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
