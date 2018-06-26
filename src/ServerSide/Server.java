@@ -51,6 +51,7 @@ public class Server {
                 Thread thread = new Thread(clientHandler);
                 activeClients.add(clientHandler);
                 thread.start();
+                clientHandler.setThread(thread);
             } catch (IOException e) {
                 e.printStackTrace();
                 saveData();

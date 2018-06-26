@@ -29,6 +29,13 @@ abstract public class Piece {
         if (!destination.isEmpty() && destination.getPiece().side != this.side) {
             this.cell.getBoard().getPieces().remove(destination.getPiece());
         }
+        /*this.cell.setPiece(null);
+       // this.cell.setGraphic(null);
+        this.cell = destination;
+        this.cell.setPiece(this);
+      //  this.cell.setGraphic(this.getImageView());
+        this.row = destination.getRow();
+        this.column = destination.getColumn();*/
         cell.setPiece(null);
         cell = destination;
         cell.setPiece(this);

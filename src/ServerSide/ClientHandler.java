@@ -16,6 +16,7 @@ public class ClientHandler implements Runnable {
     private User user;
     final private int ID;
     private boolean exitRequested = false;
+    private Thread myThread;
 
 
     ClientHandler(Socket socket, InputStream ois, OutputStream oos, int ID) throws IOException {
@@ -25,12 +26,20 @@ public class ClientHandler implements Runnable {
         this.ID = ID;
     }
 
+    public void setThread(Thread myThread) {
+        this.myThread = myThread;
+    }
+
     @Override
     public void run() {
         while (!exitRequested) {
-            if (user == null) {
-                userSetter();
-            } else {
+            //This Part Proceed When It's On Welcoming Page
+            if (user == null && !exitRequested) {
+                setUser();
+            }
+
+            //During Rest Of The Game
+            else {
                 Request request = null;
                 try {
                     request = (Request) ois.readObject();
@@ -72,7 +81,8 @@ public class ClientHandler implements Runnable {
                 }
             }
         }
-        System.err.println("exit");
+        System.err.println("Exiting");
+        Thread.currentThread().interrupt();
     }
 
 
@@ -130,6 +140,7 @@ public class ClientHandler implements Runnable {
                 isLoggedIn = true;
                 try {
                     oos.writeObject(isLoggedIn);
+                    oos.writeObject(user);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -137,22 +148,18 @@ public class ClientHandler implements Runnable {
             }
         }
         try {
-            if (!isLoggedIn) {
-                oos.writeObject(false);
-            } else {
-                oos.writeObject(user);
-            }
+            oos.writeObject(isLoggedIn);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void userSetter() {
-        while (user == null) {
+    private void setUser() {
+        loop: while (user == null) {
             try {
                 Request request = (Request) ois.readObject();
                 System.out.println(request);
-                System.out.println(true);
                 switch (request) {
                     case SIGN_IN:
                         login();
@@ -165,7 +172,7 @@ public class ClientHandler implements Runnable {
                         break;
                     case EXIT:
                         exitRequested = true;
-                        break;
+                        break loop;
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();

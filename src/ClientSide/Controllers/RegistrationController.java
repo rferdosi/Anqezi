@@ -107,7 +107,7 @@ public class RegistrationController extends MotherController implements Initiali
             Image image = SwingFXUtils.toFXImage(bufferedImage, null);
             ImageViewer.setImage(image);
         } catch (IOException ex) {
-            System.out.println("Default Image Not Loaded!");
+            //System.out.println("Default Image Not Loaded!");
         }
         ChoosePhotoButton.setOnAction(
                 t -> {
