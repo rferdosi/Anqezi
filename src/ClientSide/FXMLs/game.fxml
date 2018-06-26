@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientSide.Controllers.GameController">
+<GridPane alignment="center" hgap="10" prefHeight="900.0" prefWidth="1200.0" vgap="10" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientSide.Controllers.GameController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -20,7 +23,7 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <Pane prefHeight="900.0" prefWidth="900.0" stylesheets="@../CSS/game.css">
+      <Pane prefHeight="900.0" prefWidth="1200.0" stylesheets="@../CSS/game.css">
          <children>
             <AnchorPane layoutX="-1.0" prefHeight="900.0" prefWidth="900.0">
                <children>
@@ -48,6 +51,15 @@
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" stroke="BLACK" strokeType="INSIDE" width="804.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="48.0" />
                </children>
             </AnchorPane>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="109.0" layoutX="898.0" stroke="BLACK" strokeType="INSIDE" width="301.0" />
+            <Label layoutX="1022.0" layoutY="46.0" text="whos turn" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6586a4" height="120.0" layoutX="899.0" layoutY="109.0" stroke="BLACK" strokeType="INSIDE" width="301.0" />
+            <Label layoutX="1022.0" layoutY="161.0" text="time" />
+            <ListView layoutX="898.0" layoutY="229.0" prefHeight="333.0" prefWidth="301.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="282.0" layoutX="899.0" layoutY="562.0" stroke="BLACK" strokeType="INSIDE" width="301.0" />
+            <Label layoutX="1046.0" layoutY="703.0" text="chat" />
+            <Label layoutX="1032.0" layoutY="369.0" text="audience" />
+            <Button layoutX="1135.0" layoutY="843.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="65.0" text="leave" />
          </children>
       </Pane>
    </children>

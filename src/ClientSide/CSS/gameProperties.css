@@ -14,3 +14,24 @@
     -fx-text-fill: #fffede;
     -fx-prompt-text-fill: #fffede;
 }
+
+.label {
+    -fx-text-fill: #fffede;
+}
+
+.button {
+    -fx-background-color: #fffede;
+
+}
+
+.button:hover {
+    -fx-background-color: #ffeabb;
+}
+
+.check-box {
+    -fx-text-fill: #fffede;
+}
+
+.check-box:hover {
+    -fx-text-fill: #ffeabb;
+}

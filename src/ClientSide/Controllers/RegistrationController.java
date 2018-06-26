@@ -75,7 +75,7 @@ public class RegistrationController extends MotherController implements Initiali
 
     public void signUp() {
         try {
-            Client.oos.writeObject(Request.SIGN_UP);
+            Client.oos.writeObject(Request.SIGN_UP_KEY);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -85,13 +85,13 @@ public class RegistrationController extends MotherController implements Initiali
         String passwordStr = password.getText();
         int ageInt = Integer.parseInt(age.getText());
         try {
-            if (nameValidate(nameStr)
-                    && usernameValidate(usernameStr)
-                    && passwordValidate(passwordStr)
-                    && emailValidate(emailStr)) {
-                User user = new User(nameStr, usernameStr, emailStr, passwordStr, ageInt);
-                Client.oos.writeObject(user);
-                goTo("mainMenu");
+            if (nameValidate(nameStr) && passwordValidate(passwordStr)) {
+                if (usernameValidate(usernameStr) &&
+                        emailValidate(emailStr)) {
+                    User user = new User(nameStr, usernameStr, emailStr, passwordStr, ageInt);
+                    Client.oos.writeObject(user);
+                    goTo("mainMenu");
+                }
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();

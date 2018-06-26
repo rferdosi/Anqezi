@@ -12,7 +12,7 @@ public class User implements Serializable {
     String password;
     int ID;
     int age;
-    int rate; //integer between 0 and 5
+     //integer between 0 and 5
     ArrayList<User> blockList;
 
     public User(String username, String password) {

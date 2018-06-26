@@ -20,7 +20,7 @@ public class WelcomingController extends MotherController {
     public Label message;
     public CheckBox rememberMeCheckBox;
 
-    public void login(ActionEvent actionEvent) {
+    public void login() {
         User user = new User(username.getText(), password.getText());
         try {
             Client.oos.writeObject(Request.SIGN_IN);
@@ -42,7 +42,7 @@ public class WelcomingController extends MotherController {
     }
 
 
-    public void signUp(MouseEvent mouseEvent) {
+    public void signUp() {
         try {
             Client.oos.writeObject(Request.SIGN_UP);
         } catch (IOException e) {
