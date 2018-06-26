@@ -69,10 +69,12 @@ public class ClientHandler implements Runnable {
                         break;
                     case NEW_GAME_REQUEST:
                         try {
+                            System.out.println("now");
                             SimpleUser requestedUser = (SimpleUser) ois.readObject();
                             boolean isRated = ois.readBoolean();
                             Game game = new Game(user.getSimpleUser(), requestedUser, isRated);
                             oos.writeObject(game);
+                            System.out.println("dn");
                             break;
                         } catch (IOException | ClassNotFoundException e) {
                             e.printStackTrace();
@@ -113,13 +115,14 @@ public class ClientHandler implements Runnable {
                         oos.writeObject(isEmailAccepted);
                         user = (User) ois.readObject();
                         Server.getRegisteredUsers().add(user);
+                        Server.saveData();
                         System.out.println("REG DN!");
                         break;
                     case BACK:
                         backRequested = true;
                         break;
                     default:
-                        System.out.println("Reg" + nextReq);
+//                        System.out.println("Reg" + nextReq);
                 }
             } while ((!isUsernameAccepted || !isEmailAccepted) && !backRequested);
         } catch (IOException | ClassNotFoundException e) {
@@ -156,7 +159,8 @@ public class ClientHandler implements Runnable {
     }
 
     private void setUser() {
-        loop: while (user == null) {
+        loop:
+        while (user == null) {
             try {
                 Request request = (Request) ois.readObject();
                 System.out.println(request);

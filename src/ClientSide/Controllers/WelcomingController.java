@@ -21,6 +21,7 @@ public class WelcomingController extends MotherController {
     public void login(ActionEvent actionEvent) {
         User user = new User(username.getText(), password.getText());
         try {
+            Client.oos.writeObject(Request.SIGN_IN);
             Client.oos.writeObject(user);
             boolean accepted = (boolean) Client.ois.readObject();
             if (accepted) {

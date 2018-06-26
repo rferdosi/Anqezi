@@ -44,6 +44,10 @@ public class Server {
         log("New Session Started At:\t" + date.toString());
         while (!ExitRequested) {
             try {
+                System.out.println(getRegisteredUsers().size());
+                for (User user : getRegisteredUsers()) {
+                    System.out.println(user);
+                }
                 clientSocket = serverSocket.accept();
                 log("A new Client has connected");
                 ClientHandler clientHandler = new ClientHandler
@@ -73,7 +77,7 @@ public class Server {
         }
     }
 
-    private static void saveData() {
+    static void saveData() {
         try (FileOutputStream users = new FileOutputStream("userList")) {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(users);
             objectOutputStream.writeObject(registeredUsers);
