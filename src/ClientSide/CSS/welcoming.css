@@ -24,3 +24,9 @@
 .textButton:hover{
     -fx-text-fill: #ffeabb;
 }
+.check-box{
+    -fx-text-fill: #ffeabb;
+}
+.msg{
+    -fx-text-fill: red;
+}
