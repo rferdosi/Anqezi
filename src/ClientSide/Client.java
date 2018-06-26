@@ -90,8 +90,14 @@ public class Client extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         pStage = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLs/welcoming.fxml"));
-        pStage.setTitle("Chess");
+        Parent root;
+        if (user != null){
+            root = FXMLLoader.load(getClass().getResource("FXMLs/mainMenu.fxml"));
+        }
+        else {
+            root = FXMLLoader.load(getClass().getResource("FXMLs/welcoming.fxml"));
+        }
+        pStage.setTitle("Hero's Chess");
         pStage.setScene(scene);
         pStage.setScene(new Scene(root));
         pStage.setResizable(false);

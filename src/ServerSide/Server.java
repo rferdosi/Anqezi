@@ -78,7 +78,7 @@ public class Server {
     }
 
     static void saveData() {
-        try (FileOutputStream users = new FileOutputStream("userList")) {
+        try (FileOutputStream users = new FileOutputStream("userList.yolo")) {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(users);
             objectOutputStream.writeObject(registeredUsers);
             objectOutputStream.flush();
@@ -87,19 +87,11 @@ public class Server {
             log("Cant save user list");
             e.printStackTrace();
         }
-        try (FileOutputStream lastID = new FileOutputStream("lastID")) {
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(lastID);
-            objectOutputStream.writeObject(IDGenerator);
-            objectOutputStream.close();
-        } catch (IOException e) {
-            log("Cant save last ID");
-            e.printStackTrace();
-        }
     }
 
     private static void loadData() {
         try {
-            FileInputStream users = new FileInputStream("userList");
+            FileInputStream users = new FileInputStream("userList.yolo");
             ObjectInputStream objectInputStream = new ObjectInputStream(users);
             registeredUsers = (ArrayList<User>) objectInputStream.readObject();
         } catch (IOException e1) {
@@ -107,14 +99,6 @@ public class Server {
         } catch (ClassNotFoundException e2) {
             log("User list can't be load");
             e2.printStackTrace();
-        }
-        try {
-            FileInputStream lastID = new FileInputStream("lastID");
-            ObjectInputStream objectInputStream = new ObjectInputStream(lastID);
-            IDGenerator = objectInputStream.readInt();
-        } catch (IOException IOExc) {
-            log("Last ID file not found");
-            IOExc.printStackTrace();
         }
     }
 
