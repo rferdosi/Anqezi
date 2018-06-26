@@ -16,6 +16,9 @@ public class Board {
     public static Piece lastSelectedPiece;
     public static boolean needToMove;
     public static boolean isTurn;
+    private King Whiteking;
+    private King Blackking;
+
 
     public Board() {
 
@@ -83,6 +86,14 @@ public class Board {
                         }
                         if (j == 4) {
                             piece = new King(side);
+                            switch (side) {
+                                case White:
+                                    Whiteking = (King) piece;
+                                    break;
+                                case Black:
+                                    Blackking = (King) piece;
+                                    break;
+                            }
                         }
                         if (j == 3) {
                             piece = new Queen(side);
@@ -176,6 +187,28 @@ public class Board {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public void isCheck() {
+        ArrayList<Cell> threatenCells = new ArrayList<>();
+        for (Piece piece : pieces) {
+            if (piece.getSide() == Side.White) {
+                threatenCells.addAll(piece.getPossibleChoices());
+            }
+        }
+        if (threatenCells.contains(Blackking.getCell())) {
+            Blackking.setChecked(true);
+        }
+        threatenCells.clear();
+        for (Piece piece : pieces) {
+            if (piece.getSide() == Side.Black) {
+                threatenCells.addAll(piece.getPossibleChoices());
+            }
+        }
+        if (threatenCells.contains(Whiteking.getCell())) {
+            Whiteking.setChecked(true);
+        }
+
     }
 }
 

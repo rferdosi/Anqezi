@@ -11,15 +11,18 @@ public class Rook extends Piece {
     }
 
     @Override
-    public void getPossibleChoices() {
+    public ArrayList<Cell> getPossibleChoices() {
+        ArrayList<Cell> choices = new ArrayList<>();
         Cell current = cell;
         while (current.getUpCell() != null) {
             current = current.getUpCell();
             if (current.isEmpty()) {
-                current.setPossible(true);
+                choices.add(current);
+//                current.setPossible(true);
             } else {
                 if (current.getPiece().side != side) {
-                    current.setPossible(true);
+//                    current.setPossible(true);
+                    choices.add(current);
                 }
                 break;
             }
@@ -28,10 +31,12 @@ public class Rook extends Piece {
         while (current.getDownCell() != null) {
             current = current.getDownCell();
             if (current.isEmpty()) {
-                current.setPossible(true);
+                choices.add(current);
+//                current.setPossible(true);
             } else {
                 if (current.getPiece().side != side) {
-                    current.setPossible(true);
+//                    current.setPossible(true);
+                    choices.add(current);
                 }
                 break;
             }
@@ -40,10 +45,12 @@ public class Rook extends Piece {
         while (current.getRightCell() != null) {
             current = current.getRightCell();
             if (current.isEmpty()) {
-                current.setPossible(true);
+                choices.add(current);
+//                current.setPossible(true);
             } else {
                 if (current.getPiece().side != side) {
-                    current.setPossible(true);
+                    choices.add(current);
+//                    current.setPossible(true);
                 }
                 break;
             }
@@ -52,14 +59,17 @@ public class Rook extends Piece {
         while (current.getLeftCell() != null) {
             current = current.getLeftCell();
             if (current.isEmpty()) {
-                current.setPossible(true);
+                choices.add(current);
+//                current.setPossible(true);
             } else {
                 if (current.getPiece().side != side) {
-                    current.setPossible(true);
+                    choices.add(current);
+//                    current.setPossible(true);
                 }
                 break;
             }
         }
+        return choices;
     }
 
     @Override

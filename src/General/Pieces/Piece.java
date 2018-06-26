@@ -57,7 +57,7 @@ abstract public class Piece {
         return side;
     }
 
-    public abstract void getPossibleChoices();
+    public abstract ArrayList<Cell> getPossibleChoices();
 
     @Override
     public String toString() {

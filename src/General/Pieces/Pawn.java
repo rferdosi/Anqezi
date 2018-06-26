@@ -19,28 +19,33 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public void getPossibleChoices() {
+    public ArrayList<Cell> getPossibleChoices() {
+        ArrayList<Cell> choices = new ArrayList<>();
         Cell current;
         if (side == Side.White) {
             if (cell.getUpCell() != null) {
                 current = cell.getUpCell();
                 if (current.isEmpty()) {
-                    current.setPossible(true);
+                    choices.add(current);
+//                    current.setPossible(true);
                     if (isFirstMove) {
                         if (current.getUpCell().isEmpty()) {
-                            current.getUpCell().setPossible(true);
+                            choices.add(current.getUpCell());
+//                            current.getUpCell().setPossible(true);
                         }
                     }
                 }
                 if (cell.getUpCell().getRightCell() != null && !cell.getUpCell().getRightCell().isEmpty()) {
                     if (cell.getUpCell().getRightCell().getPiece().side != side) {
-                        cell.getUpCell().getRightCell().setPossible(true);
+                        choices.add(cell.getUpCell().getRightCell());
+//                        cell.getUpCell().getRightCell().setPossible(true);
                     }
                 }
                 if (cell.getUpCell() != null) {
                     if (cell.getUpCell().getLeftCell() != null && !cell.getUpCell().getLeftCell().isEmpty()) {
                         if (cell.getUpCell().getLeftCell().getPiece().side != side) {
-                            cell.getUpCell().getLeftCell().setPossible(true);
+                            choices.add(cell.getUpCell().getLeftCell());
+//                            cell.getUpCell().getLeftCell().setPossible(true);
                         }
                     }
                 }
@@ -49,26 +54,31 @@ public class Pawn extends Piece {
             if (cell.getDownCell() != null) {
                 current = cell.getDownCell();
                 if (current.isEmpty()) {
+                    choices.add(current);
                     current.setPossible(true);
                     if (isFirstMove) {
                         if (current.getDownCell().isEmpty()) {
-                            current.getDownCell().setPossible(true);
+                            choices.add(current.getDownCell());
+//                            current.getDownCell().setPossible(true);
                         }
                     }
                 }
                 if (cell.getDownCell().getRightCell() != null && !cell.getDownCell().getRightCell().isEmpty()) {
                     if (cell.getDownCell().getRightCell().getPiece().side != side) {
-                        cell.getDownCell().getRightCell().setPossible(true);
+                        choices.add(cell.getDownCell().getRightCell());
+//                        cell.getDownCell().getRightCell().setPossible(true);
                     }
                 }
 
                 if (cell.getDownCell().getLeftCell() != null && !cell.getDownCell().getLeftCell().isEmpty()) {
                     if (cell.getDownCell().getLeftCell().getPiece().side != side) {
-                        cell.getDownCell().getLeftCell().setPossible(true);
+                        choices.add(cell.getRightCell().getLeftCell());
+//                        cell.getDownCell().getLeftCell().setPossible(true);
                     }
                 }
             }
         }
+        return choices;
     }
 
     @Override
@@ -93,7 +103,7 @@ public class Pawn extends Piece {
 
         try {
             System.out.println(nextToLast.toString());
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             System.out.println("Not Initialized yet!");
         }
 
@@ -110,7 +120,7 @@ public class Pawn extends Piece {
 
         Piece piece;
 
-        if (askedPiece.equals("Bishop")){
+        if (askedPiece.equals("Bishop")) {
             piece = new Bishop(side);
         } else if (askedPiece.equals("Queen")) {
             piece = new Queen(side);
@@ -144,19 +154,18 @@ public class Pawn extends Piece {
         ButtonType buttonTypeKnight = new ButtonType("Knight");
 
 
-
         dialog.getButtonTypes().setAll(buttonTypeBishop, buttonTypeQueen, buttonTypeRook, buttonTypeKnight);
 
         Optional<ButtonType> result = dialog.showAndWait();
 
-        if (result.get() == buttonTypeBishop){
+        if (result.get() == buttonTypeBishop) {
             return "Bishop";
         } else if (result.get() == buttonTypeQueen) {
             return "Queen";
         } else if (result.get() == buttonTypeRook) {
             return "Rook";
         } else {
-           return "Knight";
+            return "Knight";
         }
     }
 

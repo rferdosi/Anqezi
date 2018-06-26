@@ -5,6 +5,8 @@ import ClientSide.Themes.Theme;
 import General.Pieces.Piece;
 import javafx.scene.control.Button;
 
+import java.util.ArrayList;
+
 public class Cell extends Button {
     private Cell upCell;
     private Cell downCell;
@@ -54,7 +56,10 @@ public class Cell extends Button {
                 } else {
                     if (piece != null) {
                         if (piece.getSide() == GameController.playerSide) {
-                            piece.getPossibleChoices();
+                            ArrayList<Cell> possibles = piece.getPossibleChoices();
+                            for (Cell possibleCell : possibles) {
+                                possibleCell.setPossible(true);
+                            }
                             getStyleClass().add(boardColour + "CellSelected");
                             Board.lastSelectedPiece = piece;
                             Board.needToMove = true;

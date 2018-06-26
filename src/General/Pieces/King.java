@@ -16,27 +16,24 @@ public class King extends Piece {
     }
 
     @Override
-    public void getPossibleChoices() {
+    public ArrayList<Cell> getPossibleChoices() {
+        ArrayList<Cell> choices = new ArrayList<>();
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
                 if (i == 0 && j == 0) {
                     continue;
                 }
-//                TODO Kian change your method
-//                Done Dude :)
                 try {
                     Cell inProgressCell = this.cell.getBoard().getCell(row + i, column + j);
                     if (inProgressCell.isEmpty() ||
                             (!inProgressCell.isEmpty() && inProgressCell.getPiece().side != this.side)) {
-                        inProgressCell.setPossible(true);
-                        System.out.println("I SEE forward " + inProgressCell.toString());
+                        choices.add(inProgressCell);
                     }
-                } catch (ArrayIndexOutOfBoundsException e){
-                    System.out.println("AM I DEAD?! " + (row + i) + " " + (column + j));
-                    continue;
+                } catch (ArrayIndexOutOfBoundsException ignored) {
                 }
             }
         }
+        return choices;
     }
 
     public boolean isChecked() {
