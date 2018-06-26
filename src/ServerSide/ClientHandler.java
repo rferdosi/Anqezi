@@ -116,7 +116,7 @@ public class ClientHandler implements Runnable {
                         user = (User) ois.readObject();
                         Server.getRegisteredUsers().add(user);
                         Server.saveData();
-                        System.out.println("REG DN!");
+                        System.out.println("REG Done!");
                         break;
                     case BACK:
                         backRequested = true;
@@ -151,7 +151,9 @@ public class ClientHandler implements Runnable {
             }
         }
         try {
-            oos.writeObject(isLoggedIn);
+            if (!isLoggedIn) {
+                oos.writeObject(isLoggedIn);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
