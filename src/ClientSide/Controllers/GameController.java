@@ -25,15 +25,22 @@ public class GameController extends MotherController implements Initializable {
     public static Game game;
     public static Side playerSide;
     public VBox time;
+    public  Label label;
+
+    public static void setLabelText() {
+    }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+//        if (!game.isPlayer2Accepted())
+//            label.setText("Waiting for " + game.getPlayer2().getSimpleUser().getName());
         playerSide = Side.White;
         if (game == null) {
             game = new Game();
         }
         board = game.getBoard();
+//        Board.needToMove = true;
         if (playerSide == Side.White)
             Board.isTurn = true;
         readFromBoard();
@@ -57,23 +64,23 @@ public class GameController extends MotherController implements Initializable {
     private void timeManagement(long maxTime) {
         long endTime = maxTime;
         Label timeLabel = new Label();
-        DateFormat timeFormat = new SimpleDateFormat( "HH:mm:ss" );
+        DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
         final Timeline timeline = new Timeline(
                 new KeyFrame(
-                        Duration.millis( 500 ),
+                        Duration.millis(500),
                         event -> {
                             final long diff = endTime - System.currentTimeMillis();
-                            if ( diff < 0 ) {
+                            if (diff < 0) {
                                 //  timeLabel.setText( "00:00:00" );
-                                timeLabel.setText( timeFormat.format( 0 ) );
+                                timeLabel.setText(timeFormat.format(0));
                             } else {
-                                timeLabel.setText( timeFormat.format( diff ) );
+                                timeLabel.setText(timeFormat.format(diff));
                             }
                         }
                 )
         );
 
-        timeline.setCycleCount( Animation.INDEFINITE );
+        timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
 
 //        time.getChildren().add(timeline);

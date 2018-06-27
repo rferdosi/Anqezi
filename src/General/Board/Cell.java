@@ -47,11 +47,12 @@ public class Cell extends Button {
             if (Board.isTurn) {
                 if (Board.needToMove) {
                     Board.needToMove = false;
-                    board.cleanTextures();
+//                    board.cleanTextures();
                     if (isPossible) {
                         Board.lastSelectedPiece.move(this);
-                        board.changeTurn();
-                        board.waitForTurn();
+//                        board.changeTurn();
+//                        board.waitForTurn();
+                        board.cleanTextures();
                     }
                 } else {
                     if (piece != null) {
@@ -65,6 +66,9 @@ public class Cell extends Button {
                             Board.needToMove = true;
                             setSelected(true);
                         }
+                    }
+                    else {
+                        board.cleanTextures();
                     }
                 }
                 board.updateTextures();

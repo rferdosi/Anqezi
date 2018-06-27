@@ -92,10 +92,10 @@ public class Client extends Application {
         pStage = primaryStage;
         Parent root;
         if (user != null){
-            root = FXMLLoader.load(getClass().getResource("FXMLs/mainMenu.fxml"));
+            root = FXMLLoader.load(getClass().getResource("FXMLs/game.fxml"));
         }
         else {
-            root = FXMLLoader.load(getClass().getResource("FXMLs/welcoming.fxml"));
+            root = FXMLLoader.load(getClass().getResource("FXMLs/game.fxml"));
         }
         pStage.setTitle("Hero's Chess");
         pStage.setScene(scene);

@@ -1,7 +1,9 @@
 package General.Board;
 
 import ClientSide.Client;
+import ClientSide.Controllers.GameController;
 import ClientSide.Themes.BoardTheme;
+import General.Game;
 import General.Pieces.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,12 +18,13 @@ public class Board {
     public static Piece lastSelectedPiece;
     public static boolean needToMove;
     public static boolean isTurn;
-    private King Whiteking;
-    private King Blackking;
+    private King whiteKing;
+    private King blackKing;
+    private Game game;
 
 
-    public Board() {
-
+    public Board(Game game) {
+        this.game = game;
     }
 
 
@@ -39,6 +42,10 @@ public class Board {
 
     public void setTheme(BoardTheme theme) {
         this.theme = theme;
+    }
+
+    public Game getGame() {
+        return game;
     }
 
     {
@@ -88,10 +95,10 @@ public class Board {
                             piece = new King(side);
                             switch (side) {
                                 case White:
-                                    Whiteking = (King) piece;
+                                    whiteKing = (King) piece;
                                     break;
                                 case Black:
-                                    Blackking = (King) piece;
+                                    blackKing = (King) piece;
                                     break;
                             }
                         }
@@ -169,6 +176,7 @@ public class Board {
         isTurn = false;
         try {
             Client.oos.writeBoolean(true);
+            GameController.setLabelText();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -196,8 +204,8 @@ public class Board {
                 threatenCells.addAll(piece.getPossibleChoices());
             }
         }
-        if (threatenCells.contains(Blackking.getCell())) {
-            Blackking.setChecked(true);
+        if (threatenCells.contains(blackKing.getCell())) {
+            blackKing.setChecked(true);
         }
         threatenCells.clear();
         for (Piece piece : pieces) {
@@ -205,8 +213,8 @@ public class Board {
                 threatenCells.addAll(piece.getPossibleChoices());
             }
         }
-        if (threatenCells.contains(Whiteking.getCell())) {
-            Whiteking.setChecked(true);
+        if (threatenCells.contains(whiteKing.getCell())) {
+            whiteKing.setChecked(true);
         }
 
     }

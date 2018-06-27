@@ -10,4 +10,10 @@ public class Player {
         this.simpleUser = simpleUser;
         this.side = side;
     }
+
+
+
+    public SimpleUser getSimpleUser() {
+        return simpleUser;
+    }
 }

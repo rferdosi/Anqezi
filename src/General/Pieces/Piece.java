@@ -1,9 +1,12 @@
 package General.Pieces;
 
+import General.Board.Move;
 import General.Board.Side;
+import General.Game;
 import javafx.scene.image.ImageView;
 import General.Board.Cell;
 
+import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 
 abstract public class Piece {
@@ -22,7 +25,6 @@ abstract public class Piece {
 
     public Piece(Side side) {
         this.side = side;
-//        imageView = new ImageView();
     }
 
     public void move(Cell destination) {
@@ -36,6 +38,8 @@ abstract public class Piece {
       //  this.cell.setGraphic(this.getImageView());
         this.row = destination.getRow();
         this.column = destination.getColumn();*/
+        Move move = new Move(this, cell, destination);
+        cell.getBoard().getGame().getMoves().add(move);
         cell.setPiece(null);
         cell = destination;
         cell.setPiece(this);

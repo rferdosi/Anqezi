@@ -52,7 +52,7 @@
                </children>
             </AnchorPane>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="109.0" layoutX="898.0" stroke="BLACK" strokeType="INSIDE" width="301.0" />
-            <Label layoutX="1022.0" layoutY="46.0" text="whos turn" />
+            <Label fx:id="label" layoutX="1022.0" layoutY="46.0" text="wating" />
             <Label layoutX="1022.0" layoutY="161.0" text="time" />
             <ListView layoutX="898.0" layoutY="229.0" prefHeight="333.0" prefWidth="301.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="282.0" layoutX="899.0" layoutY="562.0" stroke="BLACK" strokeType="INSIDE" width="301.0" />
