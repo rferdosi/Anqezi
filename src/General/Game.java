@@ -5,12 +5,13 @@ import General.User.Audience;
 import General.User.Player;
 import General.User.SimpleUser;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Game {
+public class Game implements Serializable {
     private Board board = new Board();
-    private SimpleUser player1;
-    private SimpleUser player2;
+    private Player player1;
+    private Player player2;
     ArrayList<Audience> audiences;
     boolean isRated;
     boolean isPlayer2Accepted;
@@ -20,11 +21,11 @@ public class Game {
         return board;
     }
 
-    public SimpleUser getPlayer1() {
+    public Player getPlayer1() {
         return player1;
     }
 
-    public SimpleUser getPlayer2() {
+    public Player getPlayer2() {
         return player2;
     }
 
@@ -35,7 +36,7 @@ public class Game {
     public Game() {
     }
 
-    public Game(SimpleUser player1, SimpleUser player2, boolean isRated) {
+    public Game(Player player1, Player player2, boolean isRated) {
         this.player1 = player1;
         this.player2 = player2;
         this.isRated = isRated;

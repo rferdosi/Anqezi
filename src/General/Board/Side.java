@@ -1,7 +1,9 @@
 package General.Board;
 
-public enum Side {
-    Black, White, Random;
+import java.io.Serializable;
+
+public enum Side implements Serializable {
+    Black, White, Automatic;
 
     @Override
     public String toString() {
@@ -10,9 +12,15 @@ public enum Side {
                 return "white";
             case Black:
                 return "black";
-            case Random:
-                return "random";
+            case Automatic:
+                return "Automatic";
         }
         return null;
+    }
+
+    public Side getOutherSide() {
+        if (this == Side.Black)
+            return Side.White;
+        else return Side.Black;
     }
 }

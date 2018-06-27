@@ -24,6 +24,7 @@ public class GameController extends MotherController implements Initializable {
     public Board board;
     public static Game game;
     public static Side playerSide;
+    public VBox time;
 
 
     @Override
@@ -71,8 +72,11 @@ public class GameController extends MotherController implements Initializable {
                         }
                 )
         );
+
         timeline.setCycleCount( Animation.INDEFINITE );
         timeline.play();
+
+//        time.getChildren().add(timeline);
     }
 
 }

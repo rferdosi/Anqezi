@@ -1,7 +1,9 @@
 package ServerSide;
 
+import General.Board.Side;
 import General.Game;
 import General.Request;
+import General.User.Player;
 import General.User.SimpleUser;
 import General.User.User;
 
@@ -120,7 +122,17 @@ public class ClientHandler implements Runnable {
         System.out.println("now");
         SimpleUser requestedUser = (SimpleUser) ois.readObject();
         boolean isRated = ois.readBoolean();
-        Game game = new Game(user.getSimpleUser(), requestedUser, isRated);
+        Side side = (Side) ois.readObject();
+        if (side == Side.Automatic) {
+            int i = (int) (Math.random() * 2);
+            if (i == 1)
+                side = Side.White;
+            else
+                side = Side.Black;
+        }
+        Player player1 = new Player(user.getSimpleUser(), side);
+        Player player2 = new Player(requestedUser,side.getOutherSide());
+        Game game = new Game(player1, player2, isRated);
         oos.writeObject(game);
         System.out.println("dn");
     }

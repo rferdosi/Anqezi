@@ -1,7 +1,13 @@
 package General.User;
 
-public class Player extends User {
-    public Player(String username, String password) {
-        super(username, password);
+import General.Board.Side;
+
+public class Player {
+    private Side side;
+    private SimpleUser simpleUser;
+
+    public Player(SimpleUser simpleUser, Side side) {
+        this.simpleUser = simpleUser;
+        this.side = side;
     }
 }

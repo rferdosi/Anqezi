@@ -53,13 +53,13 @@
             </AnchorPane>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="109.0" layoutX="898.0" stroke="BLACK" strokeType="INSIDE" width="301.0" />
             <Label layoutX="1022.0" layoutY="46.0" text="whos turn" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6586a4" height="120.0" layoutX="899.0" layoutY="109.0" stroke="BLACK" strokeType="INSIDE" width="301.0" />
             <Label layoutX="1022.0" layoutY="161.0" text="time" />
             <ListView layoutX="898.0" layoutY="229.0" prefHeight="333.0" prefWidth="301.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="282.0" layoutX="899.0" layoutY="562.0" stroke="BLACK" strokeType="INSIDE" width="301.0" />
             <Label layoutX="1046.0" layoutY="703.0" text="chat" />
             <Label layoutX="1032.0" layoutY="369.0" text="audience" />
             <Button layoutX="1135.0" layoutY="843.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="65.0" text="leave" />
+            <VBox fx:id="time" layoutX="956.0" layoutY="115.0" prefHeight="109.0" prefWidth="184.0" />
          </children>
       </Pane>
    </children>

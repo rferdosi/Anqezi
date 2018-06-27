@@ -35,3 +35,10 @@
 .check-box:hover {
     -fx-text-fill: #ffeabb;
 }
+
+.combo-box {
+    -fx-background-color: #a16149;
+    -fx-text-fill: #ffeabb;
+    -fx-prompt-text-fill: #ffeabb;
+
+}
