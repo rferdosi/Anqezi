@@ -93,10 +93,12 @@ public class GameController extends MotherController implements Initializable {
 
     public void theme2(ActionEvent actionEvent) {
         board.setTheme("CopperGolden");
+        board.updateTextures();
     }
 
     public void theme1(ActionEvent actionEvent) {
         board.setTheme("CarbonSilver");
+        board.updateTextures();
     }
 }
 
