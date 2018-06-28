@@ -6,6 +6,7 @@ import General.Board.Move;
 import General.User.Audience;
 import General.User.Player;
 import General.User.SimpleUser;
+import General.User.User;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,7 +15,9 @@ public class Game implements Serializable {
     private Board board = new Board(this);
     private Player player1;
     private Player player2;
-    private Player winner;
+    private SimpleUser winner;
+    private SimpleUser loser;
+    private boolean isDraw;
     ArrayList<Audience> audiences;
     private ArrayList<Move> moves;
     private boolean isRated;
@@ -67,6 +70,39 @@ public class Game implements Serializable {
         moves = new ArrayList<>();
     }
 
+    public SimpleUser getWinner() {
+        return winner;
+    }
 
+    public void setWinner(SimpleUser winner) {
+        this.winner = winner;
+    }
 
+    public SimpleUser getLoser() {
+        return loser;
+    }
+
+    public void setLoser(SimpleUser loser) {
+        this.loser = loser;
+    }
+
+    public boolean isDraw() {
+        return isDraw;
+    }
+
+    public void setDraw(boolean draw) {
+        isDraw = draw;
+    }
+
+    @Override
+    //Override so we can compare two games just by its players
+    public boolean equals(Object object){
+        if (object instanceof Game){
+            Game game = (Game) object;
+            if (game.getPlayer1().equals(this.player1) && game.getPlayer2().equals(this.player2)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

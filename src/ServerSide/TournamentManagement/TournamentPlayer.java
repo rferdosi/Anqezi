@@ -1,21 +1,26 @@
 package ServerSide.TournamentManagement;
 
+import General.Board.Side;
 import General.User.Player;
+import General.User.SimpleUser;
 
-public class TournamentPlayer implements Comparable<TournamentPlayer> {
-    Player player;
-    int rating;
+public class TournamentPlayer extends Player implements Comparable<TournamentPlayer> {
+    double tournamentRating;
 
-    public TournamentPlayer(Player player, int rating) {
-        this.player = player;
-        this.rating = rating;
+    public TournamentPlayer(SimpleUser simpleUser, Side side, int tournamentRating) {
+        super(simpleUser, side);
+        this.tournamentRating = tournamentRating;
+    }
+    public TournamentPlayer(SimpleUser simpleUser, int tournamentRating){
+        super(simpleUser);
+        this.tournamentRating = tournamentRating;
     }
 
     @Override
     public int compareTo(TournamentPlayer o) {
-        if (this.rating > o.rating){
+        if (this.tournamentRating > o.tournamentRating){
             return 1;
-        } else if (this.rating == o.rating){
+        } else if (this.tournamentRating == o.tournamentRating){
             return 0;
         } else {
             return -1;

@@ -3,15 +3,29 @@ package General.User;
 import General.Board.Side;
 
 public class Player {
-    private Side side;
-    private SimpleUser simpleUser;
+    protected Side side;
+    protected SimpleUser simpleUser;
 
     public Player(SimpleUser simpleUser, Side side) {
         this.simpleUser = simpleUser;
         this.side = side;
     }
 
+    public Player(SimpleUser simpleUser){
+        this.simpleUser = simpleUser;
+    }
 
+    public Side getSide() {
+        return side;
+    }
+
+    public void setSide(Side side) {
+        this.side = side;
+    }
+
+    public void setSimpleUser(SimpleUser simpleUser) {
+        this.simpleUser = simpleUser;
+    }
 
     public SimpleUser getSimpleUser() {
         return simpleUser;
