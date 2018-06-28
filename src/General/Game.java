@@ -41,6 +41,10 @@ public class Game implements Serializable {
         return moves;
     }
 
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
+    }
+
     public Game() {
 
     }
@@ -53,6 +57,7 @@ public class Game implements Serializable {
     {
         moves = new ArrayList<>();
     }
+
 
 
 }

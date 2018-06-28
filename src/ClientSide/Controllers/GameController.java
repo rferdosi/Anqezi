@@ -7,6 +7,7 @@ import General.User.Player;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -25,16 +26,20 @@ public class GameController extends MotherController implements Initializable {
     public static Game game;
     public static Side playerSide;
     public VBox time;
-    public  Label label;
+    public Label label;
+
 
     public static void setLabelText() {
     }
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+//        game.setGameController(this);
 //        if (!game.isPlayer2Accepted())
 //            label.setText("Waiting for " + game.getPlayer2().getSimpleUser().getName());
+//        Thread setLabel = new Thread(new SetLabel(this));
+//        setLabel.run();
         playerSide = Side.White;
         if (game == null) {
             game = new Game();
@@ -86,6 +91,26 @@ public class GameController extends MotherController implements Initializable {
 //        time.getChildren().add(timeline);
     }
 
+    public void theme2(ActionEvent actionEvent) {
+        board.setTheme("CopperGolden");
+    }
+
+    public void theme1(ActionEvent actionEvent) {
+        board.setTheme("CarbonSilver");
+    }
 }
 
+class SetLabel implements Runnable {
+
+    private GameController gameController;
+
+    @Override
+    public void run() {
+
+    }
+
+    public SetLabel(GameController gameController) {
+        this.gameController = gameController;
+    }
+}
 
