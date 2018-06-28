@@ -37,4 +37,8 @@ public class Tournament {
         }
     }
 
+    public void updateRanking() {
+        Collections.sort(tournamentPlayers, new PlayersSorter());
+    }
+
 }
