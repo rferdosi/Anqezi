@@ -51,12 +51,15 @@ public class Cell extends Button {
 //                        board.changeTurn();
 //                        board.waitForTurn();
                         board.cleanTextures();
+                    } else {
+                        Board.lastSelectedPiece.getCell().setLabel(Label.NORMAL);
+                        Board.needToMove = false;
+                        board.cleanTextures();
                     }
                 } else {
                     if (piece != null) {
                         if (piece.getSide() == GameController.playerSide) {
                             piece.setLabels();
-                            getStyleClass().add(boardColour + "CellSelected");
                             Board.lastSelectedPiece = piece;
                             Board.needToMove = true;
                             setLabel(Label.SELECTED);

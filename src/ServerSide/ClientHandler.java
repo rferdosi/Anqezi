@@ -1,5 +1,6 @@
 package ServerSide;
 
+import General.Board.Move;
 import General.Board.Side;
 import General.Game;
 import General.Request;
@@ -19,6 +20,8 @@ public class ClientHandler implements Runnable {
     final private int ID;
     private boolean exitRequested = false;
     private Thread myThread;
+//    private Player pairedPlayer;
+//    private ClientHandler pairedCLientHandler;
 
 
     ClientHandler(Socket socket, InputStream ois, OutputStream oos, int ID) throws IOException {
@@ -57,6 +60,10 @@ public class ClientHandler implements Runnable {
                     case NEW_GAME_REQUEST:
                         newGameRequest();
                         break;
+                    case MOVE:
+                        Move move = (Move) ois.readObject();
+//                        pairedPlayer.getSimpleUser()
+
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
@@ -131,8 +138,15 @@ public class ClientHandler implements Runnable {
                 side = Side.Black;
         }
         Player player1 = new Player(user.getSimpleUser(), side);
-        Player player2 = new Player(requestedUser,side.getOutherSide());
+        Player player2 = new Player(requestedUser, side.getOutherSide());
         Game game = new Game(player1, player2, isRated);
+//        pairedPlayer = player2;
+//        for (ClientHandler clientHandler : Server.getActiveClients()) {
+//            if (clientHandler.user.getSimpleUser().equals(pairedPlayer.getSimpleUser())){
+//                pairedCLientHandler
+//            }
+//        }
+//        Socket socket1 = new Socket()
         oos.writeObject(game);
         System.out.println("dn");
     }

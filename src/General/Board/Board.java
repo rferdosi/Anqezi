@@ -128,67 +128,68 @@ public class Board {
                 if (!cell.isEmpty()) {
                     setTextures(cell.getPiece());
                     cell.setGraphic(cell.getPiece().getImageView());
-                }
-                else{
+                } else {
                     cell.setGraphic(null);
                 }
                 if (cell.getLabel().equals(Label.POSSIBLE)) {
                     cell.getStyleClass().add(cell.getBoardColour().toString() + "CellPossible");
                 } else if (cell.getLabel().equals(Label.THREATEN)) {
                     cell.getStyleClass().add(cell.getBoardColour().toString() + "CellThreaten");
+                } else if (cell.getLabel().equals(Label.SELECTED)) {
+                    cell.getStyleClass().add(cell.getBoardColour().toString() + "CellSelected");
                 }
             }
         }
     }
 
 
-    public void setTextures(Piece piece) {
-        Image image = new Image(getClass().getResource("../../" +
-                "ClientSide/Assets/Images/Pieces/" + theme + "/" + piece.toString() + ".png").toExternalForm());
-        piece.setImageView(new ImageView(image));
-        piece.getImageView().setFitHeight(80);
-        piece.getImageView().setFitWidth(80);
+        public void setTextures (Piece piece){
+            Image image = new Image(getClass().getResource("../../" +
+                    "ClientSide/Assets/Images/Pieces/" + theme + "/" + piece.toString() + ".png").toExternalForm());
+            piece.setImageView(new ImageView(image));
+            piece.getImageView().setFitHeight(80);
+            piece.getImageView().setFitWidth(80);
 
-    }
+        }
 
-    public void cleanTextures() {
-        for (Cell[] cells : cells) {
-            for (Cell cell : cells) {
-                cell.getStyleClass().remove(cell.getBoardColour().toString() + "CellPossible");
-                cell.getStyleClass().remove(cell.getBoardColour().toString() + "CellSelected");
-                cell.getStyleClass().remove(cell.getBoardColour().toString() + "CellThreaten");
-                cell.setLabel(Label.SELECTED);
-                cell.getStyleClass().add(cell.getBoardColour() + "Cell");
+        public void cleanTextures () {
+            for (Cell[] cells : cells) {
+                for (Cell cell : cells) {
+                    cell.getStyleClass().remove(cell.getBoardColour().toString() + "CellPossible");
+                    cell.getStyleClass().remove(cell.getBoardColour().toString() + "CellSelected");
+                    cell.getStyleClass().remove(cell.getBoardColour().toString() + "CellThreaten");
+                    cell.setLabel(Label.NORMAL);
+                    cell.getStyleClass().add(cell.getBoardColour() + "Cell");
+                }
             }
+            lastSelectedPiece = null;
         }
-        lastSelectedPiece = null;
-    }
 
-    public void changeTurn() {
-        isTurn = false;
-        try {
-            Client.oos.writeBoolean(true);
-            GameController.setLabelText();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void waitForTurn() {
-        while (!isTurn) {
+        public void changeTurn () {
+            isTurn = false;
             try {
-                isTurn = Client.ois.readBoolean();
+                Client.oos.writeBoolean(true);
+                GameController.setLabelText();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        try {
-            Move move = (Move) Client.ois.readObject();
-            move.getMovedPiece().move(move.getDistCell());
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+
+        public void waitForTurn () {
+            while (!isTurn) {
+                try {
+                    isTurn = Client.ois.readBoolean();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            try {
+                Move move = (Move) Client.ois.readObject();
+                move.getMovedPiece().move(move.getDistCell());
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
-}
 
 
