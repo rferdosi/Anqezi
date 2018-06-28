@@ -9,10 +9,15 @@ import General.Board.Side;
 import java.util.ArrayList;
 
 public class King extends Piece {
+    private boolean isFirstMove;
 
 
     public King(Side side) {
         super(side);
+    }
+
+    {
+        isFirstMove = true;
     }
 
     @Override
@@ -37,6 +42,16 @@ public class King extends Piece {
 //                        inProgressCell.setLabel(Label.THREATEN);
                     }
                 } catch (ArrayIndexOutOfBoundsException ignored) {
+                }
+                if (isFirstMove) {
+                    if (cell.getLeftCell().isEmpty() && cell.getLeftCell().getLeftCell().isEmpty()) {
+                        cell.getLeftCell().getLeftCell().getLeftCell().setLabel(Label.POSSIBLE);
+                    }
+                    if (cell.getRightCell().isEmpty() && cell.getRightCell().getRightCell().isEmpty() &&
+                            cell.getRightCell().getRightCell().getRightCell().isEmpty()
+                            ) {
+                        cell.getRightCell().getRightCell().getRightCell().getRightCell().setLabel(Label.POSSIBLE);
+                    }
                 }
             }
         }
@@ -72,4 +87,9 @@ public class King extends Piece {
         return side + "King";
     }
 
+    @Override
+    public void move(Cell destination) {
+        super.move(destination);
+        isFirstMove = false;
+    }
 }

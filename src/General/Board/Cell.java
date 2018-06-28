@@ -45,12 +45,22 @@ public class Cell extends Button {
             if (Board.isTurn) {
                 if (Board.needToMove) {
                     Board.needToMove = false;
-//                    board.cleanTextures();
                     if (label.equals(Label.POSSIBLE) || label.equals(Label.THREATEN)) {
-                        Board.lastSelectedPiece.move(this);
+                        if (!isEmpty() && Board.lastSelectedPiece.getSide().equals(piece.getSide())) {// shah ghale
+                            if (Board.lastSelectedPiece.getCell().leftCell.leftCell.leftCell.equals(this)) {
+                                Board.lastSelectedPiece.move(this.rightCell);
+                                this.getPiece().move(Board.lastSelectedPiece.getCell().rightCell);
+                            } else {
+                                Board.lastSelectedPiece.move(Board.lastSelectedPiece.getCell().rightCell.rightCell);
+                                piece.move(Board.lastSelectedPiece.getCell().leftCell);
+                            }
+                        } else {
+                            Board.lastSelectedPiece.move(this);
+                        }
 //                        board.changeTurn();
 //                        board.waitForTurn();
                         board.cleanTextures();
+
                     } else {
                         Board.lastSelectedPiece.getCell().setLabel(Label.NORMAL);
                         Board.needToMove = false;

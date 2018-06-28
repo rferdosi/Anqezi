@@ -96,6 +96,7 @@
     -fx-background-size: 100 100;
     -fx-background-position: center center;
 }
+
 .whiteCellPossible:hover {
     -fx-background-image: url("../Assets/Images/Board/BlueTheme/WhiteCellPossibilityHover.png");
     -fx-background-repeat: stretch;
@@ -115,33 +116,33 @@
 }
 
 .queeningDialog .button {
-    -fx-background-color:black;
-    -fx-text-fill:white;
+    -fx-background-color: black;
+    -fx-text-fill: white;
     -fx-wrap-text: true;
-    -fx-effect: dropshadow( three-pass-box, yellow, 10.0, 0.0, 0.0, 0.0);
-    -fx-cursor:hand;
+    -fx-effect: dropshadow(three-pass-box, yellow, 10.0, 0.0, 0.0, 0.0);
+    -fx-cursor: hand;
 }
 
 .queeningDialog .BishopButton {
-    -fx-background-color:black;
-    -fx-text-fill:white;
+    -fx-background-color: black;
+    -fx-text-fill: white;
     -fx-wrap-text: true;
-    -fx-effect: dropshadow( three-pass-box, yellow, 10.0, 0.0, 0.0, 0.0);
-    -fx-cursor:hand;
+    -fx-effect: dropshadow(three-pass-box, yellow, 10.0, 0.0, 0.0, 0.0);
+    -fx-cursor: hand;
 }
 
 .queeningDialog .KnightButton {
-    -fx-background-color:black;
-    -fx-text-fill:white;
+    -fx-background-color: black;
+    -fx-text-fill: white;
     -fx-wrap-text: true;
-    -fx-effect: dropshadow( three-pass-box, yellow, 10.0, 0.0, 0.0, 0.0);
-    -fx-cursor:hand;
+    -fx-effect: dropshadow(three-pass-box, yellow, 10.0, 0.0, 0.0, 0.0);
+    -fx-cursor: hand;
 }
 
-.queeningDialog .RookButton {
-    -fx-background-color:black;
-    -fx-text-fill:white;
+.queeningDialog .RookButton: {
+    -fx-background-color: black;
+    -fx-text-fill: white;
     -fx-wrap-text: true;
-    -fx-effect: dropshadow( three-pass-box, yellow, 10.0, 0.0, 0.0, 0.0);
-    -fx-cursor:hand;
+    -fx-effect: dropshadow(three-pass-box, yellow, 10.0, 0.0, 0.0, 0.0);
+    -fx-cursor: hand;
 }
