@@ -129,6 +129,9 @@ public class Board {
                     setTextures(cell.getPiece());
                     cell.setGraphic(cell.getPiece().getImageView());
                 }
+                else{
+                    cell.setGraphic(null);
+                }
                 if (cell.getLabel().equals(Label.POSSIBLE)) {
                     cell.getStyleClass().add(cell.getBoardColour().toString() + "CellPossible");
                 } else if (cell.getLabel().equals(Label.THREATEN)) {
