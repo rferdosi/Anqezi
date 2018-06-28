@@ -17,7 +17,7 @@ import java.net.Socket;
 import java.util.Optional;
 
 public class Client extends Application {
-    public static User user;
+    private static User user;
     public static boolean ExitRequested = false;
     public static Stage pStage;
     public static int width = 600, height = 860;
@@ -77,6 +77,14 @@ public class Client extends Application {
         }
     }
 
+    public static User getUser() {
+        return user;
+    }
+
+    public static void setUser(User user) {
+        Client.user = user;
+    }
+
     private static void connectToServer() {
         try {
             socket = new Socket("localhost", 8569);
@@ -92,10 +100,10 @@ public class Client extends Application {
         pStage = primaryStage;
         Parent root;
         if (user != null){
-            root = FXMLLoader.load(getClass().getResource("FXMLs/game.fxml"));
+            root = FXMLLoader.load(getClass().getResource("FXMLs/mainMenu.fxml"));
         }
         else {
-            root = FXMLLoader.load(getClass().getResource("FXMLs/game.fxml"));
+            root = FXMLLoader.load(getClass().getResource("FXMLs/welcoming.fxml"));
         }
         pStage.setTitle("Hero's Chess");
         pStage.setScene(scene);

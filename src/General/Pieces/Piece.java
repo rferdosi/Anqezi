@@ -1,12 +1,10 @@
 package General.Pieces;
 
+import General.Board.Cell;
 import General.Board.Move;
 import General.Board.Side;
-import General.Game;
 import javafx.scene.image.ImageView;
-import General.Board.Cell;
 
-import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 
 abstract public class Piece {
@@ -14,7 +12,6 @@ abstract public class Piece {
     protected Cell cell;
     protected Side side;
     protected int row;
-    public static Piece lastSelectedPiece;
 
     public void setRowAndColumn() {
         row = this.cell.getRow();

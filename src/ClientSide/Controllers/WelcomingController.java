@@ -3,12 +3,10 @@ package ClientSide.Controllers;
 import ClientSide.Client;
 import General.Request;
 import General.User.User;
-import javafx.event.ActionEvent;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
@@ -27,7 +25,7 @@ public class WelcomingController extends MotherController {
             Client.oos.writeObject(user);
             boolean accepted = (boolean) Client.ois.readObject();
             if (accepted) {
-                Client.user = (User) Client.ois.readObject();
+                Client.setUser((User) Client.ois.readObject());
                 goTo("mainMenu");
                 if (rememberMeCheckBox.isSelected()) {
                     Client.serialize();

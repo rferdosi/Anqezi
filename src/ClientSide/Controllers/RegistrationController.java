@@ -90,6 +90,7 @@ public class RegistrationController extends MotherController implements Initiali
                         emailValidate(emailStr)) {
                     User user = new User(nameStr, usernameStr, emailStr, passwordStr, ageInt);
                     Client.oos.writeObject(user);
+                    Client.setUser(user);
                     goTo("mainMenu");
                 }
             }

@@ -1,5 +1,8 @@
 package General.User;
 
+import General.Game;
+import General.Tournament;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -7,13 +10,14 @@ public class User implements Serializable {
     private static final long serialVersionUID = 858569L;
 
 
-    SimpleUser simpleUser;
-    String email;
-    String password;
-    int ID;
-    int age;
-     //integer between 0 and 5
-    ArrayList<User> blockList;
+    private SimpleUser simpleUser;
+    private String email;
+    private String password;
+    private int ID;
+    private int age;
+    private ArrayList<SimpleUser> blockList;
+    private ArrayList<Game> requestedGames;
+    private ArrayList<Tournament> tournaments;
 
     public User(String username, String password) {
         simpleUser = new SimpleUser(username);
@@ -27,12 +31,19 @@ public class User implements Serializable {
         simpleUser = new SimpleUser(name, username);
     }
 
-    public User(String name, String username, String email, String password, int age, int ID, String profilePictureAddress) {
+    public User(String name, String username, String email, String password, int age, int ID,
+                String profilePictureAddress) {
         this.email = email;
         this.password = password;
         this.age = age;
         this.ID = ID;
         simpleUser = new SimpleUser(profilePictureAddress, name, username);
+    }
+
+    {
+        blockList = new ArrayList<>();
+        requestedGames = new ArrayList<>();
+        tournaments = new ArrayList<>();
     }
 
     @Override
@@ -57,5 +68,9 @@ public class User implements Serializable {
 
     public String getName() {
         return simpleUser.name;
+    }
+
+    public ArrayList<Game> getRequestedGames() {
+        return requestedGames;
     }
 }
