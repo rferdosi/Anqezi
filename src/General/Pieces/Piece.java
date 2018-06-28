@@ -5,8 +5,6 @@ import General.Board.Move;
 import General.Board.Side;
 import javafx.scene.image.ImageView;
 
-import java.util.ArrayList;
-
 abstract public class Piece {
     protected ImageView imageView;
     protected Cell cell;
@@ -65,7 +63,7 @@ abstract public class Piece {
         return side;
     }
 
-    public abstract ArrayList<Cell> getPossibleChoices();
+    public abstract void setLabels();
 
     @Override
     public String toString() {

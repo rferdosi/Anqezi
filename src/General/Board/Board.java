@@ -144,11 +144,11 @@ public class Board {
         switch (piece.getSide()) {
             case Black:
                 image = new Image(getClass().getResource(
-                        "../../ClientSide/Assets/Images/Pieces/Copper/" + piece.toString() + ".png").toExternalForm());
+                        "../../ClientSide/Assets/Images/Pieces/Carbon/" + piece.toString() + ".png").toExternalForm());
                 break;
             case White:
                 image = new Image(getClass().getResource
-                        ("../../ClientSide/Assets/Images/Pieces/Golden/" + piece.toString() + ".png").toExternalForm());
+                        ("../../ClientSide/Assets/Images/Pieces/Silver/" + piece.toString() + ".png").toExternalForm());
                 break;
         }
         piece.setImageView(new ImageView(image));
@@ -197,27 +197,27 @@ public class Board {
         }
     }
 
-    public void isCheck() {
-        ArrayList<Cell> threatenCells = new ArrayList<>();
-        for (Piece piece : pieces) {
-            if (piece.getSide() == Side.White) {
-                threatenCells.addAll(piece.getPossibleChoices());
-            }
-        }
-        if (threatenCells.contains(blackKing.getCell())) {
-            blackKing.setChecked(true);
-        }
-        threatenCells.clear();
-        for (Piece piece : pieces) {
-            if (piece.getSide() == Side.Black) {
-                threatenCells.addAll(piece.getPossibleChoices());
-            }
-        }
-        if (threatenCells.contains(whiteKing.getCell())) {
-            whiteKing.setChecked(true);
-        }
+//    public void isCheck() {
+//        ArrayList<Cell> threatenCells = new ArrayList<>();
+//        for (Piece piece : pieces) {
+//            if (piece.getSide() == Side.White) {
+//                threatenCells.addAll(piece.setLabels());
+//            }
+//        }
+//        if (threatenCells.contains(blackKing.getCell())) {
+//            blackKing.setChecked(true);
+//        }
+//        threatenCells.clear();
+//        for (Piece piece : pieces) {
+//            if (piece.getSide() == Side.Black) {
+//                threatenCells.addAll(piece.setLabels());
+//            }
+//        }
+//        if (threatenCells.contains(whiteKing.getCell())) {
+//            whiteKing.setChecked(true);
+//        }
 
-    }
+//    }
 }
 
 

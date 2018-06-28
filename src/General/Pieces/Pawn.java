@@ -1,6 +1,7 @@
 package General.Pieces;
 
 import General.Board.Cell;
+import General.Board.Label;
 import General.Board.Side;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -19,33 +20,32 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public ArrayList<Cell> getPossibleChoices() {
-        ArrayList<Cell> choices = new ArrayList<>();
+    public void setLabels() {
         Cell current;
         if (side == Side.White) {
             if (cell.getUpCell() != null) {
                 current = cell.getUpCell();
                 if (current.isEmpty()) {
-                    choices.add(current);
-//                    current.setPossible(true);
+//                    choices.add(current);
+                    current.setLabel(Label.POSSIBLE);
                     if (isFirstMove) {
                         if (current.getUpCell().isEmpty()) {
-                            choices.add(current.getUpCell());
-//                            current.getUpCell().setPossible(true);
+//                            choices.add(current.getUpCell());
+                            current.getUpCell().setLabel(Label.POSSIBLE);
                         }
                     }
                 }
                 if (cell.getUpCell().getRightCell() != null && !cell.getUpCell().getRightCell().isEmpty()) {
                     if (cell.getUpCell().getRightCell().getPiece().side != side) {
-                        choices.add(cell.getUpCell().getRightCell());
-//                        cell.getUpCell().getRightCell().setPossible(true);
+//                        choices.add(cell.getUpCell().getRightCell());
+                        cell.getUpCell().getRightCell().setLabel(Label.THREATEN);
                     }
                 }
                 if (cell.getUpCell() != null) {
                     if (cell.getUpCell().getLeftCell() != null && !cell.getUpCell().getLeftCell().isEmpty()) {
                         if (cell.getUpCell().getLeftCell().getPiece().side != side) {
-                            choices.add(cell.getUpCell().getLeftCell());
-//                            cell.getUpCell().getLeftCell().setPossible(true);
+//                            choices.add(cell.getUpCell().getLeftCell());
+                            cell.getUpCell().getLeftCell().setLabel(Label.THREATEN);
                         }
                     }
                 }
@@ -54,31 +54,31 @@ public class Pawn extends Piece {
             if (cell.getDownCell() != null) {
                 current = cell.getDownCell();
                 if (current.isEmpty()) {
-                    choices.add(current);
-                    current.setPossible(true);
+//                    choices.add(current);
+                    current.setLabel(Label.POSSIBLE);
                     if (isFirstMove) {
                         if (current.getDownCell().isEmpty()) {
-                            choices.add(current.getDownCell());
-//                            current.getDownCell().setPossible(true);
+//                            choices.add(current.getDownCell());
+                            current.getDownCell().setLabel(Label.POSSIBLE);
                         }
                     }
                 }
                 if (cell.getDownCell().getRightCell() != null && !cell.getDownCell().getRightCell().isEmpty()) {
                     if (cell.getDownCell().getRightCell().getPiece().side != side) {
-                        choices.add(cell.getDownCell().getRightCell());
-//                        cell.getDownCell().getRightCell().setPossible(true);
+//                        choices.add(cell.getDownCell().getRightCell());
+                        cell.getDownCell().getRightCell().setLabel(Label.THREATEN);
                     }
                 }
 
                 if (cell.getDownCell().getLeftCell() != null && !cell.getDownCell().getLeftCell().isEmpty()) {
                     if (cell.getDownCell().getLeftCell().getPiece().side != side) {
-                        choices.add(cell.getRightCell().getLeftCell());
-//                        cell.getDownCell().getLeftCell().setPossible(true);
+//                        choices.add(cell.getRightCell().getLeftCell());
+                        cell.getDownCell().getLeftCell().setLabel(Label.THREATEN);
                     }
                 }
             }
         }
-        return choices;
+//        return choices;
     }
 
     @Override

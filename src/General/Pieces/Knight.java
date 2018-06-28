@@ -12,7 +12,7 @@ public class Knight extends Piece {
     }
 
     @Override
-    public ArrayList<Cell> getPossibleChoices() {
+    public void setLabels() {
         ArrayList<Cell> choices = new ArrayList<>();
         for (int i = 1; i <= 2; i++) {
             for (int j = 1; j <= 2; j++) {

@@ -12,8 +12,7 @@ public class Cell extends Button {
     private Cell downCell;
     private Cell rightCell;
     private Cell leftCell;
-    private boolean isPossible;
-    private boolean isSelected;
+    private Label label;
 
 
     private BoardColour boardColour;
@@ -57,7 +56,7 @@ public class Cell extends Button {
                 } else {
                     if (piece != null) {
                         if (piece.getSide() == GameController.playerSide) {
-                            ArrayList<Cell> possibles = piece.getPossibleChoices();
+                            ArrayList<Cell> possibles = piece.setLabels();
                             for (Cell possibleCell : possibles) {
                                 possibleCell.setPossible(true);
                             }
@@ -66,8 +65,7 @@ public class Cell extends Button {
                             Board.needToMove = true;
                             setSelected(true);
                         }
-                    }
-                    else {
+                    } else {
                         board.cleanTextures();
                     }
                 }
@@ -147,20 +145,12 @@ public class Cell extends Button {
         return (piece == null);
     }
 
-    public boolean isPossible() {
-        return isPossible;
+    public Label getLabel() {
+        return label;
     }
 
-    public boolean isSelected() {
-        return isSelected;
-    }
-
-    public void setSelected(boolean selected) {
-        isSelected = selected;
-    }
-
-    public void setPossible(boolean possible) {
-        isPossible = possible;
+    public void setLabel(Label label) {
+        this.label = label;
     }
 
     @Override

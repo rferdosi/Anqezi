@@ -13,15 +13,13 @@ public class Queen extends Piece {
 
     //     ®Powered By XxNE0xX 8)
     @Override
-    public ArrayList<Cell> getPossibleChoices() {
-        ArrayList<Cell> choices;
+    public void setLabels() {
         Bishop bishop = new Bishop(side);
         Rook rook = new Rook(side);
         bishop.cell = this.cell;
         rook.cell = this.cell;
-        choices = bishop.getPossibleChoices();
-        choices.addAll(rook.getPossibleChoices());
-        return choices;
+        bishop.setLabels();
+        rook.setLabels();
     }
 
     @Override
