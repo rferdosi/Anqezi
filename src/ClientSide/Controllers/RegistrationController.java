@@ -94,6 +94,7 @@ public class RegistrationController extends MotherController implements Initiali
                     goTo("mainMenu");
                 }
             }
+            //
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
