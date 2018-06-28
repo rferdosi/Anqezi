@@ -79,6 +79,7 @@ public class Pawn extends Piece {
             }
         }
 //        return choices;
+        super.setLabels();
     }
 
     @Override

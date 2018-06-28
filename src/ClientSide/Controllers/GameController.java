@@ -35,11 +35,6 @@ public class GameController extends MotherController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-//        game.setGameController(this);
-//        if (!game.isPlayer2Accepted())
-//            label.setText("Waiting for " + game.getPlayer2().getSimpleUser().getName());
-//        Thread setLabel = new Thread(new SetLabel(this));
-//        setLabel.run();
         playerSide = Side.White;
         if (game == null) {
             game = new Game();

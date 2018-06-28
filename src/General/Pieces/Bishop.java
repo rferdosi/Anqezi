@@ -73,6 +73,7 @@ public class Bishop extends Piece {
             }
 
         }
+        super.setLabels();
 //        return choices;
     }
 

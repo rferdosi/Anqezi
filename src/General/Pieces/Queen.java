@@ -20,6 +20,7 @@ public class Queen extends Piece {
         rook.cell = this.cell;
         bishop.setLabels();
         rook.setLabels();
+        super.setLabels();
     }
 
     @Override

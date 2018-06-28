@@ -13,7 +13,6 @@ public class Rook extends Piece {
 
     @Override
     public void setLabels() {
-        ArrayList<Cell> choices = new ArrayList<>();
         Cell current = cell;
         while (current.getUpCell() != null) {
             current = current.getUpCell();
@@ -46,8 +45,8 @@ public class Rook extends Piece {
         while (current.getRightCell() != null) {
             current = current.getRightCell();
             if (current.isEmpty()) {
-                choices.add(current);
-//                current.setLabel(Label.POSSIBLE);
+//                choices.add(current);
+                current.setLabel(Label.POSSIBLE);
             } else {
                 if (current.getPiece().side != side) {
 //                    choices.add(current);
@@ -70,6 +69,7 @@ public class Rook extends Piece {
                 break;
             }
         }
+        super.setLabels();
     }
 
     @Override

@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class Board {
     private Cell[][] cells = new Cell[8][8];
     private ArrayList<Piece> pieces = new ArrayList<>();
-    //    private BoardTheme theme;
     public static Piece lastSelectedPiece;
     public static boolean needToMove;
     public static boolean isTurn;
@@ -25,8 +24,17 @@ public class Board {
 
 
     public Board() {
+        game=new Game();
     }
 
+
+    public King getBlackKing() {
+        return blackKing;
+    }
+
+    public King getWhiteKing() {
+        return whiteKing;
+    }
 
     public Cell getCell(int i, int j) {
         return cells[i][j];

@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Game implements Serializable {
-    private Board board = new Board();
+    private Board board;
     private Player player1;
     private Player player2;
     private SimpleUser winner;
@@ -22,7 +22,7 @@ public class Game implements Serializable {
     private ArrayList<Move> moves;
     private boolean isRated;
     private boolean isPlayer2Accepted;
-    private GameController gameController;
+//    private GameController gameController;
 //    Time gameTime;
 
     public Board getBoard() {
@@ -53,10 +53,6 @@ public class Game implements Serializable {
         return moves;
     }
 
-    public void setGameController(GameController gameController) {
-        this.gameController = gameController;
-    }
-
     public Game() {
 
     }
@@ -68,6 +64,7 @@ public class Game implements Serializable {
     }
 
     {
+        board = new Board();
         moves = new ArrayList<>();
     }
 

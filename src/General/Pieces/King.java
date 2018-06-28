@@ -61,6 +61,7 @@ public class King extends Piece {
         for (Cell trtCell : trtCells) {
             trtCell.setLabel(Label.THREATEN);
         }
+        super.setLabels();
     }
 
     public boolean isChecked(Cell cell) {

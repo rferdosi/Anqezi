@@ -41,6 +41,7 @@ public class Knight extends Piece {
 
             }
         }
+        super.setLabels();
     }
 
     private void labelGiver(Cell inProgressCell){

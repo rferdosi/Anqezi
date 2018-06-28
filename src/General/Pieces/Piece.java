@@ -1,6 +1,7 @@
 package General.Pieces;
 
 import General.Board.Cell;
+import General.Board.Label;
 import General.Board.Move;
 import General.Board.Side;
 import javafx.scene.image.ImageView;
@@ -63,7 +64,37 @@ abstract public class Piece {
         return side;
     }
 
-    public abstract void setLabels();
+    public void setLabels() {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Cell myCell = cell.getBoard().getCell(i, j);
+                if (myCell.getLabel().equals(Label.THREATEN) || myCell.getLabel().equals(Label.POSSIBLE)) {
+                    if (!this.fakeMove(myCell)) {
+                        myCell.setLabel(Label.NORMAL);
+                    }
+                }
+            }
+        }
+    }
+
+    public boolean fakeMove(Cell cell) {
+        King king = null;
+        switch (side) {
+            case Black:
+                king = cell.getBoard().getBlackKing();
+                break;
+            case White:
+                king = cell.getBoard().getWhiteKing();
+        }
+        Cell cellHolder = this.cell;
+        Piece pieceHolder = cell.getPiece();
+        this.move(cell);
+        boolean cond = king.isChecked(king.cell);
+        cell.getBoard().cleanTextures();
+        return cond;
+
+
+    }
 
     @Override
     public String toString() {
