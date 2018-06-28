@@ -20,8 +20,8 @@ public class ClientHandler implements Runnable {
     final private int ID;
     private boolean exitRequested = false;
     private Thread myThread;
-//    private Player pairedPlayer;
-//    private ClientHandler pairedCLientHandler;
+    //    private Player pairedPlayer;
+    private ClientHandler pairedCLientHandler;
 
 
     ClientHandler(Socket socket, InputStream ois, OutputStream oos, int ID) throws IOException {
@@ -58,12 +58,13 @@ public class ClientHandler implements Runnable {
                         sendSearchedUsers();
                         break;
                     case NEW_GAME_REQUEST:
+                        System.out.println("eeeeeeeeeeee");
                         newGameRequest();
                         break;
                     case MOVE:
                         Move move = (Move) ois.readObject();
-//                        pairedPlayer.getSimpleUser()
-
+                        pairedCLientHandler.oos.writeObject(move);
+                        break;
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
@@ -140,13 +141,11 @@ public class ClientHandler implements Runnable {
         Player player1 = new Player(user.getSimpleUser(), side);
         Player player2 = new Player(requestedUser, side.getOutherSide());
         Game game = new Game(player1, player2, isRated);
-//        pairedPlayer = player2;
-//        for (ClientHandler clientHandler : Server.getActiveClients()) {
-//            if (clientHandler.user.getSimpleUser().equals(pairedPlayer.getSimpleUser())){
-//                pairedCLientHandler
-//            }
-//        }
-//        Socket socket1 = new Socket()
+        for (ClientHandler clientHandler : Server.getActiveClients()) {
+            if (clientHandler.user.getSimpleUser().equals(player2.getSimpleUser())) {
+                pairedCLientHandler = clientHandler;
+            }
+        }
         oos.writeObject(game);
         System.out.println("dn");
     }

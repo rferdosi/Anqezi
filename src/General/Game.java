@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Game implements Serializable {
-    private Board board = new Board(this);
+    private Board board = new Board();
     private Player player1;
     private Player player2;
     private SimpleUser winner;
@@ -66,6 +66,7 @@ public class Game implements Serializable {
         this.player2 = player2;
         this.isRated = isRated;
     }
+
     {
         moves = new ArrayList<>();
     }
@@ -96,10 +97,10 @@ public class Game implements Serializable {
 
     @Override
     //Override so we can compare two games just by its players
-    public boolean equals(Object object){
-        if (object instanceof Game){
+    public boolean equals(Object object) {
+        if (object instanceof Game) {
             Game game = (Game) object;
-            if (game.getPlayer1().equals(this.player1) && game.getPlayer2().equals(this.player2)){
+            if (game.getPlayer1().equals(this.player1) && game.getPlayer2().equals(this.player2)) {
                 return true;
             }
         }

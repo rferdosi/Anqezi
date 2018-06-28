@@ -24,8 +24,7 @@ public class Board {
     public String theme = "CopperGolden";
 
 
-    public Board(Game game) {
-        this.game = game;
+    public Board() {
     }
 
 
@@ -143,53 +142,53 @@ public class Board {
     }
 
 
-        public void setTextures (Piece piece){
-            Image image = new Image(getClass().getResource("../../" +
-                    "ClientSide/Assets/Images/Pieces/" + theme + "/" + piece.toString() + ".png").toExternalForm());
-            piece.setImageView(new ImageView(image));
-            piece.getImageView().setFitHeight(80);
-            piece.getImageView().setFitWidth(80);
+    public void setTextures(Piece piece) {
+        Image image = new Image(getClass().getResource("../../" +
+                "ClientSide/Assets/Images/Pieces/" + theme + "/" + piece.toString() + ".png").toExternalForm());
+        piece.setImageView(new ImageView(image));
+        piece.getImageView().setFitHeight(80);
+        piece.getImageView().setFitWidth(80);
 
-        }
+    }
 
-        public void cleanTextures () {
-            for (Cell[] cells : cells) {
-                for (Cell cell : cells) {
-                    cell.getStyleClass().remove(cell.getBoardColour().toString() + "CellPossible");
-                    cell.getStyleClass().remove(cell.getBoardColour().toString() + "CellSelected");
-                    cell.getStyleClass().remove(cell.getBoardColour().toString() + "CellThreaten");
-                    cell.setLabel(Label.NORMAL);
-                    cell.getStyleClass().add(cell.getBoardColour() + "Cell");
-                }
+    public void cleanTextures() {
+        for (Cell[] cells : cells) {
+            for (Cell cell : cells) {
+                cell.getStyleClass().remove(cell.getBoardColour().toString() + "CellPossible");
+                cell.getStyleClass().remove(cell.getBoardColour().toString() + "CellSelected");
+                cell.getStyleClass().remove(cell.getBoardColour().toString() + "CellThreaten");
+                cell.setLabel(Label.NORMAL);
+                cell.getStyleClass().add(cell.getBoardColour() + "Cell");
             }
-            lastSelectedPiece = null;
         }
+        lastSelectedPiece = null;
+    }
 
-        public void changeTurn () {
-            isTurn = false;
+    public void changeTurn() {
+        isTurn = false;
+        try {
+            Client.oos.writeBoolean(true);
+            GameController.setLabelText();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void waitForTurn() {
+        while (!isTurn) {
             try {
-                Client.oos.writeBoolean(true);
-                GameController.setLabelText();
+                isTurn = Client.ois.readBoolean();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
-        public void waitForTurn () {
-            while (!isTurn) {
-                try {
-                    isTurn = Client.ois.readBoolean();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            try {
-                Move move = (Move) Client.ois.readObject();
-                move.getMovedPiece().move(move.getDistCell());
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+        try {
+            Move move = (Move) Client.ois.readObject();
+            move.getMovedPiece().move(move.getDistCell());
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
+}
 
 

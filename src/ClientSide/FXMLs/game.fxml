@@ -29,7 +29,7 @@
                <children>
                   <ImageView fitHeight="900.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Assets/Images/Board/Backgrounds/wood2.jpg" />
+                        <Image url="@../Assets/Images/Board/Backgrounds/wood1.jpg" />
                      </image>
                   </ImageView>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" height="804.0" stroke="BLACK" strokeType="INSIDE" width="804.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="48.0" />

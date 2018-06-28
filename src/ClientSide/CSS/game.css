@@ -139,7 +139,7 @@
     -fx-cursor: hand;
 }
 
-.queeningDialog .RookButton: {
+.queeningDialog .RookButton:{
     -fx-background-color: black;
     -fx-text-fill: white;
     -fx-wrap-text: true;
