@@ -6,6 +6,8 @@ import General.Board.Cell;
 import General.Board.Label;
 import General.Board.Side;
 
+import java.util.ArrayList;
+
 public class King extends Piece {
 
 
@@ -15,6 +17,8 @@ public class King extends Piece {
 
     @Override
     public void setLabels() {
+        ArrayList<Cell> posCells = new ArrayList<>();
+        ArrayList<Cell> trtCells = new ArrayList<>();
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
                 if (i == 0 && j == 0) {
@@ -22,26 +26,43 @@ public class King extends Piece {
                 }
                 try {
                     Cell inProgressCell = this.cell.getBoard().getCell(row + i, column + j);
-                    if (isChecked(inProgressCell))
+                    if (isChecked(inProgressCell)) {
                         continue;
+                    }
                     if (inProgressCell.isEmpty()) {
-                        inProgressCell.setLabel(Label.POSSIBLE);
+                        posCells.add(inProgressCell);
+//                        inProgressCell.setLabel(Label.POSSIBLE);
                     } else if (!inProgressCell.isEmpty() && inProgressCell.getPiece().side != this.side) {
-                        inProgressCell.setLabel(Label.THREATEN);
+                        trtCells.add(inProgressCell);
+//                        inProgressCell.setLabel(Label.THREATEN);
                     }
                 } catch (ArrayIndexOutOfBoundsException ignored) {
                 }
             }
         }
+        for (Cell posCell : posCells) {
+            posCell.setLabel(Label.POSSIBLE);
+        }
+        for (Cell trtCell : trtCells) {
+            trtCell.setLabel(Label.THREATEN);
+        }
     }
 
     public boolean isChecked(Cell cell) {
+        King fakeKing = new King(side);
+        Piece lastPiece = cell.getPiece();
+        cell.setPiece(fakeKing);
         for (Piece piece : this.cell.getBoard().getPieces()) {
             if (piece.side != side) {
+                if (piece instanceof King)
+                    continue;
                 piece.setLabels();
+
             }
         }
-        boolean isChecked = cell.getLabel() == Label.THREATEN;
+
+        boolean isChecked = cell.getLabel().equals(Label.THREATEN);
+        cell.setPiece(lastPiece);
         cell.getBoard().cleanTextures();
         return isChecked;
     }

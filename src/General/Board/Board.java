@@ -57,6 +57,7 @@ public class Board {
                 } else {
                     cell = new Cell(BoardColour.White);
                 }
+                cell.setLabel(Label.NORMAL);
                 cell.setColumn(j);
                 cell.setRow(i);
                 cell.setBoard(this);
@@ -126,18 +127,15 @@ public class Board {
                 if (!cell.isEmpty()) {
                     cell.setGraphic(cell.getPiece().getImageView());
                 }
-                if (cell.isPossible()) {
-                    if (cell.isEmpty()) {
-                        cell.getStyleClass().add(cell.getBoardColour().toString() + "CellPossible");
-                    } else {
-                        cell.getStyleClass().add(cell.getBoardColour().toString() + "CellThreaten");
-
-                    }
+                if (cell.getLabel().equals(Label.POSSIBLE)) {
+                    cell.getStyleClass().add(cell.getBoardColour().toString() + "CellPossible");
+                } else if (cell.getLabel().equals(Label.THREATEN)) {
+                    cell.getStyleClass().add(cell.getBoardColour().toString() + "CellThreaten");
                 }
             }
         }
-
     }
+
 
     public void setTextures(Piece piece) {
         Image image = null;
@@ -159,13 +157,10 @@ public class Board {
     public void cleanTextures() {
         for (Cell[] cells : cells) {
             for (Cell cell : cells) {
-                String pos = cell.getBoardColour().toString() + "CellPossible";
-                String sel = cell.getBoardColour().toString() + "CellSelected";
-                cell.getStyleClass().remove(pos);
-                cell.getStyleClass().remove(sel);
+                cell.getStyleClass().remove(cell.getBoardColour().toString() + "CellPossible");
+                cell.getStyleClass().remove(cell.getBoardColour().toString() + "CellSelected");
                 cell.getStyleClass().remove(cell.getBoardColour().toString() + "CellThreaten");
-
-                cell.setPossible(false);
+                cell.setLabel(Label.SELECTED);
                 cell.getStyleClass().add(cell.getBoardColour() + "Cell");
             }
         }
@@ -196,28 +191,6 @@ public class Board {
             e.printStackTrace();
         }
     }
-
-//    public void isCheck() {
-//        ArrayList<Cell> threatenCells = new ArrayList<>();
-//        for (Piece piece : pieces) {
-//            if (piece.getSide() == Side.White) {
-//                threatenCells.addAll(piece.setLabels());
-//            }
-//        }
-//        if (threatenCells.contains(blackKing.getCell())) {
-//            blackKing.setChecked(true);
-//        }
-//        threatenCells.clear();
-//        for (Piece piece : pieces) {
-//            if (piece.getSide() == Side.Black) {
-//                threatenCells.addAll(piece.setLabels());
-//            }
-//        }
-//        if (threatenCells.contains(whiteKing.getCell())) {
-//            whiteKing.setChecked(true);
-//        }
-
-//    }
 }
 
 

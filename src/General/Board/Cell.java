@@ -42,12 +42,13 @@ public class Cell extends Button {
         this.getStyleClass().add(boardColour.toString() + "Cell");
         super.setPrefSize(100, 100);
         this.setOnAction(event -> {
+            System.out.println(toString());
             //     ®Powered By rferdosi
             if (Board.isTurn) {
                 if (Board.needToMove) {
                     Board.needToMove = false;
 //                    board.cleanTextures();
-                    if (isPossible) {
+                    if (label.equals(Label.POSSIBLE)) {
                         Board.lastSelectedPiece.move(this);
 //                        board.changeTurn();
 //                        board.waitForTurn();
@@ -56,14 +57,11 @@ public class Cell extends Button {
                 } else {
                     if (piece != null) {
                         if (piece.getSide() == GameController.playerSide) {
-                            ArrayList<Cell> possibles = piece.setLabels();
-                            for (Cell possibleCell : possibles) {
-                                possibleCell.setPossible(true);
-                            }
+                            piece.setLabels();
                             getStyleClass().add(boardColour + "CellSelected");
                             Board.lastSelectedPiece = piece;
                             Board.needToMove = true;
-                            setSelected(true);
+                            setLabel(Label.SELECTED);
                         }
                     } else {
                         board.cleanTextures();
