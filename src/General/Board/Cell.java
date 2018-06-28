@@ -48,7 +48,7 @@ public class Cell extends Button {
                 if (Board.needToMove) {
                     Board.needToMove = false;
 //                    board.cleanTextures();
-                    if (label.equals(Label.POSSIBLE)) {
+                    if (label.equals(Label.POSSIBLE) || label.equals(Label.THREATEN)) {
                         Board.lastSelectedPiece.move(this);
 //                        board.changeTurn();
 //                        board.waitForTurn();
