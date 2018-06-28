@@ -146,6 +146,7 @@ public class ClientHandler implements Runnable {
                 pairedCLientHandler = clientHandler;
             }
         }
+        //
         oos.writeObject(game);
         oos.flush();
         System.out.println("dn");
