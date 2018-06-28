@@ -9,9 +9,9 @@ public enum Side implements Serializable {
     public String toString() {
         switch (this) {
             case White:
-                return "white";
+                return "White";
             case Black:
-                return "black";
+                return "Black";
             case Automatic:
                 return "Automatic";
         }

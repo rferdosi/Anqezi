@@ -5,8 +5,6 @@ import ClientSide.Themes.Theme;
 import General.Pieces.Piece;
 import javafx.scene.control.Button;
 
-import java.util.ArrayList;
-
 public class Cell extends Button {
     private Cell upCell;
     private Cell downCell;

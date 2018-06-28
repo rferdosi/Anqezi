@@ -12,4 +12,28 @@ public class Move {
         this.srcCell = srcCell;
         this.distCell = distCell;
     }
+
+    public Piece getMovedPiece() {
+        return movedPiece;
+    }
+
+    public void setMovedPiece(Piece movedPiece) {
+        this.movedPiece = movedPiece;
+    }
+
+    public Cell getSrcCell() {
+        return srcCell;
+    }
+
+    public void setSrcCell(Cell srcCell) {
+        this.srcCell = srcCell;
+    }
+
+    public Cell getDistCell() {
+        return distCell;
+    }
+
+    public void setDistCell(Cell distCell) {
+        this.distCell = distCell;
+    }
 }

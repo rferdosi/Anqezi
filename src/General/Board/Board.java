@@ -14,13 +14,14 @@ import java.util.ArrayList;
 public class Board {
     private Cell[][] cells = new Cell[8][8];
     private ArrayList<Piece> pieces = new ArrayList<>();
-    private BoardTheme theme;
+    //    private BoardTheme theme;
     public static Piece lastSelectedPiece;
     public static boolean needToMove;
     public static boolean isTurn;
     private King whiteKing;
     private King blackKing;
     private Game game;
+    public String theme = "CopperGolden";
 
 
     public Board(Game game) {
@@ -36,11 +37,11 @@ public class Board {
         return pieces;
     }
 
-    public BoardTheme getTheme() {
+    public String getTheme() {
         return theme;
     }
 
-    public void setTheme(BoardTheme theme) {
+    public void setTheme(String theme) {
         this.theme = theme;
     }
 
@@ -125,6 +126,7 @@ public class Board {
             for (int j = 0; j < 8; j++) {
                 Cell cell = cells[i][j];
                 if (!cell.isEmpty()) {
+                    setTextures(cell.getPiece());
                     cell.setGraphic(cell.getPiece().getImageView());
                 }
                 if (cell.getLabel().equals(Label.POSSIBLE)) {
@@ -138,20 +140,12 @@ public class Board {
 
 
     public void setTextures(Piece piece) {
-        Image image = null;
-        switch (piece.getSide()) {
-            case Black:
-                image = new Image(getClass().getResource(
-                        "../../ClientSide/Assets/Images/Pieces/Carbon/" + piece.toString() + ".png").toExternalForm());
-                break;
-            case White:
-                image = new Image(getClass().getResource
-                        ("../../ClientSide/Assets/Images/Pieces/Silver/" + piece.toString() + ".png").toExternalForm());
-                break;
-        }
+        Image image = new Image(getClass().getResource("../../" +
+                "ClientSide/Assets/Images/Pieces/" + theme + "/" + piece.toString() + ".png").toExternalForm());
         piece.setImageView(new ImageView(image));
         piece.getImageView().setFitHeight(80);
         piece.getImageView().setFitWidth(80);
+
     }
 
     public void cleanTextures() {
@@ -186,7 +180,8 @@ public class Board {
             }
         }
         try {
-            cells = (Cell[][]) Client.ois.readObject();
+            Move move = (Move) Client.ois.readObject();
+            move.getMovedPiece().move(move.getDistCell());
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

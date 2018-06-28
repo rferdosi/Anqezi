@@ -60,6 +60,8 @@
             <Label layoutX="1032.0" layoutY="369.0" text="audience" />
             <Button layoutX="1135.0" layoutY="843.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="65.0" text="leave" />
             <VBox fx:id="time" layoutX="956.0" layoutY="115.0" prefHeight="109.0" prefWidth="184.0" />
+            <Button layoutX="1054.0" layoutY="843.0" mnemonicParsing="false" onAction="#theme2" text="Button" />
+            <Button layoutX="980.0" layoutY="856.0" mnemonicParsing="false" onAction="#theme1" text="Button" />
          </children>
       </Pane>
    </children>
