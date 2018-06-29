@@ -162,6 +162,7 @@ public class ClientHandler implements Runnable {
 
     private void sendGameRequests() throws IOException {
         oos.writeObject(incomingGameRequests);
+        oos.flush();
     }
 
     public ArrayList<Object> getIncomingGameRequests() {

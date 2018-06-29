@@ -23,7 +23,7 @@ import java.util.Optional;
 
 public class Server {
     public static boolean ExitRequested = false;
-    public static Stage pStage;
+//    public static Stage pStage;
     private static ArrayList<ClientHandler> activeClients;
     private static ArrayList<User> registeredUsers;
     private static int IDGenerator; //lastID

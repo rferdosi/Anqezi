@@ -111,4 +111,8 @@ public class Game implements Serializable {
         }
         return false;
     }
+    @Override
+    public String toString() {
+        return player1.getSimpleUser().toString();
+    }
 }
