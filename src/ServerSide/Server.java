@@ -1,7 +1,15 @@
 package ServerSide;
 
-import ClientSide.Game.Game;
 import General.User.User;
+import ServerSide.Controllers.ServerMainController;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -9,13 +17,15 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Formatter;
+import java.util.Optional;
 
 import static ClientSide.Client.ExitRequested;
 
 // todo import org.slf4j.Logger and use slf4j api for log
 
-public class Server {
-    private static ArrayList<Game> games;
+public class Server extends Application {
+    public static boolean ExitRequested = false;
+    public static Stage pStage;
     private static ArrayList<ClientHandler> activeClients;
     private static ArrayList<User> registeredUsers;
     private static int IDGenerator; //lastID
@@ -29,9 +39,9 @@ public class Server {
     }
 
     public static void main(String[] args) {
+        launch(args);
         loadData();
         Date date = new Date();
-        games = new ArrayList<>();
         registeredUsers = new ArrayList<>();
         activeClients = new ArrayList<>();
         ServerSocket serverSocket = null;
@@ -67,7 +77,7 @@ public class Server {
     }
 
 
-    private static void log(String message) {
+    public static void log(String message) {
         try (FileOutputStream fos = new FileOutputStream("log.txt", true);
              Formatter wLog = new Formatter(fos)) {
             wLog.format(message + "\n");
@@ -77,7 +87,7 @@ public class Server {
         }
     }
 
-    static void saveData() {
+    public static void saveData() {
         try (FileOutputStream users = new FileOutputStream("userList.yolo")) {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(users);
             objectOutputStream.writeObject(registeredUsers);
@@ -89,7 +99,7 @@ public class Server {
         }
     }
 
-    private static void loadData() {
+    public static void loadData() {
         try {
             FileInputStream users = new FileInputStream("userList.yolo");
             ObjectInputStream objectInputStream = new ObjectInputStream(users);
@@ -99,6 +109,32 @@ public class Server {
         } catch (ClassNotFoundException e2) {
             log("User list can't be load");
             e2.printStackTrace();
+        }
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        pStage = primaryStage;
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("FXMLs/serverMain.fxml"));
+        pStage.setTitle("Server");
+        pStage.setScene(new Scene(root));
+        pStage.setResizable(false);
+        pStage.setOnCloseRequest(Server::Close_Alert);
+        pStage.show();
+    }
+
+    private static void Close_Alert(javafx.stage.WindowEvent e) {
+        Alert close = new Alert(Alert.AlertType.CONFIRMATION);
+        close.setTitle("Exit?!");
+        close.setHeaderText("Are You Sure You Want to Exit?");
+        close.initModality(Modality.APPLICATION_MODAL);
+        Optional<ButtonType> result = close.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            ServerMainController serverMainController = new ServerMainController();
+            serverMainController.CloseServer();
+        } else {
+            e.consume();
         }
     }
 
