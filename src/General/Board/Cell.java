@@ -2,6 +2,7 @@ package General.Board;
 
 import ClientSide.Controllers.GameController;
 import ClientSide.Themes.Theme;
+import General.Pieces.King;
 import General.Pieces.Piece;
 import javafx.scene.control.Button;
 
@@ -40,13 +41,13 @@ public class Cell extends Button implements Cloneable {
         this.getStyleClass().add(boardColour.toString() + "Cell");
         super.setPrefSize(100, 100);
         this.setOnAction(event -> {
-            System.out.println(toString());
+//            System.out.println(toString());
             //     ®Powered By rferdosi
-            if (Board.isTurn) {
+            if (GameController.isTurn) {
                 if (Board.needToMove) {
                     Board.needToMove = false;
                     if (label.equals(Label.POSSIBLE) || label.equals(Label.THREATEN)) {
-                        if (!isEmpty() && Board.lastSelectedPiece.getSide().equals(piece.getSide())) {// shah ghale
+                        if (!isEmpty() && Board.lastSelectedPiece.getSide().equals(piece.getSide())) {  // Castling
                             if (Board.lastSelectedPiece.getCell().leftCell.leftCell.leftCell.equals(this)) {
                                 Board.lastSelectedPiece.move(this.rightCell);
                                 this.getPiece().move(Board.lastSelectedPiece.getCell().rightCell);
@@ -56,6 +57,7 @@ public class Cell extends Button implements Cloneable {
                             }
                         } else {
                             Board.lastSelectedPiece.move(this);
+                            System.out.println(board.getBlackKing().isChecked(board.getBlackKing().getCell()));
                         }
 //                        board.changeTurn();
 //                        board.waitForTurn();
@@ -162,6 +164,32 @@ public class Cell extends Button implements Cloneable {
         this.label = label;
     }
 
+
+    public boolean isCheckedByOtherKing(Side side) {
+        King king = null;
+        switch (side) {
+            case White:
+                king = getBoard().getBlackKing();
+                break;
+            case Black:
+                king = getBoard().getWhiteKing();
+                break;
+        }
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                try {
+                    if (getBoard().getCell(row + i, column + j).getPiece().equals(king)) {
+                        return true;
+                    }
+
+                } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+                    System.out.println("Index");
+                }
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         String s = boardColour.toString() + " at " + row + " " + column;
@@ -171,9 +199,12 @@ public class Cell extends Button implements Cloneable {
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
-//        Cell tmp = new Cell(this.boardColour);
-        return super.clone();
+    public Object clone() throws CloneNotSupportedException {
+        Cell tmp = new Cell(this.boardColour);
+        Piece myPiece = (Piece) piece.clone();
+        tmp.setPiece(myPiece);
+        return tmp;
     }
+
 }
 

@@ -47,6 +47,7 @@ public class ClientHandler implements Runnable {
                         break;
                     case SIGN_UP_KEY:
                         register();
+                        Server.saveData();
                         break;
                     case SEND_USER:
                         user = (User) ois.readObject();
@@ -58,12 +59,14 @@ public class ClientHandler implements Runnable {
                         sendSearchedUsers();
                         break;
                     case NEW_GAME_REQUEST:
-                        System.out.println("eeeeeeeeeeee");
+                        System.out.println("request");
                         newGameRequest();
                         break;
                     case MOVE:
                         Move move = (Move) ois.readObject();
+                        pairedCLientHandler.oos.writeBoolean(true);
                         pairedCLientHandler.oos.writeObject(move);
+
                         break;
                 }
             } catch (IOException | ClassNotFoundException e) {
@@ -146,7 +149,6 @@ public class ClientHandler implements Runnable {
                 pairedCLientHandler = clientHandler;
             }
         }
-        //
         oos.writeObject(game);
         oos.flush();
         System.out.println("dn");

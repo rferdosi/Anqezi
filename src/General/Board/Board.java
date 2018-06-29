@@ -16,7 +16,7 @@ public class Board {
     private ArrayList<Piece> pieces = new ArrayList<>();
     public static Piece lastSelectedPiece;
     public static boolean needToMove;
-    public static boolean isTurn;
+//    public static boolean isTurn;
     private King whiteKing;
     private King blackKing;
     private Game game;
@@ -177,7 +177,7 @@ public class Board {
     }
 
     public void changeTurn() {
-        isTurn = false;
+//        isTurn = false;
         try {
             Client.oos.writeBoolean(true);
             GameController.setLabelText();
@@ -187,20 +187,21 @@ public class Board {
     }
 
     public void waitForTurn() {
-        while (!isTurn) {
-            try {
-                isTurn = Client.ois.readBoolean();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        try {
-            Move move = (Move) Client.ois.readObject();
-            move.getMovedPiece().move(move.getDistCell());
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+//        while (!isTurn) {
+//            try {
+//                isTurn = Client.ois.readBoolean();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        try {
+//            Move move = (Move) Client.ois.readObject();
+//            move.getMovedPiece().move(move.getDistCell());
+//        } catch (IOException | ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
     }
+
 }
 
 

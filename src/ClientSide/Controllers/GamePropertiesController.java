@@ -72,12 +72,20 @@ public class GamePropertiesController extends MotherController implements Initia
             Client.oos.writeObject(Request.NEW_GAME_REQUEST);
             Client.oos.writeObject(selectedUser);
             Client.oos.writeBoolean(isRatedCheckBox.isSelected());
-            Client.oos.writeObject(comboBox.getSelectionModel().selectedItemProperty().get());
-            Client.oos.writeObject(Client.getUser());
             Client.oos.flush();
-            Object object = Client.ois.readObject();
-            System.out.println(object);
-            //GameController.game = (Game) Client.ois.readObject();
+            Client.oos.writeObject(comboBox.getSelectionModel().selectedItemProperty().get());
+//            Client.oos.writeObject(Client.getUser());
+            Client.oos.flush();
+            while (true) {
+                try {
+                    Object object = Client.ois.readObject();
+                    System.out.println(object);
+                    GameController.game = (Game) object;
+                    break;
+                } catch (ClassCastException ignored) {
+
+                }
+            }
             goTo("game");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();

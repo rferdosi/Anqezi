@@ -1,12 +1,13 @@
 package ClientSide.Controllers;
 
+import ClientSide.Client;
 import General.Board.Board;
 import General.Board.Side;
 import General.Game;
-import General.User.Player;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -24,9 +25,12 @@ public class GameController extends MotherController implements Initializable {
     public VBox myBoard;
     public Board board;
     public static Game game;
-    public static Side playerSide;
-    public VBox time;
+    public static Side playerSide = Side.White;
+    public static int time = 1000;
     public Label label;
+    public Label m;
+    public Label s;
+    public static boolean isTurn = true;
 
 
     public static void setLabelText() {
@@ -35,17 +39,24 @@ public class GameController extends MotherController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        playerSide = Side.White;
+
+//        if (Client.getUser().getSimpleUser().equals(game.getPlayer1().getSimpleUser()))
+//            playerSide = game.getPlayer1().getSide();
+//        else
+//            playerSide = game.getPlayer2().getSide();
         if (game == null) {
             game = new Game();
         }
+
         board = game.getBoard();
 //        Board.needToMove = true;
-        if (playerSide == Side.White)
-            Board.isTurn = true;
+        if (playerSide == Side.White) {
+//            Board.isTurn = true;
+        }
+
         readFromBoard();
-        //Todo set maxTime here!
-        timeManagement(500000);
+        System.out.println("UUU");
+        //Todo set maxTime here
     }
 
     private void readFromBoard() {
@@ -97,17 +108,4 @@ public class GameController extends MotherController implements Initializable {
     }
 }
 
-class SetLabel implements Runnable {
-
-    private GameController gameController;
-
-    @Override
-    public void run() {
-
-    }
-
-    public SetLabel(GameController gameController) {
-        this.gameController = gameController;
-    }
-}
 

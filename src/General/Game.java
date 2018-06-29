@@ -22,8 +22,7 @@ public class Game implements Serializable {
     private ArrayList<Move> moves;
     private boolean isRated;
     private boolean isPlayer2Accepted;
-//    private GameController gameController;
-//    Time gameTime;
+    private int time;
 
     public Board getBoard() {
         return board;
@@ -55,6 +54,10 @@ public class Game implements Serializable {
 
     public Game() {
 
+    }
+
+    public void setPlayer2Accepted(boolean player2Accepted) {
+        isPlayer2Accepted = player2Accepted;
     }
 
     public Game(Player player1, Player player2, boolean isRated) {
@@ -90,6 +93,14 @@ public class Game implements Serializable {
 
     public void setDraw(boolean draw) {
         isDraw = draw;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public boolean isRated() {
+        return isRated;
     }
 
     @Override

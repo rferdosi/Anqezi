@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -29,5 +30,18 @@ public abstract class MotherController {
         //myScene.getStylesheets().add("../CSS/" + name + ".css");
         Client.pStage.setScene(myScene);
         Client.pStage.show();
+    }
+    public void open(String name){
+        Stage newGameStage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("../FXMLs/"+name+".fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        newGameStage.setTitle(name);
+        newGameStage.setScene(new Scene(root));
+        newGameStage.setResizable(false);
+        newGameStage.show();
     }
 }

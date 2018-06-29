@@ -76,4 +76,13 @@ public class Rook extends Piece {
     public String toString() {
         return side + "Rook";
     }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Rook rook = new Rook(side);
+        rook.cell = (Cell) cell.clone();
+        rook.column = column;
+        rook.row = row;
+        return rook;
+    }
 }

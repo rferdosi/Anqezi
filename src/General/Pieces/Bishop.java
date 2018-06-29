@@ -81,4 +81,13 @@ public class Bishop extends Piece {
     public String toString() {
         return side + "Bishop";
     }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Bishop bishop = new Bishop(side);
+        bishop.row = row;
+        bishop.column = column;
+        bishop.cell = (Cell) cell.clone();
+        return bishop;
+    }
 }

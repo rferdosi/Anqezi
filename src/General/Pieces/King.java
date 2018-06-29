@@ -30,6 +30,8 @@ public class King extends Piece {
                     continue;
                 }
                 try {
+                    if (cell.getBoard().getCell(row + i, column + j).isCheckedByOtherKing(side))
+                        continue;
                     Cell inProgressCell = this.cell.getBoard().getCell(row + i, column + j);
                     if (isChecked(inProgressCell)) {
                         continue;
@@ -92,5 +94,14 @@ public class King extends Piece {
     public void move(Cell destination) {
         super.move(destination);
         isFirstMove = false;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        King king = new King(side);
+        king.cell = (Cell) cell.clone();
+        king.row = row;
+        king.column = column;
+        return king;
     }
 }

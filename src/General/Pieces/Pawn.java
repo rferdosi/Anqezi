@@ -174,4 +174,13 @@ public class Pawn extends Piece {
     public String toString() {
         return side + "Pawn";
     }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Pawn pawn = new Pawn(side);
+        pawn.cell = (Cell) cell.clone();
+        pawn.column = column;
+        pawn.row = row;
+        return pawn;
+    }
 }

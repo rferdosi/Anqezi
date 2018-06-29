@@ -3,6 +3,8 @@ package ClientSide.Controllers;
 import ClientSide.Client;
 import General.Game;
 import General.Tournament;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,29 +21,23 @@ import java.util.ResourceBundle;
 public class MainMenuController extends MotherController implements Initializable {
     public Label name;
     public ListView<Game> requestedGames;
-    public ListView<Tournament>tournoments;
+    public ListView<Tournament> tournoments;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         name.setText("Welcome " + Client.getUser().getName());
         requestedGames.setItems(FXCollections.observableArrayList(Client.getUser().getRequestedGames()));
+        requestedGames.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            GameAcceptController.game = newValue;
+            open("gameAccept");
+        });
     }
 
-    public void about() throws IOException {
-        Stage newGameStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("../FXMLs/about.fxml"));
-        newGameStage.setTitle("about");
-        newGameStage.setScene(new Scene(root));
-        newGameStage.setResizable(false);
-        newGameStage.show();
+    public void about() {
+        open("about");
     }
 
-    public void newGame() throws IOException {
-        Stage newGameStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("../FXMLs/gameProperties.fxml"));
-        newGameStage.setTitle("new Game");
-        newGameStage.setScene(new Scene(root));
-        newGameStage.setResizable(false);
-        newGameStage.show();
+    public void newGame() {
+        open("gameProperties");
     }
 }

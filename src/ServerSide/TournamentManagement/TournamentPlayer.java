@@ -12,16 +12,17 @@ public class TournamentPlayer extends Player implements Comparable<TournamentPla
         super(simpleUser, side);
         this.tournamentRating = tournamentRating;
     }
-    public TournamentPlayer(SimpleUser simpleUser, int tournamentRating){
+
+    public TournamentPlayer(SimpleUser simpleUser, int tournamentRating) {
         super(simpleUser);
         this.tournamentRating = tournamentRating;
     }
 
     @Override
     public int compareTo(TournamentPlayer o) {
-        if (this.tournamentRating > o.tournamentRating){
+        if (this.tournamentRating > o.tournamentRating) {
             return 1;
-        } else if (this.tournamentRating == o.tournamentRating){
+        } else if (this.tournamentRating == o.tournamentRating) {
             return 0;
         } else {
             return -1;

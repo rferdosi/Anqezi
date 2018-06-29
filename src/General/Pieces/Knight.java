@@ -44,7 +44,7 @@ public class Knight extends Piece {
         super.setLabels();
     }
 
-    private void labelGiver(Cell inProgressCell){
+    private void labelGiver(Cell inProgressCell) {
         if (inProgressCell.isEmpty()) {
             inProgressCell.setLabel(Label.POSSIBLE);
         } else if (!inProgressCell.isEmpty() && inProgressCell.getPiece().side != this.side) {
@@ -55,5 +55,14 @@ public class Knight extends Piece {
     @Override
     public String toString() {
         return side + "Knight";
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Knight knight = new Knight(side);
+        knight.row = row;
+        knight.cell = (Cell) cell.clone();
+        knight.column = column;
+        return knight;
     }
 }

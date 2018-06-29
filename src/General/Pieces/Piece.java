@@ -6,7 +6,7 @@ import General.Board.Move;
 import General.Board.Side;
 import javafx.scene.image.ImageView;
 
-abstract public class Piece {
+abstract public class Piece implements Cloneable {
     protected ImageView imageView;
     protected Cell cell;
     protected Side side;
@@ -65,42 +65,53 @@ abstract public class Piece {
     }
 
     public void setLabels() {
+//        King king = null;
+//        switch (side) {
+//            case Black:
+//                king = cell.getBoard().getBlackKing();
+//                break;
+//            case White:
+//                king = cell.getBoard().getWhiteKing();
+//        }
+//        Cell[][] cells = cell.getBoard().getCells();
+//        Cell cellHolder = cell;
+//        cell = null;
+
 //        Cell[][] fakeCells = cell.getBoard().getCells().clone();
 //        for (int i = 0; i < 8; i++) {
 //            for (int j = 0; j < 8; j++) {
 //                Cell myCell = fakeCells[i][j];
 //                if (myCell.getLabel().equals(Label.THREATEN) || myCell.getLabel().equals(Label.POSSIBLE)) {
-//                    if (!this.fakeMove(myCell)) {
-//                        myCell.setLabel(Label.NORMAL);
-//                    }
+//                    if (!(this instanceof King))
+//                        if (!this.fakeMove(myCell)) {
+//                            myCell.setLabel(Label.NORMAL);
+//                        }
 //                }
 //            }
 //        }
     }
 
-    public boolean fakeMove(Cell cell) {
-        King king = null;
-        switch (side) {
-            case Black:
-                king = cell.getBoard().getBlackKing();
-                break;
-            case White:
-                king = cell.getBoard().getWhiteKing();
-        }
-        Cell cellHolder = this.cell;
-        Piece pieceHolder = cell.getPiece();
-        this.move(cell);
-        boolean cond = king.isChecked(king.cell);
-        this.cell=cellHolder;
-        cell.setPiece(pieceHolder);
-        cell.getBoard().cleanTextures();
-        return cond;
-
+    private boolean fakeMove(Cell cell) {
+//
+//        Cell cellHolder = this.cell;
+//        Piece pieceHolder = cell.getPiece();
+//        this.move(cell);
+//        boolean cond = king.isChecked(king.cell);
+//        this.move(cellHolder);
+//        pieceHolder.move(cell);
+//        cell.getBoard().cleanTextures();
+////        return cond;
+        return false;
 
     }
 
     @Override
     public String toString() {
         return side.toString() + " ";
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }
