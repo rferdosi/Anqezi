@@ -48,6 +48,7 @@ public class MainMenuController extends MotherController implements Initializabl
         try {
             Client.oos.writeObject(Request.GET_GAME_REQUESTS);
             ArrayList<Game> games = (ArrayList<Game>) Client.ois.readObject();
+            System.out.println(games);
             requestedGames.setItems(FXCollections.observableArrayList(games));
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();

@@ -27,13 +27,6 @@ abstract public class Piece implements Cloneable, Serializable {
         if (!destination.isEmpty() && destination.getPiece().side != this.side) {
             this.cell.getBoard().getPieces().remove(destination.getPiece());
         }
-        /*this.cell.setPiece(null);
-       // this.cell.setGraphic(null);
-        this.cell = destination;
-        this.cell.setPiece(this);
-      //  this.cell.setGraphic(this.getImageView());
-        this.row = destination.getRow();
-        this.column = destination.getColumn();*/
         Move move = new Move(this, cell, destination);
         cell.getBoard().getGame().getMoves().add(move);
         cell.setPiece(null);

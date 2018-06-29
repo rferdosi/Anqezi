@@ -26,8 +26,8 @@ public class GameController extends MotherController implements Initializable {
     public VBox myBoard;
     public Board board;
     public static Game game;
-    public static Side playerSide = Side.White;
-    public static int time = 1000;
+    public static Side playerSide;
+    public static int time;
     public Label label;
     public Label m;
     public Label s;
@@ -48,6 +48,7 @@ public class GameController extends MotherController implements Initializable {
             otherPlayer = game.getPlayer1();
             player = game.getPlayer2();
         }
+        time = player.getTime();
         playerSide = player.getSide();
 //        if (game == null) {
 //            game = new Game();

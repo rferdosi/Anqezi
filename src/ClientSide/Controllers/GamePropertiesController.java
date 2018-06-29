@@ -29,6 +29,7 @@ public class GamePropertiesController extends MotherController implements Initia
     public Label name;
     public Label username;
     public VBox lastGames;
+    public TextField timeTextField;
     private SimpleUser selectedUser;
 
     @Override
@@ -73,11 +74,12 @@ public class GamePropertiesController extends MotherController implements Initia
 
     public void gameRequest() {
         Side side = comboBox.getSelectionModel().selectedItemProperty().get();
-        Player player1 = new Player(Client.getUser().getSimpleUser(), side);
+        int time = Integer.parseInt(timeTextField.getText());
+        Player player1 = new Player(Client.getUser().getSimpleUser(), side, time);
         SimpleUser requestedUser = selectedUser;
-        Player player2 = new Player(requestedUser, side.getOtherSide());
+        Player player2 = new Player(requestedUser, side.getOtherSide(), time);
         boolean isRated = isRatedCheckBox.isSelected();
-        Game game = new Game(player1, player1, isRated);
+        Game game = new Game(player1, player2, isRated);
         GameController.game = game;
         game.setPlayer2Accepted(false);
         try {

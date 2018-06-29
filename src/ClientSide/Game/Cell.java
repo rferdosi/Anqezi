@@ -45,7 +45,6 @@ public class Cell extends Button implements Cloneable, Serializable {
         this.getStyleClass().add(boardColour.toString() + "Cell");
         super.setPrefSize(100, 100);
         this.setOnAction(event -> {
-//            System.out.println(toString());
             //     ®Powered By rferdosi
             if (GameController.isTurn && GameController.game.isPlayer2Accepted()) {
                 if (Board.needToMove) {

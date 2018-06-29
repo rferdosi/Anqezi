@@ -20,7 +20,7 @@
       <Label fx:id="username" layoutX="482.0" layoutY="74.0" text="Label" />
       <VBox fx:id="lastGames" layoutX="385.0" layoutY="110.0" prefHeight="200.0" prefWidth="290.0" />
       <CheckBox fx:id="isRatedCheckBox" layoutX="398.0" layoutY="340.0" mnemonicParsing="false" text="rated" />
-      <TextField fx:id="secs" layoutX="456.0" layoutY="402.0" />
+      <TextField fx:id="timeTextField" layoutX="456.0" layoutY="402.0" />
       <ComboBox fx:id="comboBox" layoutX="509.0" layoutY="336.0" prefWidth="150.0" promptText="COLOR" />
    </children>
 </AnchorPane>
