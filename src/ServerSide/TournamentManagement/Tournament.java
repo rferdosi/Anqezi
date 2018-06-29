@@ -8,6 +8,7 @@ import General.User.SimpleUser;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 public class Tournament implements Serializable {
 
@@ -18,6 +19,7 @@ public class Tournament implements Serializable {
     private ScoringSystem scoringSystem;
     private MatchMakingMethod matchMakingMethod;
     private int currentRound = 0;
+    private final int MaximumRounds = 7;
 
     Tournament (SimpleUser[] users, MatchMakingMethod matchMakingMethod, ScoringSystem scoringSystem){
 
@@ -72,6 +74,26 @@ public class Tournament implements Serializable {
         }
     }
     private void swissSystemMatchMakerNextRounds(){
+        ArrayList<TournamentPlayer> tempPlayers = (ArrayList<TournamentPlayer>) tournamentPlayers.clone();
+        int negativeValue = 2;
+        while (tempPlayers.size() > 1){
+            Game game = new Game();
+            if (!hasTheyPlayed(tempPlayers.get(tempPlayers.size() - 1).getSimpleUser(), tempPlayers.get(tempPlayers.size() - negativeValue).getSimpleUser())){
+                if (tempPlayers.get(tempPlayers.size() - 1).howManyTimeWhite < 2 || tempPlayers.get(tempPlayers.size() - negativeValue).howManyTimeWhite < 2) {
+                    Random random = new Random();
+                    int player1Side = (random.nextInt() % 2);
+                    if (tempPlayers.get(tempPlayers.size() - 1).howManyTimeWhite < 3 && player1Side == 1) {
+                        tempPlayers.get(tempPlayers.size() - 1).setSide(Side.White);
+                        tempPlayers.get(tempPlayers.size() - 1).howManyTimeWhite++;
+                        tempPlayers.get(tempPlayers.size() - negativeValue).setSide(Side.Black);
+                        tempPlayers.get(tempPlayers.size() - negativeValue).howManyTimeWhite = 0;
+                    } else {
+                        //tempPlayers.get(tempPlayers.size() - negativeValue)
+                    }
+                    game.setPlayer1(tempPlayers.get(tempPlayers.size() - 1));
+                }
+            }
+        }
         /*for (int i = 0; i < tournamentPlayers.size(); i += 2){
             Game game = new Game();
             tournamentPlayers.get(i).setSide(Side.Black);
@@ -82,6 +104,17 @@ public class Tournament implements Serializable {
             game.setPlayer2(player2);
             undoneGames.add(game);
         }*/
+    }
+
+    private boolean hasTheyPlayed(SimpleUser simpleUser1, SimpleUser simpleUser2){
+        for (int i = 0; i < finishedGames.size(); i++) {
+            if (finishedGames.get(i).getPlayer1().getSimpleUser().equals(simpleUser1) || finishedGames.get(i).getPlayer2().getSimpleUser().equals(simpleUser1)){
+                if (finishedGames.get(i).getPlayer1().getSimpleUser().equals(simpleUser2) || finishedGames.get(i).getPlayer2().getSimpleUser().equals(simpleUser2)){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void setGameResult(Game game) {
@@ -144,9 +177,9 @@ public class Tournament implements Serializable {
         }
         updateRanking();
         if (matchMakingMethod == MatchMakingMethod.SwissSystem){
-            if (undoneGames.size() == 0){
-                swissSystemMatchMakerNextRounds();
+            if (undoneGames.size() == 0 && currentRound < MaximumRounds){
                 currentRound++;
+                swissSystemMatchMakerNextRounds();
             }
         }
     }

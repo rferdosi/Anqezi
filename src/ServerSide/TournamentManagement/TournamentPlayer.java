@@ -6,6 +6,7 @@ import General.User.SimpleUser;
 
 public class TournamentPlayer extends Player implements Comparable<TournamentPlayer> {
     double tournamentRating;
+    int howManyTimeWhite = 0;
 
     public TournamentPlayer(SimpleUser simpleUser, Side side, int tournamentRating) {
         super(simpleUser, side);
