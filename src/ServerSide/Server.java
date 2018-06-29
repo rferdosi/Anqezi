@@ -19,11 +19,9 @@ import java.util.Date;
 import java.util.Formatter;
 import java.util.Optional;
 
-import static ClientSide.Client.ExitRequested;
-
 // todo import org.slf4j.Logger and use slf4j api for log
 
-public class Server extends Application {
+public class Server {
     public static boolean ExitRequested = false;
     public static Stage pStage;
     private static ArrayList<ClientHandler> activeClients;
@@ -39,55 +37,6 @@ public class Server extends Application {
     }
 
     public static void main(String[] args) {
-        launch(args);
-    }
-
-
-    public static void log(String message) {
-        try (FileOutputStream fos = new FileOutputStream("log.txt", true);
-             Formatter wLog = new Formatter(fos)) {
-            wLog.format(message + "\n");
-            wLog.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void saveData() {
-        try (FileOutputStream users = new FileOutputStream("userList.yolo")) {
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(users);
-            objectOutputStream.writeObject(registeredUsers);
-            objectOutputStream.flush();
-            objectOutputStream.close();
-        } catch (IOException e) {
-            log("Cant save user list");
-            e.printStackTrace();
-        }
-    }
-
-    public static void loadData() {
-        try {
-            FileInputStream users = new FileInputStream("userList.yolo");
-            ObjectInputStream objectInputStream = new ObjectInputStream(users);
-            registeredUsers = (ArrayList<User>) objectInputStream.readObject();
-        } catch (IOException e1) {
-            log("User list file not found");
-        } catch (ClassNotFoundException e2) {
-            log("User list can't be load");
-            e2.printStackTrace();
-        }
-    }
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        pStage = primaryStage;
-        Parent root;
-        root = FXMLLoader.load(getClass().getResource("FXMLs/serverMain.fxml"));
-        pStage.setTitle("Server");
-        pStage.setScene(new Scene(root));
-        pStage.setResizable(false);
-        pStage.setOnCloseRequest(Server::Close_Alert);
-        pStage.show();
         loadData();
         Date date = new Date();
         registeredUsers = new ArrayList<>();
@@ -124,17 +73,39 @@ public class Server extends Application {
         log("End of The Session At:\t" + date.toString());
     }
 
-    private static void Close_Alert(javafx.stage.WindowEvent e) {
-        Alert close = new Alert(Alert.AlertType.CONFIRMATION);
-        close.setTitle("Exit?!");
-        close.setHeaderText("Are You Sure You Want to Exit?");
-        close.initModality(Modality.APPLICATION_MODAL);
-        Optional<ButtonType> result = close.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            ServerMainController serverMainController = new ServerMainController();
-            serverMainController.CloseServer();
-        } else {
-            e.consume();
+
+    public static void log(String message) {
+        try (FileOutputStream fos = new FileOutputStream("log.txt", true);
+             Formatter wLog = new Formatter(fos)) {
+            wLog.format(message + "\n");
+            wLog.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void saveData() {
+        try (FileOutputStream users = new FileOutputStream("userList.yolo")) {
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(users);
+            objectOutputStream.writeObject(registeredUsers);
+            objectOutputStream.flush();
+            objectOutputStream.close();
+        } catch (IOException e) {
+            log("Cant save user list");
+            e.printStackTrace();
+        }
+    }
+
+    public static void loadData() {
+        try {
+            FileInputStream users = new FileInputStream("userList.yolo");
+            ObjectInputStream objectInputStream = new ObjectInputStream(users);
+            registeredUsers = (ArrayList<User>) objectInputStream.readObject();
+        } catch (IOException e1) {
+            log("User list file not found");
+        } catch (ClassNotFoundException e2) {
+            log("User list can't be load");
+            e2.printStackTrace();
         }
     }
 
