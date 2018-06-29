@@ -40,40 +40,6 @@ public class Server extends Application {
 
     public static void main(String[] args) {
         launch(args);
-        loadData();
-        Date date = new Date();
-        registeredUsers = new ArrayList<>();
-        activeClients = new ArrayList<>();
-        ServerSocket serverSocket = null;
-        Socket clientSocket = null;
-        try {
-            serverSocket = new ServerSocket(8569);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        log("New Session Started At:\t" + date.toString());
-        while (!ExitRequested) {
-            try {
-                System.out.println(getRegisteredUsers().size());
-                for (User user : getRegisteredUsers()) {
-                    System.out.println(user);
-                }
-                clientSocket = serverSocket.accept();
-                log("A new Client has connected");
-                ClientHandler clientHandler = new ClientHandler
-                        (clientSocket, clientSocket.getInputStream(), clientSocket.getOutputStream(), IDGenerator++);
-                Thread thread = new Thread(clientHandler);
-                activeClients.add(clientHandler);
-                thread.start();
-                clientHandler.setThread(thread);
-            } catch (IOException e) {
-                e.printStackTrace();
-                saveData();
-                log(e.getMessage() + "At\t" + date.toString());
-            }
-        }
-        saveData();
-        log("End of The Session At:\t" + date.toString());
     }
 
 
@@ -122,6 +88,40 @@ public class Server extends Application {
         pStage.setResizable(false);
         pStage.setOnCloseRequest(Server::Close_Alert);
         pStage.show();
+        loadData();
+        Date date = new Date();
+        registeredUsers = new ArrayList<>();
+        activeClients = new ArrayList<>();
+        ServerSocket serverSocket = null;
+        Socket clientSocket = null;
+        try {
+            serverSocket = new ServerSocket(8569);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        log("New Session Started At:\t" + date.toString());
+        while (!ExitRequested) {
+            try {
+                System.out.println(getRegisteredUsers().size());
+                for (User user : getRegisteredUsers()) {
+                    System.out.println(user);
+                }
+                clientSocket = serverSocket.accept();
+                log("A new Client has connected");
+                ClientHandler clientHandler = new ClientHandler
+                        (clientSocket, clientSocket.getInputStream(), clientSocket.getOutputStream(), IDGenerator++);
+                Thread thread = new Thread(clientHandler);
+                activeClients.add(clientHandler);
+                thread.start();
+                clientHandler.setThread(thread);
+            } catch (IOException e) {
+                e.printStackTrace();
+                saveData();
+                log(e.getMessage() + "At\t" + date.toString());
+            }
+        }
+        saveData();
+        log("End of The Session At:\t" + date.toString());
     }
 
     private static void Close_Alert(javafx.stage.WindowEvent e) {
