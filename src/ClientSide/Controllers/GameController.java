@@ -60,6 +60,8 @@ public class GameController extends MotherController implements Initializable {
         }
         readFromBoard();
         //Todo set maxTime here!
+        Thread timer = new Thread(new Timer());
+        timer.start();
         Thread setLabels = new Thread(() -> {
             Platform.runLater(() -> {
                 if (!game.isPlayer2Accepted()) {
@@ -67,8 +69,11 @@ public class GameController extends MotherController implements Initializable {
                 } else {
                     label.setText(Board.turn.getSimpleUser().getName());
                 }
+                m.setText(Integer.toString(time / 60));
+                s.setText(Integer.toString(time % 60));
+
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -124,6 +129,21 @@ public class GameController extends MotherController implements Initializable {
     public void theme1(ActionEvent actionEvent) {
         board.setTheme("CarbonSilver");
         board.updateTextures();
+    }
+}
+
+class Timer implements Runnable {
+
+    @Override
+    public void run() {
+        while (true) {
+            GameController.time--;
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
 
