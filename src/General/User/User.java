@@ -18,6 +18,10 @@ public class User implements Serializable {
     private ArrayList<SimpleUser> blockList;
     private ArrayList<Game> requestedGames;
     private ArrayList<Tournament> tournaments;
+    private int wins;
+    private int losts;
+    private int draws;
+    private int K_Factor;
 
     public User(String username, String password) {
         simpleUser = new SimpleUser(username);

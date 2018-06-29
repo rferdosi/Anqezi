@@ -94,16 +94,6 @@ public class Tournament implements Serializable {
                 }
             }
         }
-        /*for (int i = 0; i < tournamentPlayers.size(); i += 2){
-            Game game = new Game();
-            tournamentPlayers.get(i).setSide(Side.Black);
-            Player player1 = new Player(tournamentPlayers.get(i).getSimpleUser(), tournamentPlayers.get(i).getSide());
-            game.setPlayer1(player1);
-            tournamentPlayers.get(i + 1).setSide(Side.Black);
-            Player player2 = new Player(tournamentPlayers.get(i + 1).getSimpleUser(), tournamentPlayers.get(i + 1).getSide());
-            game.setPlayer2(player2);
-            undoneGames.add(game);
-        }*/
     }
 
     private boolean hasTheyPlayed(SimpleUser simpleUser1, SimpleUser simpleUser2){

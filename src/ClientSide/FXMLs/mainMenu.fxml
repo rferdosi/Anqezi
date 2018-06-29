@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<AnchorPane prefHeight="900.0" prefWidth="1200.0" styleClass="background" stylesheets="@../CSS/mainMenu.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientSide.Controllers.MainMenuController">
+<AnchorPane prefHeight="900.0" prefWidth="1200.0" styleClass="background" stylesheets="@../CSS/mainMenu.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientSide.Controllers.MainMenuController">
    <children>
       <VBox prefHeight="400.0" prefWidth="143.0">
          <children>
@@ -37,5 +37,6 @@
       <ListView fx:id="requestedGames" layoutX="320.0" layoutY="424.0" prefHeight="200.0" prefWidth="200.0" />
       <Label fx:id="name" layoutX="326.0" layoutY="40.0" text="Label" />
       <ListView fx:id="tournoment" layoutX="659.0" layoutY="424.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button fx:id="ProfileButton" layoutX="366.0" layoutY="35.0" mnemonicParsing="false" text="Profile" />
    </children>
 </AnchorPane>
