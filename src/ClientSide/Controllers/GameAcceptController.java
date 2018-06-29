@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GameAcceptController implements Initializable {
+public class GameAcceptController extends MotherController implements Initializable {
 
     public static Game game;
     public Label isRated;
@@ -29,6 +29,9 @@ public class GameAcceptController implements Initializable {
 
     public void accept() {
         game.setPlayer2Accepted(true);
+        GameController.game = game;
+        goTo("game");
+
         try {
             Client.oos.writeObject(game);
         } catch (IOException e) {

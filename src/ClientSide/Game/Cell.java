@@ -47,7 +47,7 @@ public class Cell extends Button implements Cloneable, Serializable {
         this.setOnAction(event -> {
 //            System.out.println(toString());
             //     ®Powered By rferdosi
-            if (GameController.isTurn) {
+            if (GameController.isTurn && GameController.game.isPlayer2Accepted()) {
                 if (Board.needToMove) {
                     Board.needToMove = false;
                     if (label.equals(Label.POSSIBLE) || label.equals(Label.THREATEN)) {
