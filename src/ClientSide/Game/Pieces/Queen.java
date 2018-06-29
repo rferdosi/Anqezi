@@ -1,9 +1,7 @@
-package General.Pieces;
+package ClientSide.Game.Pieces;
 
-import General.Board.Cell;
-import General.Board.Side;
-
-import java.util.ArrayList;
+import ClientSide.Game.Cell;
+import General.Side;
 
 public class Queen extends Piece {
 

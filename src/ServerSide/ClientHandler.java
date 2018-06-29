@@ -1,10 +1,6 @@
 package ServerSide;
 
-import General.Board.Move;
-import General.Board.Side;
-import General.Game;
 import General.Request;
-import General.User.Player;
 import General.User.SimpleUser;
 import General.User.User;
 
@@ -21,7 +17,8 @@ public class ClientHandler implements Runnable {
     private boolean exitRequested = false;
     private Thread myThread;
     //    private Player pairedPlayer;
-    private ClientHandler pairedCLientHandler;
+    private ClientHandler pairedClientHandler;
+    private ArrayList<Object> incomingGameRequests = new ArrayList<>();
 
 
     ClientHandler(Socket socket, InputStream ois, OutputStream oos, int ID) throws IOException {
@@ -62,10 +59,13 @@ public class ClientHandler implements Runnable {
                         System.out.println("request");
                         newGameRequest();
                         break;
+                    case GET_GAME_REQUESTS:
+                        sendGameRequests();
+                        break;
                     case MOVE:
-                        Move move = (Move) ois.readObject();
-                        pairedCLientHandler.oos.writeBoolean(true);
-                        pairedCLientHandler.oos.writeObject(move);
+                        Object move = ois.readObject();
+                        pairedClientHandler.oos.writeBoolean(true);
+                        pairedClientHandler.oos.writeObject(move);
 
                         break;
                 }
@@ -130,28 +130,18 @@ public class ClientHandler implements Runnable {
     }
 
     private void newGameRequest() throws IOException, ClassNotFoundException {
-        System.out.println("now");
+        System.out.println("New Game Is Coming");
         SimpleUser requestedUser = (SimpleUser) ois.readObject();
-        boolean isRated = ois.readBoolean();
-        Side side = (Side) ois.readObject();
-        if (side == Side.Automatic) {
-            int i = (int) (Math.random() * 2);
-            if (i == 1)
-                side = Side.White;
-            else
-                side = Side.Black;
-        }
-        Player player1 = new Player(user.getSimpleUser(), side);
-        Player player2 = new Player(requestedUser, side.getOutherSide());
-        Game game = new Game(player1, player2, isRated);
+        Object game = ois.readObject();
+
         for (ClientHandler clientHandler : Server.getActiveClients()) {
-            if (clientHandler.user.getSimpleUser().equals(player2.getSimpleUser())) {
-                pairedCLientHandler = clientHandler;
+            if (clientHandler.user.getSimpleUser().equals(requestedUser)) {
+                pairedClientHandler = clientHandler;
+                pairedClientHandler.getIncomingGameRequests().add(game);
+                break;
             }
         }
-        oos.writeObject(game);
-        oos.flush();
-        System.out.println("dn");
+        System.out.println("done");
     }
 
     private void sendSearchedUsers() throws IOException {
@@ -165,4 +155,15 @@ public class ClientHandler implements Runnable {
         oos.writeObject(users);
     }
 
+    private void sendGameRequests() throws IOException {
+        oos.writeObject(incomingGameRequests);
+    }
+
+    public ArrayList<Object> getIncomingGameRequests() {
+        return incomingGameRequests;
+    }
+
+    public void setIncomingGameRequests(ArrayList<Object> incomingGameRequests) {
+        this.incomingGameRequests = incomingGameRequests;
+    }
 }

@@ -1,9 +1,7 @@
-package General.Pieces;
+package ClientSide.Game.Pieces;
 
-import General.Board.Cell;
-import General.Board.Label;
-import General.Board.Move;
-import General.Board.Side;
+import ClientSide.Game.*;
+import General.Side;
 import javafx.scene.image.ImageView;
 
 abstract public class Piece implements Cloneable {

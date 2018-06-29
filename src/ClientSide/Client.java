@@ -103,7 +103,7 @@ public class Client extends Application {
             root = FXMLLoader.load(getClass().getResource("FXMLs/mainMenu.fxml"));
         }
         else {
-            root = FXMLLoader.load(getClass().getResource("FXMLs/game.fxml"));
+            root = FXMLLoader.load(getClass().getResource("FXMLs/welcoming.fxml"));
         }
         pStage.setTitle("Hero's Chess");
         pStage.setScene(scene);
@@ -114,7 +114,7 @@ public class Client extends Application {
     }
 
     public static void main(String[] args) {
-//        connectToServer();
+        connectToServer();
         deserialize();
         launch(args);
     }

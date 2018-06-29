@@ -1,4 +1,4 @@
-package General.Board;
+package General;
 
 import java.io.Serializable;
 
@@ -18,7 +18,7 @@ public enum Side implements Serializable {
         return null;
     }
 
-    public Side getOutherSide() {
+    public Side getOtherSide() {
         if (this == Side.Black)
             return Side.White;
         else return Side.Black;

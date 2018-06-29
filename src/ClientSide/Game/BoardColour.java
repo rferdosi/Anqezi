@@ -1,4 +1,4 @@
-package General.Board;
+package ClientSide.Game;
 
 public enum BoardColour {
     Black, White;

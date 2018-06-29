@@ -1,6 +1,6 @@
 package General.User;
 
-import General.Game;
+import ClientSide.Game.Game;
 import General.Tournament;
 
 import java.io.Serializable;

@@ -1,9 +1,10 @@
 package ClientSide.Controllers;
 
 import ClientSide.Client;
-import General.Board.Side;
-import General.Game;
+import General.Side;
+import ClientSide.Game.Game;
 import General.Request;
+import General.User.Player;
 import General.User.SimpleUser;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -12,10 +13,12 @@ import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class GamePropertiesController extends MotherController implements Initializable {
@@ -36,6 +39,7 @@ public class GamePropertiesController extends MotherController implements Initia
         arrayList.add(Side.Automatic);
         ObservableList<Side> sides = FXCollections.observableList(arrayList);
         comboBox.setItems(sides);
+        comboBox.getSelectionModel().selectLast();
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             searchedList.getItems().clear();
             ArrayList<SimpleUser> users;
@@ -68,26 +72,26 @@ public class GamePropertiesController extends MotherController implements Initia
 
 
     public void gameRequest() {
+        Side side = comboBox.getSelectionModel().selectedItemProperty().get();
+        Player player1 = new Player(Client.getUser().getSimpleUser(), side);
+        SimpleUser requestedUser = selectedUser;
+        Player player2 = new Player(requestedUser, side.getOtherSide());
+        boolean isRated = isRatedCheckBox.isSelected();
+        Game game = new Game(player1, player1, isRated);
+        game.setPlayer2Accepted(false);
         try {
             Client.oos.writeObject(Request.NEW_GAME_REQUEST);
-            Client.oos.writeObject(selectedUser);
-            Client.oos.writeBoolean(isRatedCheckBox.isSelected());
+            Client.oos.writeObject(requestedUser);
+            Client.oos.writeObject(game);
             Client.oos.flush();
-            Client.oos.writeObject(comboBox.getSelectionModel().selectedItemProperty().get());
-//            Client.oos.writeObject(Client.getUser());
-            Client.oos.flush();
-            while (true) {
-                try {
-                    Object object = Client.ois.readObject();
-                    System.out.println(object);
-                    GameController.game = (Game) object;
-                    break;
-                } catch (ClassCastException ignored) {
-
-                }
-            }
+            Alert success = new Alert(Alert.AlertType.INFORMATION);
+            success.setTitle("Game Request");
+            success.setHeaderText("Game Request Has Been Send");
+            success.initModality(Modality.APPLICATION_MODAL);
+            Optional<ButtonType> result = success.showAndWait();
             goTo("game");
-        } catch (IOException | ClassNotFoundException e) {
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

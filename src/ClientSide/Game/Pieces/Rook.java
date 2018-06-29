@@ -1,10 +1,8 @@
-package General.Pieces;
+package ClientSide.Game.Pieces;
 
-import General.Board.Cell;
-import General.Board.Label;
-import General.Board.Side;
-
-import java.util.ArrayList;
+import ClientSide.Game.Cell;
+import ClientSide.Game.Label;
+import General.Side;
 
 public class Rook extends Piece {
     public Rook(Side side) {

@@ -1,6 +1,6 @@
 package ServerSide;
 
-import General.Game;
+import ClientSide.Game.Game;
 import General.User.User;
 
 import java.io.*;

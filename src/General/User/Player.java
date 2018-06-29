@@ -1,6 +1,6 @@
 package General.User;
 
-import General.Board.Side;
+import General.Side;
 
 public class Player {
     protected Side side;

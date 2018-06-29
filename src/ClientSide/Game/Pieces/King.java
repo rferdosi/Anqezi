@@ -1,10 +1,10 @@
 //  ®XxNE0xX
 
-package General.Pieces;
+package ClientSide.Game.Pieces;
 
-import General.Board.Cell;
-import General.Board.Label;
-import General.Board.Side;
+import ClientSide.Game.Cell;
+import ClientSide.Game.Label;
+import General.Side;
 
 import java.util.ArrayList;
 

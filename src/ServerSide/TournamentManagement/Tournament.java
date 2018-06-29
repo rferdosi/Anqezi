@@ -1,7 +1,7 @@
 package ServerSide.TournamentManagement;
 
-import General.Board.Side;
-import General.Game;
+import General.Side;
+import ClientSide.Game.Game;
 import General.User.Player;
 import General.User.SimpleUser;
 

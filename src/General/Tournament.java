@@ -1,5 +1,6 @@
 package General;
 
+import ClientSide.Game.Game;
 import General.User.SimpleUser;
 
 import java.util.ArrayList;

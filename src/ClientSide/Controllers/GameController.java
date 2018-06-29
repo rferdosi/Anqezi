@@ -1,13 +1,11 @@
 package ClientSide.Controllers;
 
-import ClientSide.Client;
-import General.Board.Board;
-import General.Board.Side;
-import General.Game;
+import ClientSide.Game.Board;
+import General.Side;
+import ClientSide.Game.Game;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -33,30 +31,27 @@ public class GameController extends MotherController implements Initializable {
     public static boolean isTurn = true;
 
 
-    public static void setLabelText() {
-    }
+//    public static void setLabelText() {
+//    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
-//        if (Client.getUser().getSimpleUser().equals(game.getPlayer1().getSimpleUser()))
-//            playerSide = game.getPlayer1().getSide();
-//        else
-//            playerSide = game.getPlayer2().getSide();
+        playerSide = Side.White;
         if (game == null) {
             game = new Game();
         }
 
         board = game.getBoard();
-//        Board.needToMove = true;
+//        Game.needToMove = true;
         if (playerSide == Side.White) {
-//            Board.isTurn = true;
+            Board.isTurn = true;
+        } else {
+            Board.isTurn = false;
         }
-
         readFromBoard();
-        System.out.println("UUU");
-        //Todo set maxTime here
+        //Todo set maxTime here!
+        timeManagement(500000);
     }
 
     private void readFromBoard() {

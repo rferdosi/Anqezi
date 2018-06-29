@@ -1,9 +1,10 @@
-package General.Board;
+package ClientSide.Game;
 
 import ClientSide.Controllers.GameController;
+import ClientSide.Game.Pieces.King;
 import ClientSide.Themes.Theme;
-import General.Pieces.King;
-import General.Pieces.Piece;
+import ClientSide.Game.Pieces.Piece;
+import General.Side;
 import javafx.scene.control.Button;
 
 public class Cell extends Button implements Cloneable {
@@ -59,8 +60,7 @@ public class Cell extends Button implements Cloneable {
                             Board.lastSelectedPiece.move(this);
                             System.out.println(board.getBlackKing().isChecked(board.getBlackKing().getCell()));
                         }
-//                        board.changeTurn();
-//                        board.waitForTurn();
+                        board.changeTurn();
                         board.cleanTextures();
 
                     } else {

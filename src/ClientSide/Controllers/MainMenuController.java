@@ -1,7 +1,7 @@
 package ClientSide.Controllers;
 
 import ClientSide.Client;
-import General.Game;
+import ClientSide.Game.Game;
 import General.Tournament;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

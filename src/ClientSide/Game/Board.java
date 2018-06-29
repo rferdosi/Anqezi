@@ -1,10 +1,8 @@
-package General.Board;
+package ClientSide.Game;
 
 import ClientSide.Client;
-import ClientSide.Controllers.GameController;
-import ClientSide.Themes.BoardTheme;
-import General.Game;
-import General.Pieces.*;
+import ClientSide.Game.Pieces.*;
+import General.Side;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -16,7 +14,7 @@ public class Board {
     private ArrayList<Piece> pieces = new ArrayList<>();
     public static Piece lastSelectedPiece;
     public static boolean needToMove;
-//    public static boolean isTurn;
+    public static boolean isTurn;
     private King whiteKing;
     private King blackKing;
     private Game game;
@@ -177,29 +175,29 @@ public class Board {
     }
 
     public void changeTurn() {
-//        isTurn = false;
-        try {
-            Client.oos.writeBoolean(true);
-            GameController.setLabelText();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        isTurn = !isTurn;
+//        try {
+//            Client.oos.writeBoolean(true);
+//            //GameController.setLabelText();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void waitForTurn() {
-//        while (!isTurn) {
-//            try {
-//                isTurn = Client.ois.readBoolean();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        try {
-//            Move move = (Move) Client.ois.readObject();
-//            move.getMovedPiece().move(move.getDistCell());
-//        } catch (IOException | ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
+        while (!isTurn) {
+            try {
+                isTurn = Client.ois.readBoolean();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            Move move = (Move) Client.ois.readObject();
+            move.getMovedPiece().move(move.getDistCell());
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 }

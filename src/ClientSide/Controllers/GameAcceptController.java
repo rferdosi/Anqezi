@@ -1,7 +1,7 @@
 package ClientSide.Controllers;
 
 import ClientSide.Client;
-import General.Game;
+import ClientSide.Game.Game;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 

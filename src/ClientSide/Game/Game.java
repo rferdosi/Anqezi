@@ -1,12 +1,8 @@
-package General;
+package ClientSide.Game;
 
-import ClientSide.Controllers.GameController;
-import General.Board.Board;
-import General.Board.Move;
 import General.User.Audience;
 import General.User.Player;
 import General.User.SimpleUser;
-import General.User.User;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,6 +14,7 @@ public class Game implements Serializable {
     private SimpleUser winner;
     private SimpleUser loser;
     private boolean isDraw;
+
     ArrayList<Audience> audiences;
     private ArrayList<Move> moves;
     private boolean isRated;
@@ -48,16 +45,16 @@ public class Game implements Serializable {
         return isPlayer2Accepted;
     }
 
+    public void setPlayer2Accepted(boolean player2Accepted) {
+        isPlayer2Accepted = player2Accepted;
+    }
+
     public ArrayList<Move> getMoves() {
         return moves;
     }
 
     public Game() {
 
-    }
-
-    public void setPlayer2Accepted(boolean player2Accepted) {
-        isPlayer2Accepted = player2Accepted;
     }
 
     public Game(Player player1, Player player2, boolean isRated) {

@@ -1,6 +1,6 @@
-package General.Board;
+package ClientSide.Game;
 
-import General.Pieces.Piece;
+import ClientSide.Game.Pieces.Piece;
 
 public class Move {
     private Piece movedPiece;
