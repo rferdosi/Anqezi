@@ -122,7 +122,7 @@
     -fx-effect: dropshadow(three-pass-box, yellow, 10.0, 0.0, 0.0, 0.0);
     -fx-cursor: hand;
 }
-
+/*
 .queeningDialog .BishopButton {
     -fx-background-color: black;
     -fx-text-fill: white;
@@ -145,4 +145,4 @@
     -fx-wrap-text: true;
     -fx-effect: dropshadow(three-pass-box, yellow, 10.0, 0.0, 0.0, 0.0);
     -fx-cursor: hand;
-}
+}*/

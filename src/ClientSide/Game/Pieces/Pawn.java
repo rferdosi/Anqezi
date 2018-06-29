@@ -145,7 +145,7 @@ public class Pawn extends Piece {
         dialog.setHeaderText("Choose Your Piece!");
 
         DialogPane dialogPane = dialog.getDialogPane();
-        dialogPane.getStylesheets().add(getClass().getResource("../../ClientSide/CSS/game.css").toExternalForm());
+        dialogPane.getStylesheets().add(getClass().getResource("../../CSS/game.css").toExternalForm());
         dialogPane.getStyleClass().add("queeningDialog");
 
         ButtonType buttonTypeBishop = new ButtonType("Bishop");

@@ -1,7 +1,6 @@
 package General.User;
 
 import ClientSide.Game.Game;
-import General.Tournament;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,7 +16,6 @@ public class User implements Serializable {
     private int age;
     private ArrayList<SimpleUser> blockList;
     private ArrayList<Game> requestedGames;
-    private ArrayList<Tournament> tournaments;
     private int wins;
     private int losts;
     private int draws;
@@ -47,7 +45,6 @@ public class User implements Serializable {
     {
         blockList = new ArrayList<>();
         requestedGames = new ArrayList<>();
-        tournaments = new ArrayList<>();
     }
 
     @Override

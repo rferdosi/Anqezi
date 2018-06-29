@@ -52,7 +52,7 @@ public class GamePropertiesController extends MotherController implements Initia
 //                searchedList.getItems().clear();
                     searchedList.setItems(FXCollections.observableArrayList(users));
                 } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
+                    //e.printStackTrace();
                 }
             }
         });
@@ -78,6 +78,7 @@ public class GamePropertiesController extends MotherController implements Initia
         Player player2 = new Player(requestedUser, side.getOtherSide());
         boolean isRated = isRatedCheckBox.isSelected();
         Game game = new Game(player1, player1, isRated);
+        GameController.game = game;
         game.setPlayer2Accepted(false);
         try {
             Client.oos.writeObject(Request.NEW_GAME_REQUEST);

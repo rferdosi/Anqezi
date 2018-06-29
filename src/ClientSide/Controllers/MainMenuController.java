@@ -3,7 +3,6 @@ package ClientSide.Controllers;
 import ClientSide.Client;
 import ClientSide.Game.Game;
 import General.Request;
-import General.Tournament;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -18,12 +17,19 @@ import java.util.ResourceBundle;
 public class MainMenuController extends MotherController implements Initializable {
     public Label name;
     public ListView<Game> requestedGames;
-    public ListView<Tournament> tournoments;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         name.setText("Welcome " + Client.getUser().getName());
-        requestedGames.setItems(FXCollections.observableArrayList(Client.getUser().getRequestedGames()));
+        ArrayList<Game> requestedGamesArrayList = null;
+        try {
+            requestedGamesArrayList = (ArrayList<Game>) Client.ois.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        requestedGames.setItems(FXCollections.observableArrayList(requestedGamesArrayList));
         requestedGames.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             GameAcceptController.game = newValue;
             open("gameAccept");
