@@ -4,8 +4,10 @@ import ClientSide.Game.*;
 import General.Side;
 import javafx.scene.image.ImageView;
 
-abstract public class Piece implements Cloneable {
-    protected ImageView imageView;
+import java.io.Serializable;
+
+abstract public class Piece implements Cloneable, Serializable {
+    transient protected ImageView imageView;
     protected Cell cell;
     protected Side side;
     protected int row;

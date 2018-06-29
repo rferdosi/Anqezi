@@ -68,6 +68,11 @@ public class ClientHandler implements Runnable {
                         pairedClientHandler.oos.writeObject(move);
 
                         break;
+                    case CHANGE_USER:
+                        Server.getRegisteredUsers().remove(user);
+                        user = (User) ois.readObject();
+                        Server.getRegisteredUsers().add(user);
+                        break;
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();

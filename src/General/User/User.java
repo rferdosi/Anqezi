@@ -77,4 +77,16 @@ public class User implements Serializable {
     public ArrayList<Game> getRequestedGames() {
         return requestedGames;
     }
+
+    public void setSimpleUser(SimpleUser simpleUser) {
+        this.simpleUser = simpleUser;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

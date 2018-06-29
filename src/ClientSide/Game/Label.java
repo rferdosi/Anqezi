@@ -1,5 +1,7 @@
 package ClientSide.Game;
 
-public enum Label {
+import java.io.Serializable;
+
+public enum Label implements Serializable {
     SELECTED, POSSIBLE, THREATEN, NORMAL
 }

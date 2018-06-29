@@ -2,7 +2,9 @@ package General.User;
 
 import General.Side;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
     protected Side side;
     protected SimpleUser simpleUser;
 

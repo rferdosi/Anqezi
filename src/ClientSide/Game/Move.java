@@ -2,7 +2,9 @@ package ClientSide.Game;
 
 import ClientSide.Game.Pieces.Piece;
 
-public class Move {
+import java.io.Serializable;
+
+public class Move implements Serializable {
     private Piece movedPiece;
     private Cell srcCell;
     private Cell distCell;

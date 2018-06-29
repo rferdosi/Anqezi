@@ -2,20 +2,17 @@ package ClientSide.Controllers;
 
 import ClientSide.Client;
 import ClientSide.Game.Game;
+import General.Request;
 import General.Tournament;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.fxml.FXMLLoader;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MainMenuController extends MotherController implements Initializable {
@@ -31,6 +28,7 @@ public class MainMenuController extends MotherController implements Initializabl
             GameAcceptController.game = newValue;
             open("gameAccept");
         });
+//        gamesRefresh();
     }
 
     public void about() {
@@ -39,5 +37,15 @@ public class MainMenuController extends MotherController implements Initializabl
 
     public void newGame() {
         open("gameProperties");
+    }
+
+    public void gamesRefresh() {
+        try {
+            Client.oos.writeObject(Request.GET_GAME_REQUESTS);
+            ArrayList<Game> games = (ArrayList<Game>) Client.ois.readObject();
+            requestedGames.setItems(FXCollections.observableArrayList(games));
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

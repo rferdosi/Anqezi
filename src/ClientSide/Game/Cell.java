@@ -7,7 +7,9 @@ import ClientSide.Game.Pieces.Piece;
 import General.Side;
 import javafx.scene.control.Button;
 
-public class Cell extends Button implements Cloneable {
+import java.io.Serializable;
+
+public class Cell extends Button implements Cloneable ,Serializable {
     private Cell upCell;
     private Cell downCell;
     private Cell rightCell;

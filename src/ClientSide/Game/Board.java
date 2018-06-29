@@ -7,9 +7,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Board {
+public class Board implements Serializable {
     private Cell[][] cells = new Cell[8][8];
     private ArrayList<Piece> pieces = new ArrayList<>();
     public static Piece lastSelectedPiece;

@@ -43,4 +43,12 @@ public class SimpleUser implements Serializable {
     public int getRate() {
         return rate;
     }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
