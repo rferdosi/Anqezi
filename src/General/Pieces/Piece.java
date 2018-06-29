@@ -65,16 +65,17 @@ abstract public class Piece {
     }
 
     public void setLabels() {
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                Cell myCell = cell.getBoard().getCell(i, j);
-                if (myCell.getLabel().equals(Label.THREATEN) || myCell.getLabel().equals(Label.POSSIBLE)) {
-                    if (!this.fakeMove(myCell)) {
-                        myCell.setLabel(Label.NORMAL);
-                    }
-                }
-            }
-        }
+//        Cell[][] fakeCells = cell.getBoard().getCells().clone();
+//        for (int i = 0; i < 8; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                Cell myCell = fakeCells[i][j];
+//                if (myCell.getLabel().equals(Label.THREATEN) || myCell.getLabel().equals(Label.POSSIBLE)) {
+//                    if (!this.fakeMove(myCell)) {
+//                        myCell.setLabel(Label.NORMAL);
+//                    }
+//                }
+//            }
+//        }
     }
 
     public boolean fakeMove(Cell cell) {
@@ -90,6 +91,8 @@ abstract public class Piece {
         Piece pieceHolder = cell.getPiece();
         this.move(cell);
         boolean cond = king.isChecked(king.cell);
+        this.cell=cellHolder;
+        cell.setPiece(pieceHolder);
         cell.getBoard().cleanTextures();
         return cond;
 

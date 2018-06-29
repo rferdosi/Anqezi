@@ -64,7 +64,7 @@ public class Game implements Serializable {
     }
 
     {
-        board = new Board();
+        board = new Board(this);
         moves = new ArrayList<>();
     }
 

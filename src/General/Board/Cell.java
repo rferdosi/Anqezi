@@ -5,7 +5,7 @@ import ClientSide.Themes.Theme;
 import General.Pieces.Piece;
 import javafx.scene.control.Button;
 
-public class Cell extends Button {
+public class Cell extends Button implements Cloneable {
     private Cell upCell;
     private Cell downCell;
     private Cell rightCell;
@@ -168,6 +168,12 @@ public class Cell extends Button {
         if (piece != null)
             s += " with " + piece.toString();
         return s;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+//        Cell tmp = new Cell(this.boardColour);
+        return super.clone();
     }
 }
 

@@ -23,8 +23,8 @@ public class Board {
     public String theme = "CopperGolden";
 
 
-    public Board() {
-        game=new Game();
+    public Board(Game game) {
+        this.game = game;
     }
 
 
@@ -34,6 +34,10 @@ public class Board {
 
     public King getWhiteKing() {
         return whiteKing;
+    }
+
+    public Cell[][] getCells() {
+        return cells;
     }
 
     public Cell getCell(int i, int j) {
