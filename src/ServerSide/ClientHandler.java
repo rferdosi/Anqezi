@@ -56,7 +56,7 @@ public class ClientHandler implements Runnable {
                         sendSearchedUsers();
                         break;
                     case NEW_GAME_REQUEST:
-                        System.out.println("request");
+//                        System.out.println("request");
                         newGameRequest();
                         break;
                     case GET_GAME_REQUESTS:

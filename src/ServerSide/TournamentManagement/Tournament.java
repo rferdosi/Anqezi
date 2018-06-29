@@ -21,7 +21,7 @@ public class Tournament implements Serializable {
     private int currentRound = 0;
     private final int MaximumRounds = 7;
 
-    Tournament (SimpleUser[] users, MatchMakingMethod matchMakingMethod, ScoringSystem scoringSystem){
+    Tournament(SimpleUser[] users, MatchMakingMethod matchMakingMethod, ScoringSystem scoringSystem) {
 
         this.tournamentPlayers = new ArrayList<>();
         for (int i = 0; i < users.length; i++) {
@@ -29,7 +29,7 @@ public class Tournament implements Serializable {
             tournamentPlayers.add(player);
         }
 
-        if (matchMakingMethod == MatchMakingMethod.RoundRobin){
+        if (matchMakingMethod == MatchMakingMethod.RoundRobin) {
             roundRobinMatchMaker();
         } else {
             swissSystemMatchMakerInitial();
@@ -40,9 +40,9 @@ public class Tournament implements Serializable {
 
     }
 
-    private void roundRobinMatchMaker(){
+    private void roundRobinMatchMaker() {
         Collections.shuffle(tournamentPlayers);
-        for (int i = 0; i < tournamentPlayers.size(); i++){
+        for (int i = 0; i < tournamentPlayers.size(); i++) {
             for (int j = 0; j < tournamentPlayers.size(); j++) {
                 if (i != j) {
                     Game game = new Game();
@@ -60,9 +60,9 @@ public class Tournament implements Serializable {
         }
     }
 
-    private void swissSystemMatchMakerInitial(){
+    private void swissSystemMatchMakerInitial() {
         Collections.shuffle(tournamentPlayers);
-        for (int i = 0; i < tournamentPlayers.size(); i += 2){
+        for (int i = 0; i < tournamentPlayers.size(); i += 2) {
             Game game = new Game();
             tournamentPlayers.get(i).setSide(Side.Black);
             Player player1 = new Player(tournamentPlayers.get(i).getSimpleUser(), tournamentPlayers.get(i).getSide());
@@ -73,12 +73,13 @@ public class Tournament implements Serializable {
             undoneGames.add(game);
         }
     }
-    private void swissSystemMatchMakerNextRounds(){
+
+    private void swissSystemMatchMakerNextRounds() {
         ArrayList<TournamentPlayer> tempPlayers = (ArrayList<TournamentPlayer>) tournamentPlayers.clone();
         int negativeValue = 2;
-        while (tempPlayers.size() > 1){
+        while (tempPlayers.size() > 1) {
             Game game = new Game();
-            if (!hasTheyPlayed(tempPlayers.get(tempPlayers.size() - 1).getSimpleUser(), tempPlayers.get(tempPlayers.size() - negativeValue).getSimpleUser())){
+            if (!hasTheyPlayed(tempPlayers.get(tempPlayers.size() - 1).getSimpleUser(), tempPlayers.get(tempPlayers.size() - negativeValue).getSimpleUser())) {
                 if (tempPlayers.get(tempPlayers.size() - 1).howManyTimeWhite < 2 || tempPlayers.get(tempPlayers.size() - negativeValue).howManyTimeWhite < 2) {
                     Random random = new Random();
                     int player1Side = (random.nextInt() % 2);
@@ -96,10 +97,10 @@ public class Tournament implements Serializable {
         }
     }
 
-    private boolean hasTheyPlayed(SimpleUser simpleUser1, SimpleUser simpleUser2){
+    private boolean hasTheyPlayed(SimpleUser simpleUser1, SimpleUser simpleUser2) {
         for (int i = 0; i < finishedGames.size(); i++) {
-            if (finishedGames.get(i).getPlayer1().getSimpleUser().equals(simpleUser1) || finishedGames.get(i).getPlayer2().getSimpleUser().equals(simpleUser1)){
-                if (finishedGames.get(i).getPlayer1().getSimpleUser().equals(simpleUser2) || finishedGames.get(i).getPlayer2().getSimpleUser().equals(simpleUser2)){
+            if (finishedGames.get(i).getPlayer1().getSimpleUser().equals(simpleUser1) || finishedGames.get(i).getPlayer2().getSimpleUser().equals(simpleUser1)) {
+                if (finishedGames.get(i).getPlayer1().getSimpleUser().equals(simpleUser2) || finishedGames.get(i).getPlayer2().getSimpleUser().equals(simpleUser2)) {
                     return true;
                 }
             }
@@ -110,11 +111,11 @@ public class Tournament implements Serializable {
     public void setGameResult(Game game) {
         undoneGames.remove(game);
         finishedGames.add(game);
-        if (scoringSystem == ScoringSystem.TRADITIONAL){
-            if (game.isDraw()){
+        if (scoringSystem == ScoringSystem.TRADITIONAL) {
+            if (game.isDraw()) {
                 for (int i = 0; i < tournamentPlayers.size(); i++) {
                     if (game.getPlayer1().equals(tournamentPlayers.get(i).getSimpleUser()) ||
-                        game.getPlayer2().equals(tournamentPlayers.get(i).getSimpleUser())){
+                            game.getPlayer2().equals(tournamentPlayers.get(i).getSimpleUser())) {
                         tournamentPlayers.get(i).tournamentRating += 0.5;
                     }
                 }
@@ -126,11 +127,11 @@ public class Tournament implements Serializable {
                     }
                 }
             }
-        } else if (scoringSystem == ScoringSystem.THREE_ONE_O){
-            if (game.isDraw()){
+        } else if (scoringSystem == ScoringSystem.THREE_ONE_O) {
+            if (game.isDraw()) {
                 for (int i = 0; i < tournamentPlayers.size(); i++) {
                     if (game.getPlayer1().equals(tournamentPlayers.get(i).getSimpleUser()) ||
-                        game.getPlayer2().equals(tournamentPlayers.get(i).getSimpleUser())){
+                            game.getPlayer2().equals(tournamentPlayers.get(i).getSimpleUser())) {
                         tournamentPlayers.get(i).tournamentRating += 1;
                     }
                 }
@@ -142,10 +143,10 @@ public class Tournament implements Serializable {
                     }
                 }
             }
-        } else if (scoringSystem == ScoringSystem.BAPS){
-            if (game.isDraw()){
+        } else if (scoringSystem == ScoringSystem.BAPS) {
+            if (game.isDraw()) {
                 for (int i = 0; i < tournamentPlayers.size(); i++) {
-                    if (game.getPlayer1().equals(tournamentPlayers.get(i).getSimpleUser())){
+                    if (game.getPlayer1().equals(tournamentPlayers.get(i).getSimpleUser())) {
                         if (tournamentPlayers.get(i).getSide() == Side.Black) {
                             tournamentPlayers.get(i).tournamentRating += 1;
                         }
@@ -157,7 +158,7 @@ public class Tournament implements Serializable {
                     if (game.getWinner().equals(tournamentPlayers.get(i).getSimpleUser())) {
                         if (tournamentPlayers.get(i).getSide() == Side.Black) {
                             tournamentPlayers.get(i).tournamentRating += 3;
-                        } else if (tournamentPlayers.get(i).getSide() == Side.White){
+                        } else if (tournamentPlayers.get(i).getSide() == Side.White) {
                             tournamentPlayers.get(i).tournamentRating += 2;
                         }
                         break;
@@ -166,8 +167,8 @@ public class Tournament implements Serializable {
             }
         }
         updateRanking();
-        if (matchMakingMethod == MatchMakingMethod.SwissSystem){
-            if (undoneGames.size() == 0 && currentRound < MaximumRounds){
+        if (matchMakingMethod == MatchMakingMethod.SwissSystem) {
+            if (undoneGames.size() == 0 && currentRound < MaximumRounds) {
                 currentRound++;
                 swissSystemMatchMakerNextRounds();
             }

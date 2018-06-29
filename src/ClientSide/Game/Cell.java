@@ -7,9 +7,10 @@ import ClientSide.Game.Pieces.Piece;
 import General.Side;
 import javafx.scene.control.Button;
 
+import java.io.IOException;
 import java.io.Serializable;
 
-public class Cell extends Button implements Cloneable ,Serializable {
+public class Cell extends Button implements Cloneable, Serializable {
     private Cell upCell;
     private Cell downCell;
     private Cell rightCell;
@@ -62,8 +63,13 @@ public class Cell extends Button implements Cloneable ,Serializable {
                             Board.lastSelectedPiece.move(this);
                             System.out.println(board.getBlackKing().isChecked(board.getBlackKing().getCell()));
                         }
-                        board.changeTurn();
-                        board.cleanTextures();
+                        try {
+                            board.changeTurn();
+                            board.cleanTextures();
+                            board.waitForTurn();
+                        } catch (IOException | ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
 
                     } else {
                         Board.lastSelectedPiece.getCell().setLabel(Label.NORMAL);

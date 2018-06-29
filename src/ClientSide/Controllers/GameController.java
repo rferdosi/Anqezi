@@ -1,11 +1,14 @@
 package ClientSide.Controllers;
 
+import ClientSide.Client;
 import ClientSide.Game.Board;
 import General.Side;
 import ClientSide.Game.Game;
+import General.User.Player;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -29,6 +32,8 @@ public class GameController extends MotherController implements Initializable {
     public Label m;
     public Label s;
     public static boolean isTurn = true;
+    public static Player player;
+    public static Player otherPlayer;
 
 
 //    public static void setLabelText() {
@@ -36,22 +41,41 @@ public class GameController extends MotherController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        playerSide = Side.White;
-        if (game == null) {
-            game = new Game();
-        }
-
-        board = game.getBoard();
-//        Game.needToMove = true;
-        if (playerSide == Side.White) {
-            Board.isTurn = true;
+        if (Client.getUser().getSimpleUser().equals(game.getPlayer1().getSimpleUser())) {
+            otherPlayer = game.getPlayer2();
+            player = game.getPlayer1();
         } else {
-            Board.isTurn = false;
+            otherPlayer = game.getPlayer1();
+            player = game.getPlayer2();
+        }
+        playerSide = player.getSide();
+//        if (game == null) {
+//            game = new Game();
+//        }
+        board = game.getBoard();
+        if (playerSide == Side.White) {
+            isTurn = true;
+        } else {
+            isTurn = false;
         }
         readFromBoard();
         //Todo set maxTime here!
-        timeManagement(500000);
+        Thread setLabels = new Thread(() -> {
+            Platform.runLater(() -> {
+                if (!game.isPlayer2Accepted()) {
+                    label.setText("Waiting for " + game.getPlayer2().getSimpleUser().getName());
+                } else {
+                    label.setText(Board.turn.getSimpleUser().getName());
+                }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+        });
+        setLabels.start();
+//        timeManagement(500000);
     }
 
     private void readFromBoard() {

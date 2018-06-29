@@ -1,8 +1,10 @@
 package ClientSide.Game;
 
 import ClientSide.Client;
+import ClientSide.Controllers.GameController;
 import ClientSide.Game.Pieces.*;
 import General.Side;
+import General.User.Player;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -15,7 +17,7 @@ public class Board implements Serializable {
     private ArrayList<Piece> pieces = new ArrayList<>();
     public static Piece lastSelectedPiece;
     public static boolean needToMove;
-    public static boolean isTurn;
+    public static Player turn;
     private King whiteKing;
     private King blackKing;
     private Game game;
@@ -47,9 +49,6 @@ public class Board implements Serializable {
         return pieces;
     }
 
-    public String getTheme() {
-        return theme;
-    }
 
     public void setTheme(String theme) {
         this.theme = theme;
@@ -175,32 +174,21 @@ public class Board implements Serializable {
         lastSelectedPiece = null;
     }
 
-    public void changeTurn() {
-        isTurn = !isTurn;
-//        try {
-//            Client.oos.writeBoolean(true);
-//            //GameController.setLabelText();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+    public void changeTurn() throws IOException {
+        turn = GameController.otherPlayer;
+        Client.oos.writeObject(true);
     }
 
-    public void waitForTurn() {
-        while (!isTurn) {
-            try {
-                isTurn = Client.ois.readBoolean();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    public void waitForTurn() throws IOException, ClassNotFoundException {
+        while (!turn.equals(GameController.player)) {
+            boolean cond = (boolean) Client.ois.readObject();
+            if (cond)
+                break;
         }
-        try {
-            Move move = (Move) Client.ois.readObject();
-            move.getMovedPiece().move(move.getDistCell());
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+        Board.turn = GameController.player;
 
+    }
 }
+
 
 
