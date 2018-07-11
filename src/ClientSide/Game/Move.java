@@ -5,6 +5,7 @@ import ClientSide.Game.Pieces.Piece;
 import java.io.Serializable;
 
 public class Move implements Serializable {
+    private static final long serialVersionUID = 123456712;
     private Piece movedPiece;
     private Cell srcCell;
     private Cell distCell;

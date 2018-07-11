@@ -9,6 +9,7 @@ import General.Side;
 import java.util.ArrayList;
 
 public class King extends Piece {
+    private static final long serialVersionUID = 999999999;
     private boolean isFirstMove;
 
 

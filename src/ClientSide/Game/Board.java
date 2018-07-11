@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Board implements Serializable {
+    private static final long serialVersionUID = 123456787;
     private Cell[][] cells = new Cell[8][8];
     private ArrayList<Piece> pieces = new ArrayList<>();
     public static Piece lastSelectedPiece;
@@ -175,6 +176,7 @@ public class Board implements Serializable {
     }
 
     public void changeTurn() throws IOException {
+        GameController.isTurn = false;
         turn = GameController.otherPlayer;
         Client.oos.writeObject(true);
     }
@@ -186,6 +188,7 @@ public class Board implements Serializable {
                 break;
         }
         Board.turn = GameController.player;
+        GameController.isTurn = true;
 
     }
 }

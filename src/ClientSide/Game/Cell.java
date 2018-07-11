@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 public class Cell extends Button implements Cloneable, Serializable {
+    private static final long serialVersionUID = 123456786;
     private Cell upCell;
     private Cell downCell;
     private Cell rightCell;
@@ -23,7 +24,7 @@ public class Cell extends Button implements Cloneable, Serializable {
     private int row;
     private int column;
     private Piece piece;
-    private Theme theme;
+//    private Theme theme;
     private Board board;
 
 
@@ -46,7 +47,7 @@ public class Cell extends Button implements Cloneable, Serializable {
         super.setPrefSize(100, 100);
         this.setOnAction(event -> {
             //     ®Powered By rferdosi
-            if (GameController.isTurn && GameController.game.isPlayer2Accepted()) {
+            if (GameController.isTurn ) {
                 if (Board.needToMove) {
                     Board.needToMove = false;
                     if (label.equals(Label.POSSIBLE) || label.equals(Label.THREATEN)) {
@@ -62,13 +63,13 @@ public class Cell extends Button implements Cloneable, Serializable {
                             Board.lastSelectedPiece.move(this);
                             System.out.println(board.getBlackKing().isChecked(board.getBlackKing().getCell()));
                         }
-                        try {
-                            board.changeTurn();
+//                        try {
+//                            board.changeTurn();
                             board.cleanTextures();
-                            board.waitForTurn();
-                        } catch (IOException | ClassNotFoundException e) {
-                            e.printStackTrace();
-                        }
+//                            board.waitForTurn();
+//                        } catch (IOException | ClassNotFoundException e) {
+//                            e.printStackTrace();
+//                        }
 
                     } else {
                         Board.lastSelectedPiece.getCell().setLabel(Label.NORMAL);

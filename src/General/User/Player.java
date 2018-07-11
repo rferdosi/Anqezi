@@ -5,6 +5,7 @@ import General.Side;
 import java.io.Serializable;
 
 public class Player implements Serializable {
+    private static final long serialVersionUID = 123456788;
     protected Side side;
     protected SimpleUser simpleUser;
     int time;
@@ -42,5 +43,9 @@ public class Player implements Serializable {
 
     public int getTime() {
         return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
     }
 }

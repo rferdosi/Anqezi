@@ -1,5 +1,6 @@
 package ServerSide;
 
+import ClientSide.Game.Game;
 import General.Request;
 import General.User.SimpleUser;
 import General.User.User;
@@ -19,6 +20,7 @@ public class ClientHandler implements Runnable {
     //    private Player pairedPlayer;
     private ClientHandler pairedClientHandler;
     private ArrayList<Object> incomingGameRequests = new ArrayList<>();
+    private Game game;
 
 
     ClientHandler(Socket socket, InputStream ois, OutputStream oos, int ID) throws IOException {
@@ -137,8 +139,7 @@ public class ClientHandler implements Runnable {
     private void newGameRequest() throws IOException, ClassNotFoundException {
         System.out.println("New Game Is Coming");
         SimpleUser requestedUser = (SimpleUser) ois.readObject();
-        Object game = ois.readObject();
-
+        game = (Game) ois.readObject();
         for (ClientHandler clientHandler : Server.getActiveClients()) {
             if (clientHandler.user.getSimpleUser().equals(requestedUser)) {
                 pairedClientHandler = clientHandler;

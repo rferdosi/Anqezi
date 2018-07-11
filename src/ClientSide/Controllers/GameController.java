@@ -2,23 +2,17 @@ package ClientSide.Controllers;
 
 import ClientSide.Client;
 import ClientSide.Game.Board;
-import General.Side;
 import ClientSide.Game.Game;
+import General.Side;
 import General.User.Player;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
+import javafx.concurrent.Task;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 public class GameController extends MotherController implements Initializable {
@@ -28,6 +22,7 @@ public class GameController extends MotherController implements Initializable {
     public static Game game;
     public static Side playerSide;
     public static int time;
+    public static int otherTime;
     public Label label;
     public Label m;
     public Label s;
@@ -36,23 +31,20 @@ public class GameController extends MotherController implements Initializable {
     public static Player otherPlayer;
 
 
-//    public static void setLabelText() {
-//    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (Client.getUser().getSimpleUser().equals(game.getPlayer1().getSimpleUser())) {
-            otherPlayer = game.getPlayer2();
-            player = game.getPlayer1();
-        } else {
-            otherPlayer = game.getPlayer1();
-            player = game.getPlayer2();
-        }
-        time = player.getTime();
-        playerSide = player.getSide();
-//        if (game == null) {
-//            game = new Game();
+//        if (Client.getUser().getSimpleUser().equals(game.getPlayer1().getSimpleUser())) {
+//            otherPlayer = game.getPlayer2();
+//            player = game.getPlayer1();
+//        } else {
+//            otherPlayer = game.getPlayer1();
+//            player = game.getPlayer2();
 //        }
+//        time = player.getTime();
+//        otherTime = otherPlayer.getTime();
+//        playerSide = player.getSide();
+        playerSide = Side.White;
+        game = new Game();
         board = game.getBoard();
         if (playerSide == Side.White) {
             isTurn = true;
@@ -60,28 +52,44 @@ public class GameController extends MotherController implements Initializable {
             isTurn = false;
         }
         readFromBoard();
-        //Todo set maxTime here!
         Thread timer = new Thread(new Timer());
         timer.start();
-        Thread setLabels = new Thread(() -> {
-            Platform.runLater(() -> {
-                if (!game.isPlayer2Accepted()) {
-                    label.setText("Waiting for " + game.getPlayer2().getSimpleUser().getName());
-                } else {
-                    label.setText(Board.turn.getSimpleUser().getName());
-                }
-                m.setText(Integer.toString(time / 60));
-                s.setText(Integer.toString(time % 60));
-
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            });
-        });
-        setLabels.start();
-//        timeManagement(500000);
+//        Platform.runLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                m.setText(Integer.toString(time / 60));
+//                s.setText(Integer.toString(time % 60));
+//                System.out.println("Timer");
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+//        Task task = new Task() {
+//            @Override
+//            protected Object call() throws Exception {
+//                return null;
+//            }
+//
+//            @Override
+//            public void run() {
+//                while (true) {
+//                    m.setText(Integer.toString(time / 60));
+//                    s.setText(Integer.toString(time % 60));
+//                    System.out.println("Timer");
+//                    try {
+//                        Thread.sleep(1000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        };
+//        Thread thread = new Thread(task);
+//        thread.start();
+//        setLabels.start();
     }
 
     private void readFromBoard() {
@@ -97,37 +105,13 @@ public class GameController extends MotherController implements Initializable {
         }
     }
 
-    private void timeManagement(long maxTime) {
-        long endTime = maxTime;
-        Label timeLabel = new Label();
-        DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-        final Timeline timeline = new Timeline(
-                new KeyFrame(
-                        Duration.millis(500),
-                        event -> {
-                            final long diff = endTime - System.currentTimeMillis();
-                            if (diff < 0) {
-                                //  timeLabel.setText( "00:00:00" );
-                                timeLabel.setText(timeFormat.format(0));
-                            } else {
-                                timeLabel.setText(timeFormat.format(diff));
-                            }
-                        }
-                )
-        );
 
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-
-//        time.getChildren().add(timeline);
-    }
-
-    public void theme2(ActionEvent actionEvent) {
+    public void theme2() {
         board.setTheme("CopperGolden");
         board.updateTextures();
     }
 
-    public void theme1(ActionEvent actionEvent) {
+    public void theme1() {
         board.setTheme("CarbonSilver");
         board.updateTextures();
     }
@@ -138,7 +122,13 @@ class Timer implements Runnable {
     @Override
     public void run() {
         while (true) {
-            GameController.time--;
+            if (GameController.isTurn)
+                GameController.time--;
+            else {
+//                GameController.otherTime--;
+            }
+//            GameController.player.setTime(GameController.time);
+//            GameController.otherPlayer.setTime(GameController.time);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

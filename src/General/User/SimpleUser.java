@@ -3,6 +3,7 @@ package General.User;
 import java.io.Serializable;
 
 public class SimpleUser implements Serializable {
+    private static final long serialVersionUID = 1234561234;
     String profilePictureAddress;
     String name;
     String username;

@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import java.io.Serializable;
 
 abstract public class Piece implements Cloneable, Serializable {
+    private static final long serialVersionUID = 123456785;
     transient protected ImageView imageView;
     protected Cell cell;
     protected Side side;
