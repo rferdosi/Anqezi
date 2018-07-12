@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Board implements Serializable {
     private static final long serialVersionUID = 123456787;
-    private Cell[][] cells = new Cell[8][8];
+    private transient Cell[][] cells = new Cell[8][8];
     private ArrayList<Piece> pieces = new ArrayList<>();
     public static Piece lastSelectedPiece;
     public static boolean needToMove;

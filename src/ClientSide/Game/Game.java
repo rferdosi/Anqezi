@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Game implements Serializable {
     private static final long serialVersionUID = 123456789;
-    private Board board;
+    private transient Board board;
     private Player player1;
     private Player player2;
     private SimpleUser winner;
