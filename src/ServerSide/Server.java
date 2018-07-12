@@ -1,15 +1,6 @@
 package ServerSide;
 
 import General.User.User;
-import ServerSide.Controllers.ServerMainController;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -17,7 +8,6 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Formatter;
-import java.util.Optional;
 
 // todo import org.slf4j.Logger and use slf4j api for log
 
