@@ -1,2 +1,2 @@
 # Chess
-online javaFx chess game
+javaFx chess game
